@@ -1,5 +1,6 @@
 import express from "express";
 import WhatsappCloudAPI from "whatsappcloudapi_wrapper";
+import "dotenv/config";
 
 const router = express.Router();
 
@@ -7,11 +8,10 @@ const Whatsapp = new WhatsappCloudAPI({
 	accessToken: process.env.Meta_WA_accessToken,
 	senderPhoneNumberId: process.env.Meta_WA_SenderPhoneNumberId,
 	WABA_ID: process.env.Meta_WA_wabaId,
-	graphAPIVersion: "v14.0",
 });
 
 // TEST EXAMPLE CODE!
-import EcommerceStore from "./../utils/ecommerce_store.js";
+import EcommerceStore from "../utils/ecommerce_store.js";
 let Store = new EcommerceStore();
 const CustomerSession = new Map();
 
