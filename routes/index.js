@@ -1,8 +1,15 @@
 import express from "express";
+import WhatsappCloudAPI from "whatsappcloudapi_wrapper";
 import "dotenv/config";
 import handleMessages from "../services/handleMessages.js";
 
 const router = express.Router();
+
+const bot = new WhatsappCloudAPI({
+	accessToken: process.env.Meta_WA_accessToken,
+	senderPhoneNumberId: process.env.Meta_WA_SenderPhoneNumberId,
+	WABA_ID: process.env.Meta_WA_wabaId,
+});
 
 router.get("/endpoint", (req, res) => {
 	try {
@@ -25,7 +32,7 @@ router.get("/endpoint", (req, res) => {
 
 router.post("/endpoint", async (req, res) => {
 	try {
-		let data = Whatsapp.parseMessage(req.body);
+		let data = bot.parseMessage(req.body);
 		console.log(data);
 
 		if (data?.isMessage) {
