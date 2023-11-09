@@ -16,8 +16,34 @@ const handleMessages = async (data) => {
 	let typeOfMsg = incomingMessage.type; // extract the type of message (text, images, responses to buttons etc.)
 	let message_id = incomingMessage.message_id; // extract the message id
 
-	// Handle text message
+	// Choose language
 	if (typeOfMsg === "textMessage") {
+		await Whatsapp.sendButtons({
+			message: "Choose your language / ഭാഷ തിരഞ്ഞെടുക്കുക",
+			recipientPhone: recipientPhone,
+			listOfButtons: [
+				{
+					title: "English",
+					id: "english",
+				},
+				{
+					title: "മലയാളം",
+					id: "malayalam",
+				},
+			],
+		});
+	}
+
+	if (typeOfMsg === "replyButtonMessage") {
+		let language = incomingMessage.button_reply.id;
+		await Whatsapp.sendText({
+			message: `Your language is ${incomingMessage.button_reply.title}`,
+			recipientPhone: recipientPhone,
+		});
+	}
+
+	// Handle text message
+	if (language === "english") {
 		await Whatsapp.sendButtons({
 			message: `Hey ${recipientName}, \n\nI'm KSFE Customer Support bot. \n\nHow can I help you?`,
 			recipientPhone: recipientPhone,
