@@ -1,8 +1,7 @@
 {
 	"name": "ksfebot",
 	"version": "1.0.0",
-	"description": "",
-	"main": "index.js",
+	"main": "app.js",
 	"type": "module",
 	"scripts": {
 		"test": "echo \"Error: no test specified\" && exit 1",
@@ -10,13 +9,13 @@
 		"dev": "nodemon app.js",
 		"prettier": "prettier --ignore-path .prettierignore --config prettier.config.js --write ."
 	},
-	"author": "",
 	"license": "ISC",
 	"dependencies": {
 		"dotenv": "^16.3.1",
 		"express": "^4.18.2",
 		"pdfkit": "^0.13.0",
 		"request": "^2.88.2",
+		"signale": "^1.4.0",
 		"whatsappcloudapi_wrapper": "^1.0.10"
 	},
 	"devDependencies": {

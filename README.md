@@ -1,3 +1,3 @@
 # KSFE Bot
 
-Bilingual AI Customer Support Chatbot for KSFE
+Bilingual AI-Powered Customer Support WhatsApp bot for KSFE

@@ -1,5 +1,5 @@
 import express from "express";
-import { environmentConfig } from "./.env.js";
+import { environmentConfig } from "./env.js";
 import indexRoutes from "./routes/index.js";
 
 const { PORT = 9000 } = environmentConfig;
