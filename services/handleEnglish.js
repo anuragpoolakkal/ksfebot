@@ -1,8 +1,6 @@
 import WhatsappCloudAPI from "whatsappcloudapi_wrapper";
 import "dotenv/config";
 
-import { faqList } from "../constants/index.js";
-
 const bot = new WhatsappCloudAPI({
     accessToken: process.env.Meta_WA_accessToken,
     senderPhoneNumberId: process.env.Meta_WA_SenderPhoneNumberId,
@@ -43,22 +41,6 @@ export default async function handleEnglish(data) {
         incomingMessage;
         if (button_id === "faq") {
             await bot.sendText({ message: "You pressed FAQ", recipientPhone });
-
-            // await bot.sendButtons({
-            //     message: "Please choose a question from the list below:",
-            //     recipientPhone,
-            //     listOfButtons: faqList.map((faq) => ({
-            //         title: faq.question,
-            //         id: faq.id,
-            //     })),
-            // });
-            // let b_id = incomingMessage.button_reply.id;
-            // let faq = faqList.find((faq) => faq.id === b_id);
-            // console.log(faq);
-            // await bot.sendText({
-            //     message: faq?.answer,
-            //     recipientPhone,
-            // });
         }
 
         if (button_id === "branch_locator") {
