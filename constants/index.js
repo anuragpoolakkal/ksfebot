@@ -14,9 +14,4 @@ export const faqList = [
         question: "Question 3?",
         answer: "Answer 3.",
     },
-    {
-        id: "q4",
-        question: "Question 4?",
-        answer: "Answer 4.",
-    },
 ];

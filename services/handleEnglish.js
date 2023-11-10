@@ -42,21 +42,23 @@ export default async function handleEnglish(data) {
         let button_id = incomingMessage.button_reply.id;
         incomingMessage;
         if (button_id === "faq") {
-            // await bot.sendText({ message: "You pressed FAQ", recipientPhone });
-            await bot.sendButtons({
-                message: "Please choose a question from the list below:",
-                recipientPhone,
-                listOfButtons: faqList.map((faq) => ({
-                    title: faq.question,
-                    id: faq.id,
-                })),
-            });
-            let b_id = incomingMessage.button_reply.id;
-            let faq = faqList.find((faq) => faq.id === b_id);
-            await bot.sendText({
-                message: faq.answer,
-                recipientPhone,
-            });
+            await bot.sendText({ message: "You pressed FAQ", recipientPhone });
+
+            // await bot.sendButtons({
+            //     message: "Please choose a question from the list below:",
+            //     recipientPhone,
+            //     listOfButtons: faqList.map((faq) => ({
+            //         title: faq.question,
+            //         id: faq.id,
+            //     })),
+            // });
+            // let b_id = incomingMessage.button_reply.id;
+            // let faq = faqList.find((faq) => faq.id === b_id);
+            // console.log(faq);
+            // await bot.sendText({
+            //     message: faq?.answer,
+            //     recipientPhone,
+            // });
         }
 
         if (button_id === "branch_locator") {
