@@ -202,3 +202,6 @@ export const faqListMalayalam = [
         answer: "അതെ. ഗവൺമെന്റ് ഓഫ് ഇന്ത്യയുടെ 13.04.2015 ൽ പുറത്തിറങ്ങിയ 227-LU നമ്പർ ഗസറ്റ് നോട്ടിഫിക്കേഷൻ പ്രകാരം പ്രവാസി മലയാളികൾക്കും ചിട്ടിയിൽ ചേരാവുന്നതാണ്. കെ.എസ്.എഫ്.ഇ. പ്രവാസി ചിട്ടികൾ എന്ന് പേരിട്ട ഈ പദ്ധതിയുടെ വിശദാംശങ്ങൾ അറിയാൻ www.pravasi.ksfe.com എന്ന വെബ് സൈറ്റ് സന്ദർശിക്കേണ്ടതാണ്. ഇതിന് വേണ്ടി ഒരു പ്രതീതി ശാഖ തിരുവനന്തപുരത്ത് പ്രവർത്തിയ്ക്കുന്നുണ്ട്.",
     },
 ];
+
+export const faqEnglish =
+    "1. What are the main attractions of enrolling in KSFE Chitties over enrollment in other savings instruments?\n\n2. I hear that the security norms of KSFE for various schemes are rigid and cumbersome. Is it true?\n\n3. What are the advantages of the Consumer/Vehicle Loan Scheme of KSFE over similar schemes of the other institutions?\n\n4. What are the advantages of the KSFE Housing Loan over similar schemes of other institutions?\n\n5. What are the main attractions of Gold Loan Scheme of KSFE?\n\n6. What are the main attractions of Chitty Loan Scheme?\n\n7. I hear that the granting of chitty prize money and advance will involve delay in KSFE?\n\n8. Is there a system of redressal of complaints, if I have any?\n\n9. How is the line of control over branches structured?\n\n10. I hear that nowadays KSFE Chitty scheme opens its door to NRI's also?\n\nReply the number with the question.";
