@@ -3,6 +3,9 @@ import bodyParser from "body-parser";
 import axios from "axios";
 import "dotenv/config";
 
+import handleEnglish from "./services/handleEnglish.js";
+import handleMalayalam from "./services/handleMalayalam.js";
+
 const app = express().use(bodyParser.json());
 
 const verify_token = process.env.VERIFY_TOKEN;
@@ -26,81 +29,90 @@ app.get("/endpoint", (req, res) => {
     }
 });
 
-app.post("/endpoint", (req, res) => {
-    let body_param = req.body;
+app.post("/endpoint", async (req, res) => {
+    let data = req.body;
 
-    console.log(JSON.stringify(body_param, null, 2));
+    console.log(JSON.stringify(data, null, 2));
 
-    if (body_param.object) {
+    if (data.object) {
         if (
-            body_param.entry &&
-            body_param.entry[0].changes &&
-            body_param.entry[0].changes[0].value.messages &&
-            body_param.entry[0].changes[0].value.messages[0]
+            data.entry &&
+            data.entry[0].changes &&
+            data.entry[0].changes[0].value.messages &&
+            data.entry[0].changes[0].value.messages[0]
         ) {
             let phone_no_id =
-                body_param.entry[0].changes[0].value.metadata.phone_number_id;
-            let msg_id = body_param.entry[0].id;
-            let from = body_param.entry[0].changes[0].value.messages[0].from;
-            let msg_body =
-                body_param.entry[0].changes[0].value.messages[0].text.body;
-            let name =
-                body_param.entry[0].changes[0].value.contacts[0].profile.name;
+                data.entry[0].changes[0].value.metadata.phone_number_id;
+            let msg_id = data.entry[0].id;
+            let from = data.entry[0].changes[0].value.messages[0].from;
+            let msg = data.entry[0].changes[0].value.messages[0];
+            let name = data.entry[0].changes[0].value.contacts[0].profile.name;
 
-            axios({
-                method: "POST",
-                url:
-                    "https://graph.facebook.com/v13.0/" +
-                    phone_no_id +
-                    "/messages?access_token=" +
-                    access_token,
-                data: {
-                    messaging_product: "whatsapp",
-                    to: from,
-                    type: "interactive",
-                    interactive: {
-                        type: "button",
-                        body: {
-                            text:
-                                "Hey " +
-                                name +
-                                ", I'm KSFE Customer Support bot. Your message is '" + msg_body + "'.\n\nChoose your language / ഭാഷ തിരഞ്ഞെടുക്കുക",
-                        },
-                        action: {
-                            buttons: [
-                                {
-                                    type: "reply",
-                                    reply: {
-                                        id: "english",
-                                        title: "English",
+            // Welcome message and language selection
+
+            if (msg?.type === "text") {
+                await axios({
+                    method: "POST",
+                    url:
+                        "https://graph.facebook.com/v13.0/" +
+                        phone_no_id +
+                        "/messages?access_token=" +
+                        access_token,
+                    data: {
+                        messaging_product: "whatsapp",
+                        to: from,
+                        type: "interactive",
+                        interactive: {
+                            type: "button",
+                            body: {
+                                text:
+                                    "Hey " +
+                                    name +
+                                    ", I'm KSFE Customer Support bot. Your message is '" +
+                                    msg?.text?.body +
+                                    "'.\n\nChoose your language / ഭാഷ തിരഞ്ഞെടുക്കുക",
+                            },
+                            action: {
+                                buttons: [
+                                    {
+                                        type: "reply",
+                                        reply: {
+                                            id: "english",
+                                            title: "English",
+                                        },
                                     },
-                                },
-                                {
-                                    type: "reply",
-                                    reply: {
-                                        id: "malayalam",
-                                        title: "മലയാളം",
+                                    {
+                                        type: "reply",
+                                        reply: {
+                                            id: "malayalam",
+                                            title: "മലയാളം",
+                                        },
                                     },
-                                },
-                            ],
+                                ],
+                            },
                         },
                     },
 
-                    // text: {
-                    //     body: "Hello brother, your message is " + msg_body,
-                    // },
-                },
-                headers: {
-                    "Content-Type": "application/json",
-                    Authorization: "Bearer {{verify-token}}",
-                },
-            });
+                    headers: {
+                        "Content-Type": "application/json",
+                        Authorization: "Bearer {{verify_token}}",
+                    },
+                });
 
-            // code for mark as read
+                if (msg?.interactive?.button_reply?.id === "english") {
+                    await handleEnglish(data);
+                }
 
-            res.sendStatus(200);
-        } else {
-            res.sendStatus(400);
+                if (msg?.interactive?.button_reply?.id === "malayalam") {
+                    await handleMalayalam(data);
+                }
+
+                // code for mark as read
+
+                res.sendStatus(200);
+            } else {
+                res.sendStatus(400);
+            }
         }
     }
 });
