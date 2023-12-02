@@ -15,6 +15,10 @@ app.listen(process.env.PORT || 9000, () => {
     console.log("Webhook is listening");
 });
 
+app.get("/", (req, res) => {
+    res.status(200).send("200 | Server Running");
+});
+
 app.get("/endpoint", (req, res) => {
     let mode = req.query["hub.mode"];
     let challenge = req.query["hub.challenge"];
