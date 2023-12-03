@@ -100,7 +100,7 @@ app.post("/endpoint", async (req, res) => {
 
                     headers: {
                         "Content-Type": "application/json",
-                        Authorization: "Bearer {{verify_token}}",
+                        Authorization: `Bearer ${access_token}`,
                     },
                 });
             }
@@ -153,7 +153,7 @@ app.post("/endpoint", async (req, res) => {
 
                         headers: {
                             "Content-Type": "application/json",
-                            Authorization: "Bearer {{verify_token}}",
+                            Authorization: `Bearer ${access_token}`,
                         },
                     });
                 }
@@ -177,7 +177,7 @@ app.post("/endpoint", async (req, res) => {
 
                         headers: {
                             "Content-Type": "application/json",
-                            Authorization: "Bearer {{verify_token}}",
+                            Authorization: `Bearer ${access_token}`,
                         },
                     });
                 }
@@ -201,7 +201,7 @@ app.post("/endpoint", async (req, res) => {
 
                         headers: {
                             "Content-Type": "application/json",
-                            Authorization: "Bearer {{verify_token}}",
+                            Authorization: `Bearer ${access_token}`,
                         },
                     });
                 }
@@ -225,7 +225,7 @@ app.post("/endpoint", async (req, res) => {
 
                         headers: {
                             "Content-Type": "application/json",
-                            Authorization: "Bearer {{verify_token}}",
+                            Authorization: `Bearer ${access_token}`,
                         },
                     });
                 }
@@ -249,13 +249,38 @@ app.post("/endpoint", async (req, res) => {
 
                         headers: {
                             "Content-Type": "application/json",
-                            Authorization: "Bearer {{verify_token}}",
+                            Authorization: `Bearer ${access_token}`,
                         },
                     });
                 }
             }
 
-            // code for mark as read
+            // let wamid = body_param.entry[0].changes[0].value.messages[0].id;
+
+            // // mark as read
+            // await axios({
+            //     method: "PUT",
+            //     maxBodyLength: Infinity,
+            //     url:
+            //         "https://graph.facebook.com/v13.0/" +
+            //         phone_no_id +
+            //         "/messages?access_token=" +
+            //         access_token,
+            //     data: {
+            //         messaging_product: "whatsapp",
+            //         status: "read",
+            //         message_id: wamid,
+            //     },
+
+            //     headers: {
+            //         "Content-Type": "application/json",
+            //         Authorization: `Bearer ${access_token}`,
+            //     },
+            // });
+
+            res.sendStatus(200);
+        } else {
+            res.sendStatus(400);
         }
     }
 });
