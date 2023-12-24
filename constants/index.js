@@ -60,7 +60,7 @@ export const faqListEnglish = [
     {
         id: "q7-e",
         question:
-            "I heat that the granting of chitty prize money and advance will involve delay in KSFE ?",
+            "I hear that the granting of chitty prize money and advance will involve delay in KSFE ?",
         answer: "This is absolutely wrong. There may be rare instances of delay due to the failure in submitting sufficient security in time. Recent reforms brought about for the quick acceptance of securities and bringing in speed and flexibility will further expedite the processing of loan/chitty prize money payment applications and extending of advance/prize money payment in submitting sufficient security in time.",
     },
     {
@@ -204,4 +204,65 @@ export const faqListMalayalam = [
 ];
 
 export const faqEnglish =
-    "1. What are the main attractions of enrolling in KSFE Chitties over enrollment in other savings instruments?\n\n2. I hear that the security norms of KSFE for various schemes are rigid and cumbersome. Is it true?\n\n3. What are the advantages of the Consumer/Vehicle Loan Scheme of KSFE over similar schemes of the other institutions?\n\n4. What are the advantages of the KSFE Housing Loan over similar schemes of other institutions?\n\n5. What are the main attractions of Gold Loan Scheme of KSFE?\n\n6. What are the main attractions of Chitty Loan Scheme?\n\n7. I hear that the granting of chitty prize money and advance will involve delay in KSFE?\n\n8. Is there a system of redressal of complaints, if I have any?\n\n9. How is the line of control over branches structured?\n\n10. I hear that nowadays KSFE Chitty scheme opens its door to NRI's also?\n\nReply the number with the question.";
+    "*Frequently Asked Questions*\n\n1. What are the main attractions of enrolling in KSFE Chitties over enrollment in other savings instruments?\n\n2. I hear that the security norms of KSFE for various schemes are rigid and cumbersome. Is it true?\n\n3. What are the advantages of the Consumer/Vehicle Loan Scheme of KSFE over similar schemes of the other institutions?\n\n4. What are the advantages of the KSFE Housing Loan over similar schemes of other institutions?\n\n5. What are the main attractions of Gold Loan Scheme of KSFE?\n\n6. What are the main attractions of Chitty Loan Scheme?\n\n7. I hear that the granting of chitty prize money and advance will involve delay in KSFE?\n\n8. Is there a system of redressal of complaints, if I have any?\n\n9. How is the line of control over branches structured?\n\n10. I hear that nowadays KSFE Chitty scheme opens its door to NRI's also?";
+
+export const faqListEnOptions = [
+    {
+        id: "1",
+        title: "Question 1",
+        description:
+            "What are the main attractions of enrolling in KSFE Chitties over enro...",
+    },
+    {
+        id: "2",
+        title: "Question 2",
+        description:
+            "I hear that the security norms of KSFE for various schemes are rigid ...",
+    },
+    {
+        id: "3",
+        title: "Question 3",
+        description:
+            "What are the advantages of the Consumer/Vehicle Loan Scheme of KSFE o...",
+    },
+    {
+        id: "4",
+        title: "Question 4",
+        description:
+            "What are the advantages of the KSFE Housing Loan over similar schemes...",
+    },
+    {
+        id: "5",
+        title: "Question 5",
+        description:
+            "What are the main attractions of Gold Loan Scheme of KSFE?",
+    },
+    {
+        id: "6",
+        title: "Question 6",
+        description: "What are the main attractions of Chitty Loan Scheme?",
+    },
+    {
+        id: "7",
+        title: "Question 7",
+        description:
+            "I hear that the granting of chitty prize money and advance will invol...",
+    },
+    {
+        id: "8",
+        title: "Question 8",
+        description:
+            "Is there a system of redressal of complaints, if I have any?",
+    },
+    {
+        id: "9",
+        title: "Question 9",
+        description: "How is the line of control over branches structured?",
+    },
+    {
+        id: "10",
+        title: "Question 10",
+        description:
+            "I hear that nowadays KSFE Chitty scheme opens its door to NRI's also?",
+    },
+];

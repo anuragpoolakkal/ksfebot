@@ -18,30 +18,7 @@ export default async function handleMalayalam(body_param) {
             let name =
                 body_param.entry[0].changes[0].value.contacts[0].profile.name;
 
-            // Malayalam dummy message
-            if (msg?.interactive?.button_reply?.id === "faq") {
-                await axios({
-                    method: "POST",
-                    url:
-                        "https://graph.facebook.com/v13.0/" +
-                        phone_no_id +
-                        "/messages?access_token=" +
-                        access_token,
-                    data: {
-                        messaging_product: "whatsapp",
-                        to: from,
-                        type: "text",
-                        text: {
-                            body: "You chose Malayalam",
-                        },
-                    },
-
-                    headers: {
-                        "Content-Type": "application/json",
-                        Authorization: "Bearer {{verify_token}}",
-                    },
-                });
-            }
+            // code here
         }
     }
 }
