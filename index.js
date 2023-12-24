@@ -23,16 +23,23 @@ router.get("/", (req, res) => {
 });
 
 router.get("/endpoint", (req, res) => {
-    let mode = req.query["hub.mode"];
-    let challenge = req.query["hub.challenge"];
-    let token = req.query["hub.verify_token"];
+    try {
+        let mode = req.query["hub.mode"];
+        let challenge = req.query["hub.challenge"];
+        let token = req.query["hub.verify_token"];
 
-    if (mode && token) {
-        if (mode === "subscribe" && token === verify_token) {
-            res.status(200).send(challenge);
-        } else {
-            res.status(403);
+        if (mode && token) {
+            if (mode === "subscribe" && token === verify_token) {
+                res.status(200).send(challenge);
+            } else {
+                res.status(403);
+            }
         }
+
+        res.send("KSFE /endpoint");
+    } catch (error) {
+        console.error({ error });
+        return res.sendStatus(500);
     }
 });
 
@@ -150,7 +157,7 @@ router.post("/endpoint", async (req, res) => {
                                                 type: "reply",
                                                 reply: {
                                                     id: "contact",
-                                                    title: "Contact",
+                                                    title: "Contact us",
                                                 },
                                             },
                                         ],
@@ -267,7 +274,7 @@ router.post("/endpoint", async (req, res) => {
                                 to: from,
                                 type: "text",
                                 text: {
-                                    body: "Ph: +91 12345 67890",
+                                    body: "*Registered Office*\nThe Kerala State Financial Enterprises Ltd.\n“bhadratha”, Museum Road,\nP.b. No.510,Thrissur – 680 020\nPhone No: 0487 2332255\nToll Free No: 1800 425 3455\nFax: 0487 – 2336232\nE-Mail : mail@ksfe.com\n\nTo ask your queries, visit https://ksfe.com/contact-us",
                                 },
                             },
 
@@ -293,7 +300,7 @@ router.post("/endpoint", async (req, res) => {
                                 to: from,
                                 type: "text",
                                 text: {
-                                    body: "You selected Branch Locator",
+                                    body: "Find your nearest branch\n\nhttps://ksfe.com/branch-locator",
                                 },
                             },
 
