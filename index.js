@@ -11,16 +11,16 @@ import {
 
 const router = express().use(bodyParser.json());
 
-// const verify_token = process.env.VERIFY_TOKEN;
-// const access_token = process.env.ACCESS_TOKEN;
-
-const verify_token = process.env.Meta_WA_VerifyToken;
-const access_token = process.env.Meta_WA_accessToken;
+const verify_token = process.env.VERIFY_TOKEN;
+const access_token = process.env.ACCESS_TOKEN;
 
 router.listen(process.env.PORT || 9000, () => {
-    console.log("Webhook is listening");
-    // console.log(access_token);
-    // console.log(verify_token);
+    console.log(
+        `Webhook is listening\nAccess token: ` +
+            access_token +
+            `\nVerify token: ` +
+            verify_token
+    );
 });
 
 router.get("/", (req, res) => {
