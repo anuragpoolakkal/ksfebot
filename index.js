@@ -12,6 +12,8 @@ import {
     faqListMlOptions,
 } from "./constants/index.js";
 
+const preferredLanguage = new Map();
+
 const router = express().use(bodyParser.json());
 
 const verify_token = process.env.VERIFY_TOKEN;
@@ -74,10 +76,10 @@ router.post("/endpoint", async (req, res) => {
                 let name =
                     body_param.entry[0].changes[0].value.contacts[0].profile
                         .name;
-
+                let language = preferredLanguage.get(phone_no_id);
                 // Welcome message and language selection
 
-                if (msg?.type === "text") {
+                if (msg?.type === "text" && language === undefined) {
                     axios({
                         method: "POST",
                         url:
@@ -127,8 +129,15 @@ router.post("/endpoint", async (req, res) => {
                     });
                 }
 
-                if (msg?.interactive?.type === "button_reply") {
-                    if (msg?.interactive?.button_reply?.id === "english") {
+                if (
+                    msg?.interactive?.type === "button_reply" ||
+                    (msg?.type === "text" && language !== undefined)
+                ) {
+                    if (
+                        msg?.interactive?.button_reply?.id === "english" ||
+                        (msg?.type === "text" && language === "english")
+                    ) {
+                        preferredLanguage.set(phone_no_id, "english");
                         axios({
                             method: "POST",
                             url:
@@ -206,7 +215,11 @@ router.post("/endpoint", async (req, res) => {
 
                     // ---------Malayalam-------------
 
-                    if (msg?.interactive?.button_reply?.id === "malayalam") {
+                    if (
+                        msg?.interactive?.button_reply?.id === "malayalam" ||
+                        (msg?.type === "text" && language === "malayalam")
+                    ) {
+                        preferredLanguage.set(phone_no_id, "malayalam");
                         axios({
                             method: "POST",
                             url:
@@ -432,7 +445,7 @@ router.post("/endpoint", async (req, res) => {
                                 to: from,
                                 type: "text",
                                 text: {
-                                    body: "*Registered Office*\n\nകേരള സ്റ്റേറ്റ് ഫിനാൻഷ്യൽ എന്റർപ്രൈസസ് ലിമിറ്റഡ്\n“ഭദ്രത”, മ്യൂസിയം റോഡ്,\nP.b. No.510,Thrissur – 680 020\nഫോൺ No: 0487 2332255\nടോൾ ഫ്രീ No: 1800 425 3455\nഫാക്സ്: 0487 – 2336232\nE-Mail : mail@ksfe.com\n\nനിങ്ങളുടെ ചോദ്യങ്ങൾ ചോദിക്കുന്നതിന്, സന്ദർശിക്കുക https://ksfe.com/contact-us",
+                                    body: "*Registered Office*\n\nകേരള സ്റ്റേറ്റ് ഫിനാൻഷ്യൽ എന്റർപ്രൈസസ് ലിമിറ്റഡ്\n“ഭദ്രത”, മ്യൂസിയം റോഡ്,\nP.b. No.510,തൃശ്ശൂർ – 680 020\nഫോൺ No: 0487 2332255\nടോൾ ഫ്രീ No: 1800 425 3455\nഫാക്സ്: 0487 – 2336232\nE-Mail : mail@ksfe.com\n\nനിങ്ങളുടെ ചോദ്യങ്ങൾ ചോദിക്കുന്നതിന്, സന്ദർശിക്കുക https://ksfe.com/contact-us",
                                 },
                             },
 
