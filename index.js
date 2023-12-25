@@ -77,6 +77,8 @@ router.post("/endpoint", async (req, res) => {
                     body_param.entry[0].changes[0].value.contacts[0].profile
                         .name;
                 let language = preferredLanguage.get(phone_no_id);
+
+                
                 // Welcome message and language selection
 
                 if (msg?.type === "text" && language === undefined) {
@@ -188,30 +190,6 @@ router.post("/endpoint", async (req, res) => {
                             },
                         });
                     }
-
-                    // if (msg?.interactive?.button_reply?.id === "malayalam") {
-                    //     axios({
-                    //         method: "POST",
-                    //         url:
-                    //             "https://graph.facebook.com/v13.0/" +
-                    //             phone_no_id +
-                    //             "/messages?access_token=" +
-                    //             access_token,
-                    //         data: {
-                    //             messaging_product: "whatsapp",
-                    //             to: from,
-                    //             type: "text",
-                    //             text: {
-                    //                 body: "You chose Malayalam",
-                    //             },
-                    //         },
-
-                    //         headers: {
-                    //             "Content-Type": "application/json",
-                    //             Authorization: `Bearer ${access_token}`,
-                    //         },
-                    //     });
-                    // }
 
                     // ---------Malayalam-------------
 

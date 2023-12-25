@@ -329,3 +329,156 @@ export const faqListMlOptions = [
         description: "ഈയിടെയായി പ്രവാസി മലയാളികൾക്കും ചിട്ടി തുടങ്ങിയതായി...",
     },
 ];
+
+export const productList = [
+    {
+        title: "Chitty",
+        rows: [
+            {
+                id: "ksfe_chitty",
+                title: "KSFE Chitty",
+                description: "<SECTION_1_ROW_1_DESC>",
+            },
+        ],
+    },
+    {
+        title: "Loans & Advances",
+        rows: [
+            {
+                id: "gold_loan",
+                title: "Gold Loan",
+                description: "<SECTION_2_ROW_1_DESC>",
+            },
+            {
+                id: "janamithram_gold_loan",
+                title: "Janamithram Gold Loan",
+                description: "<SECTION_2_ROW_2_DESC>",
+            },
+            {
+                id: "ksfe_home_loan",
+                title: "KSFE Home Loan",
+                description: "<SECTION_2_ROW_2_DESC>",
+            },
+            {
+                id: "ksfe_personal_loan",
+                title: "KSFE Personal Loan",
+                description: "<SECTION_2_ROW_2_DESC>",
+            },
+            {
+                id: "chitty_loan",
+                title: "Chitty Loan",
+                description: "<SECTION_2_ROW_2_DESC>",
+            },
+            {
+                id: "ksfe_passbook_loan",
+                title: "KSFE Passbook Loan",
+                description: "<SECTION_2_ROW_2_DESC>",
+            },
+            {
+                id: "consumer_personal_loan",
+                title: "Consumer / Vehicle Loan",
+                description: "<SECTION_2_ROW_2_DESC>",
+            },
+            {
+                id: "car_loan",
+                title: "Car Loan",
+                description: "<SECTION_2_ROW_2_DESC>",
+            },
+            {
+                id: "sugama_akshaya_overdraft_scheme",
+                title: "Sugama (akshaya) Overdraft Scheme",
+                description: "<SECTION_2_ROW_2_DESC>",
+            },
+        ],
+    },
+    {
+        title: "Deposit Schemes",
+        rows: [
+            {
+                id: "fixed_deposit",
+                title: "Fixed Deposit",
+                description: "<SECTION_2_ROW_1_DESC>",
+            },
+            {
+                id: "chitty_security_deposit_in_trust",
+                title: "Chitty Security Deposit in Trust",
+                description: "<SECTION_2_ROW_2_DESC>",
+            },
+            {
+                id: "short_term_deposit",
+                title: "Short Term Deposits",
+                description: "<SECTION_2_ROW_2_DESC>",
+            },
+            {
+                id: "sugama_deposit_scheme",
+                title: "Sugama Deposit Scheme",
+                description: "<SECTION_2_ROW_2_DESC>",
+            },
+            {
+                id: "nettam_deposit_scheme",
+                title: "Nettam Deposit Scheme",
+                description: "<SECTION_2_ROW_2_DESC>",
+            },
+        ],
+    },
+    {
+        title: "Securities Acceptible",
+        rows: [
+            {
+                id: "personal_surety",
+                title: "Personal Surety",
+                description: "<SECTION_2_ROW_1_DESC>",
+            },
+            {
+                id: "fd_of_ksfe_and_other_bank_deposits",
+                title: "FD of KSFE and Other Bank Deposits",
+                description: "<SECTION_2_ROW_2_DESC>",
+            },
+            {
+                id: "sugaam_security_deposit",
+                title: "Sugama Security Deposit",
+                description: "<SECTION_2_ROW_1_DESC>",
+            },
+            {
+                id: "life_cover_policy",
+                title: "Life Cover Policy",
+                description: "<SECTION_2_ROW_1_DESC>",
+            },
+            {
+                id: "bank_guarantee",
+                title: "Bank Guarantee",
+                description: "<SECTION_2_ROW_1_DESC>",
+            },
+            {
+                id: "passbook_of_nonprized",
+                title: "Pass Book of Non-Prized Chitties of KSFE",
+                description: "<SECTION_2_ROW_1_DESC>",
+            },
+            {
+                id: "kissan_vikas_patra",
+                title: "Kissan Vikas Patra",
+                description: "<SECTION_2_ROW_1_DESC>",
+            },
+            {
+                id: "property_security",
+                title: "Property Security",
+                description: "<SECTION_2_ROW_1_DESC>",
+            },
+            {
+                id: "gold_security",
+                title: "Gold Security",
+                description: "<SECTION_2_ROW_1_DESC>",
+            },
+        ],
+    },
+    {
+        title: "Fee Based Services",
+        rows: [
+            {
+                id: "safe_deposit_locker",
+                title: "Safe Deposit Locker",
+                description: "<SECTION_2_ROW_1_DESC>",
+            },
+        ],
+    },
+];
