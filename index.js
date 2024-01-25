@@ -78,7 +78,6 @@ router.post("/endpoint", async (req, res) => {
                         .name;
                 let language = preferredLanguage.get(phone_no_id);
 
-                
                 // Welcome message and language selection
 
                 if (msg?.type === "text" && language === undefined) {
@@ -140,7 +139,7 @@ router.post("/endpoint", async (req, res) => {
                         (msg?.type === "text" && language === "english")
                     ) {
                         preferredLanguage.set(phone_no_id, "english");
-                        axios({
+                        await axios({
                             method: "POST",
                             url:
                                 "https://graph.facebook.com/v13.0/" +
@@ -189,6 +188,41 @@ router.post("/endpoint", async (req, res) => {
                                 Authorization: `Bearer ${access_token}`,
                             },
                         });
+                        axios({
+                            method: "POST",
+                            url:
+                                "https://graph.facebook.com/v13.0/" +
+                                phone_no_id +
+                                "/messages?access_token=" +
+                                access_token,
+                            data: {
+                                messaging_product: "whatsapp",
+                                to: from,
+                                type: "interactive",
+                                interactive: {
+                                    type: "button",
+                                    body: {
+                                        text: "More services",
+                                    },
+                                    action: {
+                                        buttons: [
+                                            {
+                                                type: "reply",
+                                                reply: {
+                                                    id: "products",
+                                                    title: "Products & Services",
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+
+                            headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${access_token}`,
+                            },
+                        });
                     }
 
                     // ---------Malayalam-------------
@@ -198,7 +232,7 @@ router.post("/endpoint", async (req, res) => {
                         (msg?.type === "text" && language === "malayalam")
                     ) {
                         preferredLanguage.set(phone_no_id, "malayalam");
-                        axios({
+                        await axios({
                             method: "POST",
                             url:
                                 "https://graph.facebook.com/v13.0/" +
@@ -235,6 +269,41 @@ router.post("/endpoint", async (req, res) => {
                                                 reply: {
                                                     id: "contact-m",
                                                     title: "ഞങ്ങളെ ബന്ധപ്പെടുക",
+                                                },
+                                            },
+                                        ],
+                                    },
+                                },
+                            },
+
+                            headers: {
+                                "Content-Type": "application/json",
+                                Authorization: `Bearer ${access_token}`,
+                            },
+                        });
+                        axios({
+                            method: "POST",
+                            url:
+                                "https://graph.facebook.com/v13.0/" +
+                                phone_no_id +
+                                "/messages?access_token=" +
+                                access_token,
+                            data: {
+                                messaging_product: "whatsapp",
+                                to: from,
+                                type: "interactive",
+                                interactive: {
+                                    type: "button",
+                                    body: {
+                                        text: "കൂടുതൽ സേവനങ്ങൾ",
+                                    },
+                                    action: {
+                                        buttons: [
+                                            {
+                                                type: "reply",
+                                                reply: {
+                                                    id: "products-m",
+                                                    title: "സേവനങ്ങൾ",
                                                 },
                                             },
                                         ],
