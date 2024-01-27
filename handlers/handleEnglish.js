@@ -2,16 +2,18 @@ import axios from "axios";
 
 import {
     faqListEnglish,
-    faqListEnOptions,
     faqEnglish,
-} from "../constants/index.js";
+    showFaqOptions,
+    showProductList,
+    showChangeLanguageMenu,
+    showMenu,
+} from "../constants/english.js";
 
 export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
     if (
-        msg?.type === "text" ||
-        msg?.interactive?.button_reply?.id === "english"
+        msg?.interactive?.button_reply?.id === "english" ||
+        msg?.type === "text"
     ) {
-        console.log("Got here 2");
         await axios({
             method: "POST",
             url:
@@ -61,7 +63,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                 Authorization: `Bearer ${access_token}`,
             },
         });
-        axios({
+        await axios({
             method: "POST",
             url:
                 "https://graph.facebook.com/v13.0/" +
@@ -75,7 +77,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                 interactive: {
                     type: "button",
                     body: {
-                        text: "More services",
+                        text: "ㅤㅤㅤ",
                     },
                     action: {
                         buttons: [
@@ -84,6 +86,56 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                                 reply: {
                                     id: "products",
                                     title: "Products & Services",
+                                },
+                            },
+                            {
+                                type: "reply",
+                                reply: {
+                                    id: "aboutKsfe",
+                                    title: "About KSFE",
+                                },
+                            },
+                            {
+                                type: "reply",
+                                reply: {
+                                    id: "pravasiChitty",
+                                    title: "Pravasi Chitty",
+                                },
+                            },
+                        ],
+                    },
+                },
+            },
+
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${access_token}`,
+            },
+        });
+
+        await axios({
+            method: "POST",
+            url:
+                "https://graph.facebook.com/v13.0/" +
+                phone_no_id +
+                "/messages?access_token=" +
+                access_token,
+            data: {
+                messaging_product: "whatsapp",
+                to: from,
+                type: "interactive",
+                interactive: {
+                    type: "button",
+                    body: {
+                        text: "ㅤㅤㅤ",
+                    },
+                    action: {
+                        buttons: [
+                            {
+                                type: "reply",
+                                reply: {
+                                    id: "change_langauge",
+                                    title: "Change Language",
                                 },
                             },
                         ],
@@ -99,7 +151,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
     }
 
     // ----------------------FAQ----------------------
-    else if (msg?.interactive?.button_reply?.id === "faq") {
+    if (msg?.interactive?.button_reply?.id === "faq") {
         await axios({
             method: "POST",
             url:
@@ -122,51 +174,14 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
             },
         });
 
-        await axios({
-            method: "POST",
-            url:
-                "https://graph.facebook.com/v13.0/" +
-                phone_no_id +
-                "/messages?access_token=" +
-                access_token,
-            data: {
-                messaging_product: "whatsapp",
-                to: from,
-                type: "interactive",
-                interactive: {
-                    type: "list",
-                    header: {
-                        type: "text",
-                        text: "Select your question",
-                    },
-                    body: {
-                        text: "FAQ",
-                    },
-                    // footer: {
-                    //     text: "<FOOTER_TEXT>",
-                    // },
-                    action: {
-                        button: "Choose question",
-                        sections: [
-                            {
-                                title: "Choose question",
-                                rows: faqListEnOptions,
-                            },
-                        ],
-                    },
-                },
-            },
+        await showFaqOptions(phone_no_id, access_token, from);
 
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${access_token}`,
-            },
-        });
+        await showMenu(phone_no_id, access_token, from);
     }
 
     // ----------------------Contact----------------------
-    else if (msg?.interactive?.button_reply?.id === "contact") {
-        axios({
+    if (msg?.interactive?.button_reply?.id === "contact") {
+        await axios({
             method: "POST",
             url:
                 "https://graph.facebook.com/v13.0/" +
@@ -187,11 +202,13 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                 Authorization: `Bearer ${access_token}`,
             },
         });
+
+        await showMenu(phone_no_id, access_token, from);
     }
 
     // ----------------------Branch Locator----------------------
-    else if (msg?.interactive?.button_reply?.id === "branch_locator") {
-        axios({
+    if (msg?.interactive?.button_reply?.id === "branch_locator") {
+        await axios({
             method: "POST",
             url:
                 "https://graph.facebook.com/v13.0/" +
@@ -212,13 +229,19 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                 Authorization: `Bearer ${access_token}`,
             },
         });
+
+        await showMenu(phone_no_id, access_token, from);
     }
 
-    //----------------------List Reply----------------------
-    else if (msg?.interactive?.type === "list_reply") {
-        let qn = await msg?.interactive?.list_reply?.id;
-        // let ln = qn[0];
+    //---------------------- Products and Services catalogue ----------------------
+    if (msg?.interactive?.button_reply?.id === "products") {
+        await showProductList(phone_no_id, access_token, from);
 
+        await showMenu(phone_no_id, access_token, from);
+    }
+
+    //---------------------- About KSFE ----------------------
+    if (msg?.interactive?.button_reply?.id === "aboutKsfe") {
         await axios({
             method: "POST",
             url:
@@ -231,11 +254,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                 to: from,
                 type: "text",
                 text: {
-                    body:
-                        `*` +
-                        faqListEnglish[qn - 1].question +
-                        `*\n\n` +
-                        faqListEnglish[qn - 1].answer,
+                    body: "The Kerala State Financial Enterprises Limited, popularly known as *KSFE*.\nKSFE started its operations on 6th November 1969, headquartered at Thrissur, with a capital of ₹2 Lakhs, 45 employees and 10 branches.\n\n*₹100 Cr* paid up capital\n*8300+* employees\n*50 Lacks+* customers\n*670+* branches\n*73000 Cr+* capital\n\n*KSFE at a Glance*\nKSFE is a Miscellaneous Non-Banking Company,Is fully owned by the Government of Kerala.\n\nKSFE is one of the most profit-making public sector undertakings of the State.\n\nFormed by the Government of Kerala with the objective of providing an alternative to the public from the private chit promoters in order to bring in social control over the chit fund business, so as to save the public from the clutches of unscrupulous fly-by-night chit fund operators.\n\nKSFE has been registering impressive profits every year, without fail since its inception.\n\nKSFE pays to the Government of Kerala crores of rupees every year by way of:\n- Guarantee Commission\n- Service Charges\n- Dividend\n\nMore information: https://ksfe.com/about-us/",
                 },
             },
 
@@ -244,5 +263,202 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                 Authorization: `Bearer ${access_token}`,
             },
         });
+
+        await showMenu(phone_no_id, access_token, from);
+    }
+
+    // ---------------------- Pravasi Chitty ----------------------
+    if (msg?.interactive?.button_reply?.id === "pravasiChitty") {
+        await axios({
+            method: "POST",
+            url:
+                "https://graph.facebook.com/v13.0/" +
+                phone_no_id +
+                "/messages?access_token=" +
+                access_token,
+            data: {
+                messaging_product: "whatsapp",
+                to: from,
+                type: "text",
+                text: {
+                    body: "KSFE Pravasi Chitty is a unique financial savings scheme introduced for the welfare of Malayalees living outside Kerala. It’s many things, under a single scheme. It is a chitty scheme with insurance coverage and a pension plan. It has an online portal and a mobile application that allows you to join chits, pay instalments, and take part in chit auction from anywhere, anytime. It also gives NRK’s, an opportunity to partake in the overall infrastructural development of the State. Moreover, the Pravasi Chits also has many features that make it a unique financial saving structure amidst other financial instruments.\nMore information: https://pravasi.ksfe.com/",
+                },
+            },
+
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${access_token}`,
+            },
+        });
+
+        await showMenu(phone_no_id, access_token, from);
+    }
+
+    //---- Reply to Change language button-----------------
+    if (msg?.interactive?.button_reply?.id === "change_langauge") {
+        await showChangeLanguageMenu(phone_no_id, access_token, from);
+    }
+
+    //--------------- Product & Services List Reply--------------
+    if (msg?.interactive?.type === "list_reply") {
+        if (msg?.interactive?.list_reply?.id === "chitty") {
+            await axios({
+                method: "POST",
+                url:
+                    "https://graph.facebook.com/v13.0/" +
+                    phone_no_id +
+                    "/messages?access_token=" +
+                    access_token,
+                data: {
+                    messaging_product: "whatsapp",
+                    to: from,
+                    type: "text",
+                    text: {
+                        body: "*Chitty*\n\n 1. KSFE Chitty - https://ksfe.com/services/ksfe-chitty/",
+                    },
+                },
+
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${access_token}`,
+                },
+            });
+            await showProductList(phone_no_id, access_token, from);
+            await showMenu(phone_no_id, access_token, from);
+        } else if (msg?.interactive?.list_reply?.id === "loans_and_advances") {
+            await axios({
+                method: "POST",
+                url:
+                    "https://graph.facebook.com/v13.0/" +
+                    phone_no_id +
+                    "/messages?access_token=" +
+                    access_token,
+                data: {
+                    messaging_product: "whatsapp",
+                    to: from,
+                    type: "text",
+                    text: {
+                        body: "*Loans & Advances*\n\n1. Gold Loan - https://ksfe.com/services/gold-loan/\n\n2. Janamitram Gold Loan - https://ksfe.com/services/janamithram-gold-loan/\n\n3. KSFE Home Loan - https://ksfe.com/services/ksfe-home-loan/\n\n4. KSFE Personal Loan - https://ksfe.com/services/ksfe-personal-loan/\n\n5. Chitty Loan - https://ksfe.com/services/chitty-loan/\n\n6. KSFE Passbook Loan - https://ksfe.com/services/ksfe-passbook-loan/\n\n    7. Customer / Vehicle Loan - https://ksfe.com/services/consumer-vehicle-loan/\n\n8. Car Loan - https://ksfe.com/services/car-loan/\n\n9. Sugama Akshaya (Overdraft) Scheme - https://ksfe.com/services/sugama-akshaya-overdraft-scheme/",
+                    },
+                },
+
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${access_token}`,
+                },
+            });
+            await showProductList(phone_no_id, access_token, from);
+            await showMenu(phone_no_id, access_token, from);
+        } else if (msg?.interactive?.list_reply?.id === "deposit_schemes") {
+            await axios({
+                method: "POST",
+                url:
+                    "https://graph.facebook.com/v13.0/" +
+                    phone_no_id +
+                    "/messages?access_token=" +
+                    access_token,
+                data: {
+                    messaging_product: "whatsapp",
+                    to: from,
+                    type: "text",
+                    text: {
+                        body: "*Deposit Schemes*\n\n1. Fixed Deposit - https://ksfe.com/services/fixed-deposit/\n\n2. Chitty Security Deposit In Trust - https://ksfe.com/services/chitty-security-deposit/\n\n3. Short Term Deposits - https://ksfe.com/services/short-term-deposits/\n\n4. Sugama Deposit Scheme - https://ksfe.com/services/sugama-deposit-scheme/\n\n5. NettamDeposit Scheme - https://ksfe.com/services/nettam-deposit-scheme/",
+                    },
+                },
+
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${access_token}`,
+                },
+            });
+            await showProductList(phone_no_id, access_token, from);
+            await showMenu(phone_no_id, access_token, from);
+        } else if (
+            msg?.interactive?.list_reply?.id === "securities_acceptible"
+        ) {
+            await axios({
+                method: "POST",
+                url:
+                    "https://graph.facebook.com/v13.0/" +
+                    phone_no_id +
+                    "/messages?access_token=" +
+                    access_token,
+                data: {
+                    messaging_product: "whatsapp",
+                    to: from,
+                    type: "text",
+                    text: {
+                        body: "*Securities Acceptable*\n\n1. Personal Surety - https://ksfe.com/services/personal-surety/\n\n2. FD of KSFE and Other Bank Deposits - https://ksfe.com/services/fd-of-ksfe-and-other-bank-deposits/\n\n3. Sugama Security Deposit - https://ksfe.com/services/sugama-security-deposit/\n\n4. Life Cover Policy - https://ksfe.com/services/life-cover-policy/\n\n5. Bank Guarantee - https://ksfe.com/services/bank-guarantee/\n\n6. Pass Book of Non-Prized Chitties of KSFE - https://ksfe.com/services/pass-book-of-non-prized-chitties-of-ksfe/\n\n7. Kissan Vikas Patra - https://ksfe.com/services/kissan-vikas-patra/\n\n8. Property Security - https://ksfe.com/services/property-security/\n\n9. Gold Security - https://ksfe.com/services/gold-security/",
+                    },
+                },
+
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${access_token}`,
+                },
+            });
+            await showProductList(phone_no_id, access_token, from);
+            await showMenu(phone_no_id, access_token, from);
+        } else if (msg?.interactive?.list_reply?.id === "fee_based_services") {
+            await axios({
+                method: "POST",
+                url:
+                    "https://graph.facebook.com/v13.0/" +
+                    phone_no_id +
+                    "/messages?access_token=" +
+                    access_token,
+                data: {
+                    messaging_product: "whatsapp",
+                    to: from,
+                    type: "text",
+                    text: {
+                        body: "*Fee Based Services*\n\n1. Money Transfer Services - https://ksfe.com/services/money-transfer-services/\n\n2. Safe Deposit Locker\n\tKSFE provides Safe Deposit Locker facility in some units in order to cater to wide range of services to the public. Lockers may be hired in the names of individuals, firms, companies, association of persons or clubs, trustees, NRIs, Govt. departments, co-operative societies and/or body of individuals. Lockers can also be opened in the name of minors duly represented by a guardian. The rent of the locker is fixed at the rate of Rs.800 + tax for public and Rs.700+ tax for chitty subscribers, on yearly basis. Nomination facility is available for locker holders.\nMore information: https://ksfe.com/services/safe-deposit-locker/",
+                    },
+                },
+
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${access_token}`,
+                },
+            });
+            await showProductList(phone_no_id, access_token, from);
+            await showMenu(phone_no_id, access_token, from);
+        }
+
+        //---------------------- FAQ List Reply----------------------
+        else {
+            let qn = await msg?.interactive?.list_reply?.id;
+            // let ln = qn[0];
+
+            await axios({
+                method: "POST",
+                url:
+                    "https://graph.facebook.com/v13.0/" +
+                    phone_no_id +
+                    "/messages?access_token=" +
+                    access_token,
+                data: {
+                    messaging_product: "whatsapp",
+                    to: from,
+                    type: "text",
+                    text: {
+                        body:
+                            `*` +
+                            faqListEnglish[qn - 1].question +
+                            `*\n\n` +
+                            faqListEnglish[qn - 1].answer,
+                    },
+                },
+
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${access_token}`,
+                },
+            });
+
+            await showFaqOptions(phone_no_id, access_token, from);
+
+            await showMenu(phone_no_id, access_token, from);
+        }
     }
 };

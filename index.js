@@ -5,6 +5,7 @@ import "dotenv/config";
 
 import { handleEnglish } from "./handlers/handleEnglish.js";
 import { handleMalayalam } from "./handlers/handleMalayalam.js";
+import { showChangeLanguageMenu } from "./constants/english.js";
 
 const preferredLanguage = new Map();
 
@@ -14,12 +15,7 @@ const verify_token = process.env.VERIFY_TOKEN;
 const access_token = process.env.ACCESS_TOKEN;
 
 router.listen(process.env.PORT || 9000, () => {
-    console.log(
-        `Webhook is listening\nAccess token: ` +
-            access_token +
-            `\nVerify token: ` +
-            verify_token
-    );
+    console.log(`Webhook is listening\nComplete this project before March 1`);
 });
 
 router.get("/", (req, res) => {
@@ -75,7 +71,8 @@ router.post("/endpoint", async (req, res) => {
                 // Welcome message and language selection
 
                 if (msg?.type === "text" && language === undefined) {
-                    axios({
+                    // Welcome message
+                    await axios({
                         method: "POST",
                         url:
                             "https://graph.facebook.com/v13.0/" +
@@ -85,35 +82,14 @@ router.post("/endpoint", async (req, res) => {
                         data: {
                             messaging_product: "whatsapp",
                             to: from,
-                            type: "interactive",
-                            interactive: {
-                                type: "button",
-                                body: {
-                                    text:
-                                        "Hey " +
-                                        name +
-                                        ", I'm KSFE Customer Support bot. Your message is '" +
-                                        msg?.text?.body +
-                                        "'.\n\nChoose your language / ഭാഷ തിരഞ്ഞെടുക്കുക",
-                                },
-                                action: {
-                                    buttons: [
-                                        {
-                                            type: "reply",
-                                            reply: {
-                                                id: "english",
-                                                title: "English",
-                                            },
-                                        },
-                                        {
-                                            type: "reply",
-                                            reply: {
-                                                id: "malayalam",
-                                                title: "മലയാളം",
-                                            },
-                                        },
-                                    ],
-                                },
+                            type: "text",
+                            text: {
+                                body:
+                                    "Hey " +
+                                    name +
+                                    ", I'm KSFE Customer Support bot. Your message is '" +
+                                    msg?.text?.body +
+                                    "`",
                             },
                         },
 
@@ -122,6 +98,9 @@ router.post("/endpoint", async (req, res) => {
                             Authorization: `Bearer ${access_token}`,
                         },
                     });
+
+                    // Choose language
+                    await showChangeLanguageMenu(phone_no_id, access_token, from);
                 }
 
                 if (msg?.interactive?.type === "button_reply") {

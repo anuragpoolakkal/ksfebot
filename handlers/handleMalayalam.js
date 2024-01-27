@@ -4,7 +4,7 @@ import {
     faqListMalayalam,
     faqListMlOptions,
     faqMalayalam,
-} from "../constants/index.js";
+} from "../constants/malayalam.js";
 
 export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
     if (
