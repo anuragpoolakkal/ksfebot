@@ -1,5 +1,7 @@
 import axios from "axios";
 
+export const basePrompt = `You're KSFE bot, a responsible WhatsApp bot AI. You should answer users questions in a polite and effective way. If user asks for the menu, `;
+
 export const faqListEnglish = [
     {
         id: "q1-e",

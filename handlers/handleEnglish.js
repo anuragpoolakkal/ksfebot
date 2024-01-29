@@ -1,4 +1,5 @@
 import axios from "axios";
+import OpenAI from "openai";
 
 import {
     faqListEnglish,
@@ -7,13 +8,58 @@ import {
     showProductList,
     showChangeLanguageMenu,
     showMenu,
+    basePrompt,
 } from "../constants/english.js";
 
 export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
-    if (
-        msg?.interactive?.button_reply?.id === "english" ||
-        msg?.type === "text"
-    ) {
+    const askAI = async (prompt) => {
+        const openai = new OpenAI({
+            apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+            dangerouslyAllowBrowser: true,
+        });
+
+        const completion = await openai.chat.completions.create({
+            model: "gpt-3.5-turbo",
+            messages: [
+                { role: "system", content: basePrompt },
+                { role: "user", content: prompt },
+            ],
+        });
+
+        console.log("completion: ", completion);
+        console.log("Content: ", completion.choices[0].message.content);
+
+        var gptReply = await completion.choices[0].message.content;
+        return gptReply;
+    };
+
+    if (msg?.type === "text") {
+        const answer = await askAI(msg?.text?.body);
+
+        await axios({
+            method: "POST",
+            url:
+                "https://graph.facebook.com/v13.0/" +
+                phone_no_id +
+                "/messages?access_token=" +
+                access_token,
+            data: {
+                messaging_product: "whatsapp",
+                to: from,
+                type: "text",
+                text: {
+                    body: answer,
+                },
+            },
+
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${access_token}`,
+            },
+        });
+    }
+
+    if (msg?.interactive?.button_reply?.id === "english") {
         await axios({
             method: "POST",
             url:
