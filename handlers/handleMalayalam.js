@@ -32,21 +32,21 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                             {
                                 type: "reply",
                                 reply: {
-                                    id: "faq-m",
+                                    id: "faq",
                                     title: "ചോദ്യങ്ങൾ",
                                 },
                             },
                             {
                                 type: "reply",
                                 reply: {
-                                    id: "branch_locator-m",
+                                    id: "branch_locator",
                                     title: "ബ്രാഞ്ച് ലൊക്കേറ്റർ",
                                 },
                             },
                             {
                                 type: "reply",
                                 reply: {
-                                    id: "contact-m",
+                                    id: "contact",
                                     title: "ഞങ്ങളെ ബന്ധപ്പെടുക",
                                 },
                             },
@@ -81,7 +81,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                             {
                                 type: "reply",
                                 reply: {
-                                    id: "products-m",
+                                    id: "products",
                                     title: "സേവനങ്ങൾ",
                                 },
                             },
@@ -98,7 +98,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
     }
 
     //------------------FAQ------------------
-    else if (msg?.interactive?.button_reply?.id === "faq-m") {
+    else if (msg?.interactive?.button_reply?.id === "faq") {
         await axios({
             method: "POST",
             url:
@@ -164,7 +164,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
     }
 
     // ------------------Contacts------------------
-    else if (msg?.interactive?.button_reply?.id === "contact-m") {
+    else if (msg?.interactive?.button_reply?.id === "contact") {
         axios({
             method: "POST",
             url:
@@ -177,7 +177,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                 to: from,
                 type: "text",
                 text: {
-                    body: "*Registered Office*\n\nകേരള സ്റ്റേറ്റ് ഫിനാൻഷ്യൽ എന്റർപ്രൈസസ് ലിമിറ്റഡ്\n“ഭദ്രത”, മ്യൂസിയം റോഡ്,\nP.b. No.510,തൃശ്ശൂർ – 680 020\nഫോൺ No: 0487 2332255\nടോൾ ഫ്രീ No: 1800 425 3455\nഫാക്സ്: 0487 – 2336232\nE-Mail : mail@ksfe.com\n\nനിങ്ങളുടെ ചോദ്യങ്ങൾ ചോദിക്കുന്നതിന്, സന്ദർശിക്കുക https://ksfe.com/contact-us",
+                    body: "*Registered Office*\n\nകേരള സ്റ്റേറ്റ് ഫിനാൻഷ്യൽ എന്റർപ്രൈസസ് ലിമിറ്റഡ്\n“ഭദ്രത”, മ്യൂസിയം റോഡ്,\nP.b. No.510,തൃശ്ശൂർ – 680 020\nഫോൺ No: 0487 2332255\nടോൾ ഫ്രീ No: 1800 425 3455\nഫാക്സ്: 0487 – 2336232\nEail : mail@ksfe.com\n\nനിങ്ങളുടെ ചോദ്യങ്ങൾ ചോദിക്കുന്നതിന്, സന്ദർശിക്കുക https://ksfe.com/contact-us",
                 },
             },
 
@@ -189,7 +189,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
     }
 
     // ------------------Branch Locator------------------
-    else if (msg?.interactive?.button_reply?.id === "branch_locator-m") {
+    else if (msg?.interactive?.button_reply?.id === "branch_locator") {
         axios({
             method: "POST",
             url:

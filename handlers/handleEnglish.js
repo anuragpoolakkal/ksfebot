@@ -338,7 +338,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                     to: from,
                     type: "text",
                     text: {
-                        body: "*Loans & Advances*\n\n1. Gold Loan - https://ksfe.com/services/gold-loan/\n\n2. Janamitram Gold Loan - https://ksfe.com/services/janamithram-gold-loan/\n\n3. KSFE Home Loan - https://ksfe.com/services/ksfe-home-loan/\n\n4. KSFE Personal Loan - https://ksfe.com/services/ksfe-personal-loan/\n\n5. Chitty Loan - https://ksfe.com/services/chitty-loan/\n\n6. KSFE Passbook Loan - https://ksfe.com/services/ksfe-passbook-loan/\n\n    7. Customer / Vehicle Loan - https://ksfe.com/services/consumer-vehicle-loan/\n\n8. Car Loan - https://ksfe.com/services/car-loan/\n\n9. Sugama Akshaya (Overdraft) Scheme - https://ksfe.com/services/sugama-akshaya-overdraft-scheme/",
+                        body: "*Loans & Advances*\n\n1. Gold Loan - https://ksfe.com/services/gold-loan/\n\n2. Janamitram Gold Loan - https://ksfe.com/services/janamithram-gold-loan/\n\n3. KSFE Home Loan - https://ksfe.com/services/ksfe-home-loan/\n\n4. KSFE Personal Loan - https://ksfe.com/services/ksfe-personal-loan/\n\n5. Chitty Loan - https://ksfe.com/services/chitty-loan/\n\n6. KSFE Passbook Loan - https://ksfe.com/services/ksfe-passbook-loan/\n\n7. Customer / Vehicle Loan - https://ksfe.com/services/consumer-vehicle-loan/\n\n8. Car Loan - https://ksfe.com/services/car-loan/\n\n9. Sugama Akshaya (Overdraft) Scheme - https://ksfe.com/services/sugama-akshaya-overdraft-scheme/",
                     },
                 },
 
