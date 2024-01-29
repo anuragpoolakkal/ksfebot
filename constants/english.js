@@ -1,6 +1,11 @@
 import axios from "axios";
 
-export const basePrompt = `You're KSFE bot, a responsible WhatsApp bot AI. You should answer users questions in a polite and effective way. If user asks for the menu, `;
+export const basePrompt = `
+You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd.
+You should answer users questions in a polite and effective way.
+`;
+
+// Return a JSON with two fields, "answer" which contains the reply to user's question and, "isMenu" which should be true if and only if user is asking for main menu
 
 export const faqListEnglish = [
     {

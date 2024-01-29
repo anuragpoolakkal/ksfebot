@@ -27,9 +27,11 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
         });
 
         console.log("completion: ", completion);
-        console.log("Content: ", completion.choices[0].message.content);
+        console.log("Content: ", completion.choices[0].message);
 
         var gptReply = await completion.choices[0].message.content;
+        // const isMenu = await completion.choices[0].message.content.isMenu;
+
         return gptReply;
     };
 
