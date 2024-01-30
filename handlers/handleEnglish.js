@@ -87,7 +87,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                 interactive: {
                     type: "button",
                     body: {
-                        text: "How can I help you?\n\n\n_Important bot commands:_\n_*/menu* to get main menu_\n_*/products* to get products & services_\n_*/langauge* to change langauge_",
+                        text: "How can I help you?\n\n\n_Important bot commands:_\n_*/menu* to get main menu_\n_*/products* to get products & services_\n_*/language* to change language_",
                     },
                     action: {
                         buttons: [
@@ -193,7 +193,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                             {
                                 type: "reply",
                                 reply: {
-                                    id: "change_langauge",
+                                    id: "change_language",
                                     title: "Change Language",
                                 },
                             },
@@ -376,7 +376,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
     }
 
     //---- Reply to Change language button-----------------
-    if (msg?.interactive?.button_reply?.id === "change_langauge") {
+    if (msg?.interactive?.button_reply?.id === "change_language") {
         await showChangeLanguageMenu(phone_no_id, access_token, from);
     }
 

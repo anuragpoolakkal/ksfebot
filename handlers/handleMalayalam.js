@@ -87,7 +87,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                 interactive: {
                     type: "button",
                     body: {
-                        text: "ഞാൻ നിങ്ങളെ എങ്ങനെയാണ് സഹായിക്കേണ്ടത്?\n\n\n_പ്രധാനപ്പെട്ട ബോട് കമാൻഡുകൾ:_\n_*/menu* മെനു ലഭിക്കുന്നതിന്_\n_*/products* സേവനങ്ങളുടെ വിവരങ്ങൾക്ക്_\n_*/langauge* ഭാഷ മാറ്റുന്നതിന്_",
+                        text: "ഞാൻ നിങ്ങളെ എങ്ങനെയാണ് സഹായിക്കേണ്ടത്?\n\n\n_പ്രധാനപ്പെട്ട ബോട് കമാൻഡുകൾ:_\n_*/menu* മെനു ലഭിക്കുന്നതിന്_\n_*/products* സേവനങ്ങളുടെ വിവരങ്ങൾക്ക്_\n_*/language* ഭാഷ മാറ്റുന്നതിന്_",
                     },
                     action: {
                         buttons: [
@@ -409,7 +409,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
     }
 
     //---- Reply to Change language button-----------------
-    if (msg?.interactive?.button_reply?.id === "change_langauge") {
+    if (msg?.interactive?.button_reply?.id === "change_language") {
         await showChangeLanguageMenu(phone_no_id, access_token, from);
     }
 
