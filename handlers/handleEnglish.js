@@ -395,7 +395,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                     to: from,
                     type: "text",
                     text: {
-                        body: "*Chitty*\n\n 1. KSFE Chitty - https://ksfe.com/services/ksfe-chitty/",
+                        body: "*Chitty*\n\n1. KSFE Chitty\nhttps://ksfe.com/services/ksfe-chitty/",
                     },
                 },
 
@@ -419,7 +419,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                     to: from,
                     type: "text",
                     text: {
-                        body: "*Loans & Advances*\n\n1. Gold Loan - https://ksfe.com/services/gold-loan/\n\n2. Janamitram Gold Loan - https://ksfe.com/services/janamithram-gold-loan/\n\n3. KSFE Home Loan - https://ksfe.com/services/ksfe-home-loan/\n\n4. KSFE Personal Loan - https://ksfe.com/services/ksfe-personal-loan/\n\n5. Chitty Loan - https://ksfe.com/services/chitty-loan/\n\n6. KSFE Passbook Loan - https://ksfe.com/services/ksfe-passbook-loan/\n\n7. Customer / Vehicle Loan - https://ksfe.com/services/consumer-vehicle-loan/\n\n8. Car Loan - https://ksfe.com/services/car-loan/\n\n9. Sugama Akshaya (Overdraft) Scheme - https://ksfe.com/services/sugama-akshaya-overdraft-scheme/",
+                        body: "*Loans & Advances*\n\n1. Gold Loan\nhttps://ksfe.com/services/gold-loan/\n\n2. Janamitram Gold Loan\nhttps://ksfe.com/services/janamithram-gold-loan/\n\n3. KSFE Home Loan\nhttps://ksfe.com/services/ksfe-home-loan/\n\n4. KSFE Personal Loan\nhttps://ksfe.com/services/ksfe-personal-loan/\n\n5. Chitty Loan\nhttps://ksfe.com/services/chitty-loan/\n\n6. KSFE Passbook Loan\nhttps://ksfe.com/services/ksfe-passbook-loan/\n\n7. Customer / Vehicle Loan\nhttps://ksfe.com/services/consumer-vehicle-loan/\n\n8. Car Loan\nhttps://ksfe.com/services/car-loan/\n\n9. Sugama Akshaya (Overdraft) Scheme\nhttps://ksfe.com/services/sugama-akshaya-overdraft-scheme/",
                     },
                 },
 
@@ -443,7 +443,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                     to: from,
                     type: "text",
                     text: {
-                        body: "*Deposit Schemes*\n\n1. Fixed Deposit - https://ksfe.com/services/fixed-deposit/\n\n2. Chitty Security Deposit In Trust - https://ksfe.com/services/chitty-security-deposit/\n\n3. Short Term Deposits - https://ksfe.com/services/short-term-deposits/\n\n4. Sugama Deposit Scheme - https://ksfe.com/services/sugama-deposit-scheme/\n\n5. Nettam Deposit Scheme - https://ksfe.com/services/nettam-deposit-scheme/",
+                        body: "*Deposit Schemes*\n\n1. Fixed Deposit\nhttps://ksfe.com/services/fixed-deposit/\n\n2. Chitty Security Deposit In Trust\nhttps://ksfe.com/services/chitty-security-deposit/\n\n3. Short Term Deposits\nhttps://ksfe.com/services/short-term-deposits/\n\n4. Sugama Deposit Scheme\nhttps://ksfe.com/services/sugama-deposit-scheme/\n\n5. Nettam Deposit Scheme\nhttps://ksfe.com/services/nettam-deposit-scheme/",
                     },
                 },
 
@@ -469,7 +469,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                     to: from,
                     type: "text",
                     text: {
-                        body: "*Securities Acceptable*\n\n1. Personal Surety - https://ksfe.com/services/personal-surety/\n\n2. FD of KSFE and Other Bank Deposits - https://ksfe.com/services/fd-of-ksfe-and-other-bank-deposits/\n\n3. Sugama Security Deposit - https://ksfe.com/services/sugama-security-deposit/\n\n4. Life Cover Policy - https://ksfe.com/services/life-cover-policy/\n\n5. Bank Guarantee - https://ksfe.com/services/bank-guarantee/\n\n6. Pass Book of Non-Prized Chitties of KSFE - https://ksfe.com/services/pass-book-of-non-prized-chitties-of-ksfe/\n\n7. Kissan Vikas Patra - https://ksfe.com/services/kissan-vikas-patra/\n\n8. Property Security - https://ksfe.com/services/property-security/\n\n9. Gold Security - https://ksfe.com/services/gold-security/",
+                        body: "*Securities Acceptable*\n\n1. Personal Surety\nhttps://ksfe.com/services/personal-surety/\n\n2. FD of KSFE and Other Bank Deposits\nhttps://ksfe.com/services/fd-of-ksfe-and-other-bank-deposits/\n\n3. Sugama Security Deposit\nhttps://ksfe.com/services/sugama-security-deposit/\n\n4. Life Cover Policy\nhttps://ksfe.com/services/life-cover-policy/\n\n5. Bank Guarantee\nhttps://ksfe.com/services/bank-guarantee/\n\n6. Pass Book of Non-Prized Chitties of KSFE\nhttps://ksfe.com/services/pass-book-of-non-prized-chitties-of-ksfe/\n\n7. Kissan Vikas Patra\nhttps://ksfe.com/services/kissan-vikas-patra/\n\n8. Property Security\nhttps://ksfe.com/services/property-security/\n\n9. Gold Security\nhttps://ksfe.com/services/gold-security/",
                     },
                 },
 
@@ -493,7 +493,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                     to: from,
                     type: "text",
                     text: {
-                        body: "*Fee Based Services*\n\n1. Money Transfer Services - https://ksfe.com/services/money-transfer-services/\n\n2. Safe Deposit Locker\n\tKSFE provides Safe Deposit Locker facility in some units in order to cater to wide range of services to the public. Lockers may be hired in the names of individuals, firms, companies, association of persons or clubs, trustees, NRIs, Govt. departments, co-operative societies and/or body of individuals. Lockers can also be opened in the name of minors duly represented by a guardian. The rent of the locker is fixed at the rate of Rs.800 + tax for public and Rs.700+ tax for chitty subscribers, on yearly basis. Nomination facility is available for locker holders.\nMore information: https://ksfe.com/services/safe-deposit-locker/",
+                        body: "*Fee Based Services*\n\n1. Money Transfer Services\nhttps://ksfe.com/services/money-transfer-services/\n\n2. Safe Deposit Locker\n\tKSFE provides Safe Deposit Locker facility in some units in order to cater to wide range of services to the public. Lockers may be hired in the names of individuals, firms, companies, association of persons or clubs, trustees, NRIs, Govt. departments, co-operative societies and/or body of individuals. Lockers can also be opened in the name of minors duly represented by a guardian. The rent of the locker is fixed at the rate of Rs.800 + tax for public and Rs.700+ tax for chitty subscribers, on yearly basis. Nomination facility is available for locker holders.\nMore information: https://ksfe.com/services/safe-deposit-locker/",
                     },
                 },
 
