@@ -59,14 +59,14 @@ router.post("/endpoint", async (req, res) => {
                 let phone_no_id =
                     body_param.entry[0].changes[0].value.metadata
                         .phone_number_id;
-                let msg_id = body_param.entry[0].id;
+                // let msg_id = body_param.entry[0].id;
                 let from =
                     body_param.entry[0].changes[0].value.messages[0].from;
                 let msg = body_param.entry[0].changes[0].value.messages[0];
-                let name =
-                    body_param.entry[0].changes[0].value.contacts[0].profile
-                        .name;
-                let language = preferredLanguage.get(phone_no_id);
+                // let name =
+                //     body_param.entry[0].changes[0].value.contacts[0].profile
+                //         .name;
+                let language = preferredLanguage.get(from);
 
                 // Welcome message and language selection
 
@@ -84,12 +84,7 @@ router.post("/endpoint", async (req, res) => {
                             to: from,
                             type: "text",
                             text: {
-                                body:
-                                    "Hey " +
-                                    name +
-                                    ", I'm KSFE Customer Support bot. Your message is '" +
-                                    msg?.text?.body +
-                                    "`",
+                                body: "Hey, I'm KSFE Customer Support bot.",
                             },
                         },
 
@@ -100,19 +95,23 @@ router.post("/endpoint", async (req, res) => {
                     });
 
                     // Choose language
-                    await showChangeLanguageMenu(phone_no_id, access_token, from);
+                    await showChangeLanguageMenu(
+                        phone_no_id,
+                        access_token,
+                        from
+                    );
                 }
 
                 if (msg?.interactive?.type === "button_reply") {
                     if (msg?.interactive?.button_reply?.id === "english") {
-                        preferredLanguage.set(phone_no_id, "english");
+                        preferredLanguage.set(from, "english");
                         language = "english";
                     }
 
                     // ---------Malayalam-------------
 
                     if (msg?.interactive?.button_reply?.id === "malayalam") {
-                        preferredLanguage.set(phone_no_id, "malayalam");
+                        preferredLanguage.set(from, "malayalam");
                         language = "malayalam";
                     }
                 }

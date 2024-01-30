@@ -196,6 +196,28 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                 Authorization: `Bearer ${access_token}`,
             },
         });
+
+        await axios({
+            method: "POST",
+            url:
+                "https://graph.facebook.com/v13.0/" +
+                phone_no_id +
+                "/messages?access_token=" +
+                access_token,
+            data: {
+                messaging_product: "whatsapp",
+                to: from,
+                type: "text",
+                text: {
+                    body: "Choose an option from the above menu or ask me a question.",
+                },
+            },
+
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${access_token}`,
+            },
+        });
     }
 
     // ----------------------FAQ----------------------
@@ -410,7 +432,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                     to: from,
                     type: "text",
                     text: {
-                        body: "*Deposit Schemes*\n\n1. Fixed Deposit - https://ksfe.com/services/fixed-deposit/\n\n2. Chitty Security Deposit In Trust - https://ksfe.com/services/chitty-security-deposit/\n\n3. Short Term Deposits - https://ksfe.com/services/short-term-deposits/\n\n4. Sugama Deposit Scheme - https://ksfe.com/services/sugama-deposit-scheme/\n\n5. NettamDeposit Scheme - https://ksfe.com/services/nettam-deposit-scheme/",
+                        body: "*Deposit Schemes*\n\n1. Fixed Deposit - https://ksfe.com/services/fixed-deposit/\n\n2. Chitty Security Deposit In Trust - https://ksfe.com/services/chitty-security-deposit/\n\n3. Short Term Deposits - https://ksfe.com/services/short-term-deposits/\n\n4. Sugama Deposit Scheme - https://ksfe.com/services/sugama-deposit-scheme/\n\n5. Nettam Deposit Scheme - https://ksfe.com/services/nettam-deposit-scheme/",
                     },
                 },
 
@@ -422,7 +444,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
             await showProductList(phone_no_id, access_token, from);
             await showMenu(phone_no_id, access_token, from);
         } else if (
-            msg?.interactive?.list_reply?.id === "securities_acceptible"
+            msg?.interactive?.list_reply?.id === "securities_acceptable"
         ) {
             await axios({
                 method: "POST",

@@ -1,3 +1,68 @@
+import axios from "axios";
+
+export const faqMalayalam =
+    "*പതിവായി ചോദിക്കുന്ന ചോദ്യങ്ങൾ*\n\n1. മറ്റ് സംഭാവന രീതികളിൽ ചിട്ടികൾ നടത്തുന്നതിനുള്ള കെ.എസ്.എഫ്.ഇ. ചിട്ടികളിൽ ചേരാൻ പ്രധാനമായ ആകരണങ്ങൾ എന്താണ്?\n\n2. ഞാൻ കേട്ടിട്ടുള്ളത് കെ.എസ്.എഫ്.ഇ. യുടെ ജാമ്യ വ്യവസ്ഥകൾ വഴക്കമില്ലാത്തവയും ബുദ്ധിമുട്ടേറിയതും ആണെന്നാണ്. ശരിയല്ലേ?\n\n3. മറ്റ് സ്ഥാപനങ്ങളിലെ സമാന പദ്ധതികളെ അപേക്ഷിച്ച് കെ.എസ്.എഫ്.ഇ. യുടെ ഗൃഹോപകരണ - വാഹന വായ്പാ പദ്ധതി മെച്ചപ്പെട്ടതാണ് എന്ന് പറയാൻ കാരണമെന്ത്?\n\n4. കെ.എസ്.എഫ്.ഇ. ഭവന വായ്പയ്ക്ക് മറ്റ് സ്ഥാപനങ്ങൾ മുന്നോട്ടുവെയ്ക്കുന്ന ഭവന വായ്പാ പദ്ധതിയുമായി എന്ത് വ്യത്യാസമാണ് ഉള്ളത്?\n\n5. കെ.എസ്.എഫ്.ഇ. യുടെ സ്വർണ്ണപ്പണയ വായ്പയുടെ പ്രധാന സവിശേഷതകൾ എന്തൊക്കെയാണ്?\n\n6. കെ.എസ്.എഫ്.ഇ. വ്യക്തിഗത വായ്പയുടെ സവിശേഷതകൾ എന്തൊക്കെ?\n\n7. ചിട്ടിപ്പണവും വായ്പാത്തുകയും ലഭിയ്ക്കാൻ കെ.എസ്.എഫ്.ഇ. യിൽ കാലതാമസം ഏറെയുണ്ട് എന്ന് കേൾക്കുന്നത് ശരിയാണോ?\n\n8. പരാതികൾ പരിഹരിയ്ക്കുന്നതിന് എന്തെങ്കിലും സംവിധാനമുണ്ടോ?\n\n9. എങ്ങനെയാണ് ശാഖകൾക്ക് മേലുള്ള നിയന്ത്രണം സാധ്യമാക്കിയിട്ടുള്ളത്?\n\n10. ഈയിടെയായി പ്രവാസി മലയാളികൾക്കും ചിട്ടി തുടങ്ങിയതായി വാർത്തയുണ്ടല്ലോ?";
+
+export const faqListMlOptions = [
+    {
+        id: "1",
+        title: "ചോദ്യം 1",
+        // description:
+        //     "മറ്റ് സംഭാവന രീതികളിൽ ചിട്ടികൾ നടത്തുന്നതിനുള്ള കെ.എസ്.എഫ്.ഇ. ചിട്ടികളിൽ ചേരാൻ പ്രധാനമായ ആകരണങ്ങൾ എന്താണ്?",
+        description: "മറ്റ് സംഭാവന രീതികളിൽ ചിട്ടികൾ നടത്തുന്നതിനുള്ള...?",
+    },
+    {
+        id: "2",
+        title: "ചോദ്യം 2",
+        description:
+            "ഞാൻ കേട്ടിട്ടുള്ളത് കെ.എസ്.എഫ്.ഇ. യുടെ ജാമ്യ വ്യവസഥകൾ...?",
+    },
+    {
+        id: "3",
+        title: "ചോദ്യം 3",
+        description:
+            "മറ്റ് സ്ഥാപനങ്ങളിലെ സമാന പദ്ധതികളെ അപേക്ഷിച്ച് കെ.എസ്.എഫ്.ഇ. യുടെ...?",
+    },
+    {
+        id: "4",
+        title: "ചോദ്യം 4",
+        description: "കെ.എസ്.എഫ്.ഇ. ഭവന വായ്പയ്ക്ക് മറ്റ് സ്ഥാപനങ്ങൾ...",
+    },
+    {
+        id: "5",
+        title: "ചോദ്യം 5",
+        description:
+            "കെ.എസ്.എഫ്.ഇ. യുടെ സ്വർണ്ണപ്പണയ വായ്പയുടെ പ്രധാന സവിശേഷതകൾ...",
+    },
+    {
+        id: "6",
+        title: "ചോദ്യം 6",
+        description: "കെ.എസ്.എഫ്.ഇ. വ്യക്തിഗത വായ്പയുടെ സവിശേഷതകൾ...",
+    },
+    {
+        id: "7",
+        title: "ചോദ്യം 7",
+        description:
+            "ചിട്ടിപ്പണവും വായ്പാത്തുകയും ലഭിയ്ക്കാൻ കെ.എസ്.എഫ്.ഇ. യിൽ ...",
+    },
+    {
+        id: "8",
+        title: "ചോദ്യം 8",
+        description: "പരാതികൾ പരിഹരിയ്ക്കുന്നതിന് എന്തെങ്കിലും സംവിധാനമുണ്ടോ?",
+    },
+    {
+        id: "9",
+        title: "ചോദ്യം 9",
+        description:
+            "എങ്ങനെയാണ് ശാഖകൾക്ക് മേലുള്ള നിയന്ത്രണം സാധ്യമാക്കിയിട്ടുള്ളത്?",
+    },
+    {
+        id: "10",
+        title: "ചോദ്യം 10",
+        description: "ഈയിടെയായി പ്രവാസി മലയാളികൾക്കും ചിട്ടി തുടങ്ങിയതായി...",
+    },
+];
+
 export const faqListMalayalam = [
     {
         id: "q1",
@@ -101,65 +166,155 @@ export const faqListMalayalam = [
     },
 ];
 
-export const faqListMlOptions = [
+export const productList = [
     {
-        id: "m1",
-        title: "ചോദ്യം 1",
-        // description:
-        //     "മറ്റ് സംഭാവന രീതികളിൽ ചിട്ടികൾ നടത്തുന്നതിനുള്ള കെ.എസ്.എഫ്.ഇ. ചിട്ടികളിൽ ചേരാൻ പ്രധാനമായ ആകരണങ്ങൾ എന്താണ്?",
-        description: "മറ്റ് സംഭാവന രീതികളിൽ ചിട്ടികൾ നടത്തുന്നതിനുള്ള...?",
+        id: "chitty",
+        title: "Chitty",
+        description: "KSFE Chitty",
     },
     {
-        id: "m2",
-        title: "ചോദ്യം 2",
+        id: "loans_and_advances",
+        title: "Loans & Advances",
         description:
-            "ഞാൻ കേട്ടിട്ടുള്ളത് കെ.എസ്.എഫ്.ഇ. യുടെ ജാമ്യ വ്യവസഥകൾ...?",
+            "Gold Loan, Janamitram Gold Loan, KSFE Home Loan, KSFE Personal Loan, ...",
     },
     {
-        id: "m3",
-        title: "ചോദ്യം 3",
+        id: "deposit_schemes",
+        title: "Deposit Schemes",
         description:
-            "മറ്റ് സ്ഥാപനങ്ങളിലെ സമാന പദ്ധതികളെ അപേക്ഷിച്ച് കെ.എസ്.എഫ്.ഇ. യുടെ...?",
+            "Fixed Deposit, Chitty Security Deposit in Trust, Short TErm Deposits,...",
     },
     {
-        id: "m4",
-        title: "ചോദ്യം 4",
-        description: "കെ.എസ്.എഫ്.ഇ. ഭവന വായ്പയ്ക്ക് മറ്റ് സ്ഥാപനങ്ങൾ...",
-    },
-    {
-        id: "m5",
-        title: "ചോദ്യം 5",
+        id: "securities_acceptable",
+        title: "Securities Acceptable",
         description:
-            "കെ.എസ്.എഫ്.ഇ. യുടെ സ്വർണ്ണപ്പണയ വായ്പയുടെ പ്രധാന സവിശേഷതകൾ...",
+            "Personal Surety, FD of KSFE and Other Bank Deposits, Sugama Security ...",
     },
     {
-        id: "m6",
-        title: "ചോദ്യം 6",
-        description: "കെ.എസ്.എഫ്.ഇ. വ്യക്തിഗത വായ്പയുടെ സവിശേഷതകൾ...",
-    },
-    {
-        id: "m7",
-        title: "ചോദ്യം 7",
-        description:
-            "ചിട്ടിപ്പണവും വായ്പാത്തുകയും ലഭിയ്ക്കാൻ കെ.എസ്.എഫ്.ഇ. യിൽ ...",
-    },
-    {
-        id: "m8",
-        title: "ചോദ്യം 8",
-        description: "പരാതികൾ പരിഹരിയ്ക്കുന്നതിന് എന്തെങ്കിലും സംവിധാനമുണ്ടോ?",
-    },
-    {
-        id: "m9",
-        title: "ചോദ്യം 9",
-        description:
-            "എങ്ങനെയാണ് ശാഖകൾക്ക് മേലുള്ള നിയന്ത്രണം സാധ്യമാക്കിയിട്ടുള്ളത്?",
-    },
-    {
-        id: "m10",
-        title: "ചോദ്യം 10",
-        description: "ഈയിടെയായി പ്രവാസി മലയാളികൾക്കും ചിട്ടി തുടങ്ങിയതായി...",
+        id: "fee_based_services",
+        title: "Fee Based Services",
+        description: "Safe Deposit Locker, Money Transfer Services",
     },
 ];
 
-export const faqMalayalam =
-    "*പതിവായി ചോദിക്കുന്ന ചോദ്യങ്ങൾ*\n\n1. മറ്റ് സംഭാവന രീതികളിൽ ചിട്ടികൾ നടത്തുന്നതിനുള്ള കെ.എസ്.എഫ്.ഇ. ചിട്ടികളിൽ ചേരാൻ പ്രധാനമായ ആകരണങ്ങൾ എന്താണ്?\n\n2. ഞാൻ കേട്ടിട്ടുള്ളത് കെ.എസ്.എഫ്.ഇ. യുടെ ജാമ്യ വ്യവസ്ഥകൾ വഴക്കമില്ലാത്തവയും ബുദ്ധിമുട്ടേറിയതും ആണെന്നാണ്. ശരിയല്ലേ?\n\n3. മറ്റ് സ്ഥാപനങ്ങളിലെ സമാന പദ്ധതികളെ അപേക്ഷിച്ച് കെ.എസ്.എഫ്.ഇ. യുടെ ഗൃഹോപകരണ - വാഹന വായ്പാ പദ്ധതി മെച്ചപ്പെട്ടതാണ് എന്ന് പറയാൻ കാരണമെന്ത്?\n\n4. കെ.എസ്.എഫ്.ഇ. ഭവന വായ്പയ്ക്ക് മറ്റ് സ്ഥാപനങ്ങൾ മുന്നോട്ടുവെയ്ക്കുന്ന ഭവന വായ്പാ പദ്ധതിയുമായി എന്ത് വ്യത്യാസമാണ് ഉള്ളത്?\n\n5. കെ.എസ്.എഫ്.ഇ. യുടെ സ്വർണ്ണപ്പണയ വായ്പയുടെ പ്രധാന സവിശേഷതകൾ എന്തൊക്കെയാണ്?\n\n6. കെ.എസ്.എഫ്.ഇ. വ്യക്തിഗത വായ്പയുടെ സവിശേഷതകൾ എന്തൊക്കെ?\n\n7. ചിട്ടിപ്പണവും വായ്പാത്തുകയും ലഭിയ്ക്കാൻ കെ.എസ്.എഫ്.ഇ. യിൽ കാലതാമസം ഏറെയുണ്ട് എന്ന് കേൾക്കുന്നത് ശരിയാണോ?\n\n8. പരാതികൾ പരിഹരിയ്ക്കുന്നതിന് എന്തെങ്കിലും സംവിധാനമുണ്ടോ?\n\n9. എങ്ങനെയാണ് ശാഖകൾക്ക് മേലുള്ള നിയന്ത്രണം സാധ്യമാക്കിയിട്ടുള്ളത്?\n\n10. ഈയിടെയായി പ്രവാസി മലയാളികൾക്കും ചിട്ടി തുടങ്ങിയതായി വാർത്തയുണ്ടല്ലോ?";
+export const showProductList = async (phone_no_id, access_token, from) => {
+    await axios({
+        method: "POST",
+        url:
+            "https://graph.facebook.com/v13.0/" +
+            phone_no_id +
+            "/messages?access_token=" +
+            access_token,
+        data: {
+            messaging_product: "whatsapp",
+            to: from,
+            type: "interactive",
+            interactive: {
+                type: "list",
+                header: {
+                    type: "text",
+                    text: "സേവനങ്ങൾ",
+                },
+                body: {
+                    text: "ㅤㅤㅤ",
+                },
+                // footer: {
+                //     text: "<FOOTER_TEXT>",
+                // },
+                action: {
+                    button: "വിവിധ സേവനങ്ങൾ",
+                    sections: [
+                        {
+                            rows: productList,
+                        },
+                    ],
+                },
+            },
+        },
+
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${access_token}`,
+        },
+    });
+};
+
+export const showFaqOptions = async (phone_no_id, access_token, from) => {
+    await axios({
+        method: "POST",
+        url:
+            "https://graph.facebook.com/v13.0/" +
+            phone_no_id +
+            "/messages?access_token=" +
+            access_token,
+        data: {
+            messaging_product: "whatsapp",
+            to: from,
+            type: "interactive",
+            interactive: {
+                type: "list",
+                header: {
+                    type: "text",
+                    text: "ചോദ്യം തിരഞ്ഞെടുക്കുക",
+                },
+                body: {
+                    text: "ㅤㅤㅤ",
+                },
+                // footer: {
+                //     text: "<FOOTER_TEXT>",
+                // },
+                action: {
+                    button: "ചോദ്യങ്ങൾ",
+                    sections: [
+                        {
+                            rows: faqListMlOptions,
+                        },
+                    ],
+                },
+            },
+        },
+
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${access_token}`,
+        },
+    });
+};
+
+export const showMenu = async (phone_no_id, access_token, from) => {
+    await axios({
+        method: "POST",
+        url:
+            "https://graph.facebook.com/v13.0/" +
+            phone_no_id +
+            "/messages?access_token=" +
+            access_token,
+        data: {
+            messaging_product: "whatsapp",
+            to: from,
+            type: "interactive",
+            interactive: {
+                type: "button",
+                body: {
+                    text: "ㅤㅤㅤ",
+                },
+                action: {
+                    buttons: [
+                        {
+                            type: "reply",
+                            reply: {
+                                id: "malayalam",
+                                title: "മെനു",
+                            },
+                        },
+                    ],
+                },
+            },
+        },
+
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${access_token}`,
+        },
+    });
+};
