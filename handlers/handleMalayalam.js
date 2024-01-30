@@ -36,29 +36,40 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
     };
 
     if (msg?.type === "text") {
-        const answer = await askAI(msg?.text?.body);
+        // Bot commands
+        if (msg?.text?.body === "/menu") {
+            await showMenu(phone_no_id, access_token, from);
+        } else if (msg?.text?.body === "/products") {
+            await showProductList(phone_no_id, access_token, from);
+        } else if (msg?.text?.body === "/language") {
+            await showChangeLanguageMenu(phone_no_id, access_token, from);
 
-        await axios({
-            method: "POST",
-            url:
-                "https://graph.facebook.com/v13.0/" +
-                phone_no_id +
-                "/messages?access_token=" +
-                access_token,
-            data: {
-                messaging_product: "whatsapp",
-                to: from,
-                type: "text",
-                text: {
-                    body: answer,
+            // AI reply
+        } else {
+            const answer = await askAI(msg?.text?.body);
+
+            await axios({
+                method: "POST",
+                url:
+                    "https://graph.facebook.com/v13.0/" +
+                    phone_no_id +
+                    "/messages?access_token=" +
+                    access_token,
+                data: {
+                    messaging_product: "whatsapp",
+                    to: from,
+                    type: "text",
+                    text: {
+                        body: answer,
+                    },
                 },
-            },
 
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${access_token}`,
-            },
-        });
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${access_token}`,
+                },
+            });
+        }
     }
 
     if (msg?.interactive?.button_reply?.id === "malayalam") {
@@ -76,7 +87,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                 interactive: {
                     type: "button",
                     body: {
-                        text: "ഞാൻ നിങ്ങളെ എങ്ങനെ സഹായിക്കും ?",
+                        text: "ഞാൻ നിങ്ങളെ എങ്ങനെയാണ് സഹായിക്കേണ്ടത്?\n\n\n_പ്രധാനപ്പെട്ട ബോട് കമാൻഡുകൾ:_\n_*/menu* മെനു ലഭിക്കുന്നതിന്_\n_*/products* സേവനങ്ങളുടെ വിവരങ്ങൾക്ക്_\n_*/langauge* ഭാഷ മാറ്റുന്നതിന്_",
                     },
                     action: {
                         buttons: [
@@ -140,14 +151,14 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                             {
                                 type: "reply",
                                 reply: {
-                                    id: "aboutKsfe",
-                                    title: "കെ. എസ്. എഫ്. ഇ. യെ അറിയുക",
+                                    id: "about_ksfe",
+                                    title: "കെഎസ്എഫ്ഇയെ അറിയുക",
                                 },
                             },
                             {
                                 type: "reply",
                                 reply: {
-                                    id: "pravasiChitty",
+                                    id: "pravasi_chitty",
                                     title: "പ്രവാസി ചിട്ടി",
                                 },
                             },
@@ -185,42 +196,6 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                                 reply: {
                                     id: "change_language",
                                     title: "ഭാഷ മാറ്റുക",
-                                },
-                            },
-                        ],
-                    },
-                },
-            },
-
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${access_token}`,
-            },
-        });
-
-        await axios({
-            method: "POST",
-            url:
-                "https://graph.facebook.com/v13.0/" +
-                phone_no_id +
-                "/messages?access_token=" +
-                access_token,
-            data: {
-                messaging_product: "whatsapp",
-                to: from,
-                type: "interactive",
-                interactive: {
-                    type: "button",
-                    body: {
-                        text: "ㅤㅤㅤ",
-                    },
-                    action: {
-                        buttons: [
-                            {
-                                type: "reply",
-                                reply: {
-                                    id: "change_langauge",
-                                    title: "Change Language",
                                 },
                             },
                         ],
@@ -299,16 +274,15 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                         text: "നിങ്ങളുടെ ചോദ്യം തിരഞ്ഞെടുക്കുക",
                     },
                     body: {
-                        text: "FAQ",
+                        text: "ചോദ്യം തിരഞ്ഞെടുക്കുക",
                     },
                     // footer: {
                     //     text: "<FOOTER_TEXT>",
                     // },
                     action: {
-                        button: "Choose question",
+                        button: "ചോദ്യങ്ങൾ ",
                         sections: [
                             {
-                                title: "Choose question",
                                 rows: faqListMlOptions,
                             },
                         ],
@@ -381,7 +355,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
     }
 
     //---------------------- About KSFE ----------------------
-    if (msg?.interactive?.button_reply?.id === "aboutKsfe") {
+    if (msg?.interactive?.button_reply?.id === "about_ksfe") {
         await axios({
             method: "POST",
             url:
@@ -408,7 +382,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
     }
 
     // ---------------------- Pravasi Chitty ----------------------
-    if (msg?.interactive?.button_reply?.id === "pravasiChitty") {
+    if (msg?.interactive?.button_reply?.id === "pravasi_chitty") {
         await axios({
             method: "POST",
             url:

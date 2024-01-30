@@ -29,36 +29,47 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
         console.log("completion: ", completion);
         console.log("Content: ", completion.choices[0].message);
 
-        var gptReply = await completion.choices[0].message.content;
+        var gptReply = completion.choices[0].message.content;
         // const isMenu = await completion.choices[0].message.content.isMenu;
 
         return gptReply;
     };
 
     if (msg?.type === "text") {
-        const answer = await askAI(msg?.text?.body);
+        // Bot commands
+        if (msg?.text?.body === "/menu") {
+            await showMenu(phone_no_id, access_token, from);
+        } else if (msg?.text?.body === "/products") {
+            await showProductList(phone_no_id, access_token, from);
+        } else if (msg?.text?.body === "/language") {
+            await showChangeLanguageMenu(phone_no_id, access_token, from);
 
-        await axios({
-            method: "POST",
-            url:
-                "https://graph.facebook.com/v13.0/" +
-                phone_no_id +
-                "/messages?access_token=" +
-                access_token,
-            data: {
-                messaging_product: "whatsapp",
-                to: from,
-                type: "text",
-                text: {
-                    body: answer,
+            // AI reply
+        } else {
+            const answer = await askAI(msg?.text?.body);
+
+            await axios({
+                method: "POST",
+                url:
+                    "https://graph.facebook.com/v13.0/" +
+                    phone_no_id +
+                    "/messages?access_token=" +
+                    access_token,
+                data: {
+                    messaging_product: "whatsapp",
+                    to: from,
+                    type: "text",
+                    text: {
+                        body: answer,
+                    },
                 },
-            },
 
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${access_token}`,
-            },
-        });
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${access_token}`,
+                },
+            });
+        }
     }
 
     if (msg?.interactive?.button_reply?.id === "english") {
@@ -76,7 +87,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                 interactive: {
                     type: "button",
                     body: {
-                        text: "How can I help you?",
+                        text: "How can I help you?\n\n\n_Important bot commands:_\n_*/menu* to get main menu_\n_*/products* to get products & services_\n_*/langauge* to change langauge_",
                     },
                     action: {
                         buttons: [
@@ -139,14 +150,14 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                             {
                                 type: "reply",
                                 reply: {
-                                    id: "aboutKsfe",
+                                    id: "about_ksfe",
                                     title: "About KSFE",
                                 },
                             },
                             {
                                 type: "reply",
                                 reply: {
-                                    id: "pravasiChitty",
+                                    id: "pravasi_chitty",
                                     title: "Pravasi Chitty",
                                 },
                             },
@@ -311,7 +322,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
     }
 
     //---------------------- About KSFE ----------------------
-    if (msg?.interactive?.button_reply?.id === "aboutKsfe") {
+    if (msg?.interactive?.button_reply?.id === "about_ksfe") {
         await axios({
             method: "POST",
             url:
@@ -338,7 +349,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
     }
 
     // ---------------------- Pravasi Chitty ----------------------
-    if (msg?.interactive?.button_reply?.id === "pravasiChitty") {
+    if (msg?.interactive?.button_reply?.id === "pravasi_chitty") {
         await axios({
             method: "POST",
             url:
