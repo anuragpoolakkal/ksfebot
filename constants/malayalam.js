@@ -182,7 +182,7 @@ export const productList = [
         id: "deposit_schemes",
         title: "Deposit Schemes",
         description:
-            "Fixed Deposit, Chitty Security Deposit in Trust, Short TErm Deposits,...",
+            "Fixed Deposit, Chitty Security Deposit in Trust, Short Term Deposits,...",
     },
     {
         id: "securities_acceptable",
