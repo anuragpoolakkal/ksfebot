@@ -1,0 +1,273 @@
+[
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            { "role": "user", "content": "What services does KSFE provide?" },
+            {
+                "role": "assistant",
+                "content": "KSFE offers various financial services, including chitty, savings accounts, fixed deposits, and gold loan services."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "How can I open a savings account with KSFE?"
+            },
+            {
+                "role": "assistant",
+                "content": "To open a savings account with KSFE, you need to visit the nearest branch with valid identification and address proof."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Tell me about KSFE's gold loan interest rates."
+            },
+            {
+                "role": "assistant",
+                "content": "KSFE offers competitive gold loan interest rates, and they vary based on the loan amount and tenure. It's best to check with your nearest branch for the most accurate information."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "What are the eligibility criteria for a personal loan from KSFE?"
+            },
+            {
+                "role": "assistant",
+                "content": "The eligibility criteria for a personal loan from KSFE include a steady source of income, credit history, and other factors. Visit the official website or contact the nearest branch for detailed information."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            { "role": "user", "content": "How can I join a chitty in KSFE?" },
+            {
+                "role": "assistant",
+                "content": "A person can enroll in a chitty either by visiting the Branch or through the agents of KSFE. You may either go to https://ksfe.com/services/ksfe-chitty/ to make an enquiry or directly contact any of the branches that are nearer to your location. The total of the periodic subscription, called the chitty amount, will be given out as “prize money” to the person who bids by allowing for the maximum reduction in the prize money. The maximum reduction possible is 30%, 35%, and 40% depending on the type of chitty. Thus each subscriber gets an opportunity to receive the prize money once during the tenure of the chitty. All the promoters have to contribute the periodic subscription till the end of the chitty."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            { "role": "user", "content": "How can I make payments online?" },
+            {
+                "role": "assistant",
+                "content": "You can make your payments online at https://ksfeonline.com. The available payment methods are Net Banking, Debit Card, and UPI. Transactions will not be allowed from 11:50 PM to 12:10 AM IST due to scheduled activities. Send your online transaction-related queries to ecollection@ksfe.com, Phone: +91 9446001861 (between 10:00 AM to 2:00 PM and 2:45 PM to 5:00 PM on working days)."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            { "role": "user", "content": "How can I pay chitty online?" },
+            {
+                "role": "assistant",
+                "content": "You can go to https://ksfeonline.com/home?scheme=chitty. Subscribers wishing to participate in the chitty auction are required to make their remittances at least one day prior to the auction date for the sake of convenience. If anyone happens to make a remittance on the due date of the auction after 11:00 AM IST, it has to be immediately brought to the notice of the branch concerned for inclusion. The available payment methods are Net Banking, Debit Card, and UPI. Transactions will not be allowed from 11:50 PM to 12:10 AM IST due to scheduled activities. Send your online transaction-related queries to ecollection@ksfe.com, Phone: +91 9446001861 (between 10:00 AM to 2:00 PM and 2:45 PM to 5:00 PM on working days)."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "How can I download my previous online transaction receipts?"
+            },
+            {
+                "role": "assistant",
+                "content": "You can go to https://ksfeonline.com/payment to download your previous online transaction receipts."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Where do I submit my grievances online?"
+            },
+            {
+                "role": "assistant",
+                "content": "Go to https://ksfe.com/grievance-redressal/ to register your enquiries/grievances/complaints that require special attention from the company."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            { "role": "user", "content": "Is KSFE a government body?" },
+            {
+                "role": "assistant",
+                "content": "The Kerala State Financial Enterprises Limited is a Miscellaneous Non-Banking Company, fully owned by the Government of Kerala."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            { "role": "user", "content": "Is KSFE a Bank?" },
+            {
+                "role": "assistant",
+                "content": "KSFE is a Miscellaneous Non-Banking Company (MNBC) and is fully owned by the Government of Kerala. KSFE does not come under the regulation of Reserve Bank of India since it is not a Non-Banking Financial Company."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Give me the newly announced chitties."
+            },
+            {
+                "role": "assistant",
+                "content": "Please go to https://ksfeonline.com/chitty/newchits to search for newly announced chitties in your nearest branches."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            { "role": "user", "content": "What is a chitty?" },
+            {
+                "role": "assistant",
+                "content": "According to the Chit Funds Act of 1982, the Government of India defines a “chit” as “a transaction whether called chit, chit fund, chitty, kuri, or by any other name by or under which a person enters into an agreement with a specified number of persons that every one of them shall subscribe a certain sum of money (or a certain quantity of grain instead) by way of periodical instalments over a definite period and that each such subscriber shall, in his turn, as determined by lot or by auction or by tender or in such other manner as may be specified in the chit agreement, be entitled to the prize amount.” Or in simple words, a chitty is a contract between the Foreman and the Subscribers. As per the contract, each subscriber agrees to remit a fixed amount of money in specific intervals for a specific period."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Give me the chitty application forms."
+            },
+            {
+                "role": "assistant",
+                "content": "Go to https://ksfe.com/services/ksfe-chitty/ to download your chitty application forms."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            { "role": "user", "content": "How to auction KSFE chitties?" },
+            {
+                "role": "assistant",
+                "content": "A chittalan can directly take part in the auction, which will be conducted in KSFE branches on the due date of chitties at fixed times specified in the chit agreement. Those who can’t directly attend the auction can authorize any other person as a proxy for the purpose by giving an authorization letter in the prescribed format or can give a proxy to respective Branch Managers showing the maximum amount up to which the chittalan wants to auction the chitty. If the amount shown in the proxy is higher than the highest amount bid by the directly attending chittals then that proxy will win the auction for an amount normally Rs.1/- above the highest amount bid by other chittals."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            { "role": "user", "content": "What are long term chitties?" },
+            {
+                "role": "assistant",
+                "content": "Long Term chitties are investment chitties. Duration of these chitties starts from 60 months to a maximum of 120 months. Long term chitties are more beneficial to customers who wish to invest, as they get a high profit as a dividend. Preplanned long term chitties help the common customers to satisfy their needs instead of loans and other schemes. It is a safe way to make a large amount of money for future needs by paying a small installment amount."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            { "role": "user", "content": "What are short term chitties?" },
+            {
+                "role": "assistant",
+                "content": "KSFE conducts chitties of different durations. Short term chitties ranging from 30 months to 60 months duration are appropriate for subscribers who need the prize money immediately, as there will not be more customers for bidding the chitty for maximum discount and hence better chance for bidding chitty early and the subscribers can auction the chitty for an optimum amount to meet their emergencies."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            { "role": "user", "content": "What are multidivision chitties?" },
+            {
+                "role": "assistant",
+                "content": "At present, the most common Multidivision chit in KSFE consists of one lot and three auctions in a month. The uniqueness of this chit is that each Non-Prized subscriber will get a chance every month to get the full amount of the prize money after deducting the foreman's commission, and the remaining non-prized subscribers will have the opportunity to participate in 3 auctions. The total discount excluding foreman commission received from all divisions is distributed equally among all subscribers in the chit. This chitty attracts more customers, as there is a chance of luck to get the full prize amount through draw as well as they obtain more turns to participate in auction if they prefer to. This is a good scheme that customers can opt for instead of loans. The customer can choose the appropriate chitties from the various branches of KSFE according to their needs."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "What is the mechanism behind the functioning of a chitty?"
+            },
+            {
+                "role": "assistant",
+                "content": "The total of the periodic subscription, called the chitty amount, will be given out as “prize money” to the person who bids by allowing for the maximum reduction in the prize money. The maximum reduction possible is 30%, 35%, and 40% depending on the type of chitty. Thus"
+            }
+        ]
+    }
+]

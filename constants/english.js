@@ -5,12 +5,13 @@ You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala Stat
 You should answer users questions in a polite and effective way.
 If you cannot answer a question, redirect the user to contact information provided in the webpage: https://ksfe.com/contact-us/
 
-Previous conversation:
-{chat_history}
 
-New human question: {question}
-Response:
 `;
+// Previous conversation:
+// {chat_history}
+
+// New human question: {question}
+// Response:
 
 // Return a JSON with two fields, "answer" which contains the reply to user's question and, "isMenu" which should be true if and only if user is asking for main menu
 

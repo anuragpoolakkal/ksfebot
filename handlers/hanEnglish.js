@@ -1,43 +1,55 @@
 import axios from "axios";
-import OpenAI from "openai";
-import translate from "translate";
+import { ChatPromptTemplate } from "@langchain/core/prompts";
+import { ChatOpenAI } from "@langchain/openai";
+import { PromptTemplate } from "@langchain/core/prompts";
+import { LLMChain } from "langchain/chains";
+import { BufferMemory } from "langchain/memory";
+import { HumanMessage } from "@langchain/core/messages";
 
 import {
-    faqListMalayalam,
-    faqListMlOptions,
-    faqMalayalam,
+    faqListEnglish,
+    faqEnglish,
+    showFaqOptions,
     showProductList,
+    showChangeLanguageMenu,
     showMenu,
-} from "../constants/malayalam.js";
+    basePrompt,
+} from "../constants/english.js";
 
-import { basePrompt, showChangeLanguageMenu } from "../constants/english.js";
+export const hanEnglish = async (msg, access_token, phone_no_id, from) => {
+    const chatModel = new ChatOpenAI({
+        modelName: "gpt-3.5-turbo",
+        apiKey: process.env.OPENAI_API_KEY,
+        dangerouslyAllowBrowser: true,
+        temperature: 0,
+        maxTokens: 100,
+        maxRetries: 1,
+    });
 
-export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
-    const promptInEn = await translate(prompt, "ml");
-    console.log(promptInEn);
+    await chatModel.invoke("what is LangSmith?");
 
-    const askAI = async (promptInEn) => {
-        const openai = new OpenAI({
-            apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
-            dangerouslyAllowBrowser: true,
-        });
+    // const askAI = async (prompt) => {
+    //     const openai = new OpenAI({
+    //         apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+    //         dangerouslyAllowBrowser: true,
+    //     });
 
-        const completion = await openai.chat.completions.create({
-            model: "gpt-3.5-turbo",
-            messages: [
-                { role: "system", content: basePrompt },
-                { role: "user", content: promptInEn },
-            ],
-        });
+    //     const completion = await openai.chat.completions.create({
+    //         model: "gpt-3.5-turbo",
+    //         messages: [
+    //             { role: "system", content: basePrompt },
+    //             { role: "user", content: prompt },
+    //         ],
+    //     });
 
-        console.log("completion: ", completion);
-        console.log("Content: ", completion.choices[0].message);
+    //     console.log("completion: ", completion);
+    //     console.log("Content: ", completion.choices[0].message);
 
-        var gptReply = await completion.choices[0].message.content;
-        // const isMenu = await completion.choices[0].message.content.isMenu;
+    //     var gptReply = completion.choices[0].message.content;
+    //     // const isMenu = await completion.choices[0].message.content.isMenu;
 
-        return gptReply;
-    };
+    //     return gptReply;
+    // };
 
     if (msg?.type === "text") {
         // Bot commands
@@ -50,10 +62,19 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
 
             // AI reply
         } else {
-            const answer = await askAI(msg?.text?.body);
-            const resInMl = await translate(answer, "en");
-            console.log(resInMl);
-            
+            // const answer = await askAI(msg?.text?.body);
+
+            // var response = await conversationChain.invoke({
+            //     question: msg?.text?.body,
+            // });
+
+            // await llmMemory.chatHistory.addMessage(
+            //     new HumanMessage(msg?.text?.body)
+            // );
+
+            // await llmMemory.chatHistory.addMessage(
+            //     new AIMessage(response.text)
+            // );
 
             await axios({
                 method: "POST",
@@ -67,7 +88,8 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                     to: from,
                     type: "text",
                     text: {
-                        body: resInMl,
+                        // body: answer,
+                        body: response.text,
                     },
                 },
 
@@ -79,7 +101,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
         }
     }
 
-    if (msg?.interactive?.button_reply?.id === "malayalam") {
+    if (msg?.interactive?.button_reply?.id === "english") {
         await axios({
             method: "POST",
             url:
@@ -94,7 +116,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                 interactive: {
                     type: "button",
                     body: {
-                        text: "ഞാൻ നിങ്ങളെ എങ്ങനെയാണ് സഹായിക്കേണ്ടത്?\n\n\n_പ്രധാനപ്പെട്ട ബോട് കമാൻഡുകൾ:_\n_*/menu* മെനു ലഭിക്കുന്നതിന്_\n_*/products* സേവനങ്ങളുടെ വിവരങ്ങൾക്ക്_\n_*/language* ഭാഷ മാറ്റുന്നതിന്_",
+                        text: "How can I help you?\n\n\n_Important bot commands:_\n_*/menu* for main menu_\n_*/products* for products & services_\n_*/language* to change language_",
                     },
                     action: {
                         buttons: [
@@ -102,21 +124,21 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                                 type: "reply",
                                 reply: {
                                     id: "faq",
-                                    title: "ചോദ്യങ്ങൾ",
+                                    title: "Questions",
                                 },
                             },
                             {
                                 type: "reply",
                                 reply: {
                                     id: "branch_locator",
-                                    title: "ബ്രാഞ്ച് ലൊക്കേറ്റർ",
+                                    title: "Branch Locator",
                                 },
                             },
                             {
                                 type: "reply",
                                 reply: {
                                     id: "contact",
-                                    title: "ഞങ്ങളെ ബന്ധപ്പെടുക",
+                                    title: "Contact us",
                                 },
                             },
                         ],
@@ -129,7 +151,6 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                 Authorization: `Bearer ${access_token}`,
             },
         });
-
         await axios({
             method: "POST",
             url:
@@ -152,21 +173,21 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                                 type: "reply",
                                 reply: {
                                     id: "products",
-                                    title: "സേവനങ്ങൾ",
+                                    title: "Products & Services",
                                 },
                             },
                             {
                                 type: "reply",
                                 reply: {
                                     id: "about_ksfe",
-                                    title: "കെഎസ്എഫ്ഇയെ അറിയുക",
+                                    title: "About KSFE",
                                 },
                             },
                             {
                                 type: "reply",
                                 reply: {
                                     id: "pravasi_chitty",
-                                    title: "പ്രവാസി ചിട്ടി",
+                                    title: "Pravasi Chitty",
                                 },
                             },
                         ],
@@ -202,7 +223,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                                 type: "reply",
                                 reply: {
                                     id: "change_language",
-                                    title: "ഭാഷ മാറ്റുക",
+                                    title: "Change Language",
                                 },
                             },
                         ],
@@ -228,7 +249,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                 to: from,
                 type: "text",
                 text: {
-                    body: "മെനുവിൽ നിന്ന് ഒരു ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ എന്നോട് ഒരു ചോദ്യം ചോദിക്കുക.",
+                    body: "Choose an option from the above menu or ask me a question.",
                 },
             },
 
@@ -239,8 +260,8 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
         });
     }
 
-    //------------------FAQ------------------
-    else if (msg?.interactive?.button_reply?.id === "faq") {
+    // ----------------------FAQ----------------------
+    if (msg?.interactive?.button_reply?.id === "faq") {
         await axios({
             method: "POST",
             url:
@@ -253,7 +274,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                 to: from,
                 type: "text",
                 text: {
-                    body: faqMalayalam,
+                    body: faqEnglish,
                 },
             },
 
@@ -263,6 +284,13 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
             },
         });
 
+        await showFaqOptions(phone_no_id, access_token, from);
+
+        await showMenu(phone_no_id, access_token, from);
+    }
+
+    // ----------------------Contact----------------------
+    if (msg?.interactive?.button_reply?.id === "contact") {
         await axios({
             method: "POST",
             url:
@@ -273,27 +301,9 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
             data: {
                 messaging_product: "whatsapp",
                 to: from,
-                type: "interactive",
-                interactive: {
-                    type: "list",
-                    header: {
-                        type: "text",
-                        text: "നിങ്ങളുടെ ചോദ്യം തിരഞ്ഞെടുക്കുക",
-                    },
-                    body: {
-                        text: "ചോദ്യം തിരഞ്ഞെടുക്കുക",
-                    },
-                    // footer: {
-                    //     text: "<FOOTER_TEXT>",
-                    // },
-                    action: {
-                        button: "ചോദ്യങ്ങൾ ",
-                        sections: [
-                            {
-                                rows: faqListMlOptions,
-                            },
-                        ],
-                    },
+                type: "text",
+                text: {
+                    body: "*Registered Office*\nThe Kerala State Financial Enterprises Ltd.\n“bhadratha”, Museum Road,\nP.b. No.510,Thrissur – 680 020\nPhone No: 0487 2332255\nToll Free No: 1800 425 3455\nFax: 0487 – 2336232\nE-Mail : mail@ksfe.com\n\nTo ask your queries, visit https://ksfe.com/contact-us",
                 },
             },
 
@@ -302,11 +312,13 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                 Authorization: `Bearer ${access_token}`,
             },
         });
+
+        await showMenu(phone_no_id, access_token, from);
     }
 
-    // ------------------Contacts------------------
-    else if (msg?.interactive?.button_reply?.id === "contact") {
-        axios({
+    // ----------------------Branch Locator----------------------
+    if (msg?.interactive?.button_reply?.id === "branch_locator") {
+        await axios({
             method: "POST",
             url:
                 "https://graph.facebook.com/v13.0/" +
@@ -318,7 +330,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                 to: from,
                 type: "text",
                 text: {
-                    body: "*Registered Office*\n\nകേരള സ്റ്റേറ്റ് ഫിനാൻഷ്യൽ എന്റർപ്രൈസസ് ലിമിറ്റഡ്\n“ഭദ്രത”, മ്യൂസിയം റോഡ്,\nP.b. No.510,തൃശ്ശൂർ – 680 020\nഫോൺ No: 0487 2332255\nടോൾ ഫ്രീ No: 1800 425 3455\nഫാക്സ്: 0487 – 2336232\nEail : mail@ksfe.com\n\nനിങ്ങളുടെ ചോദ്യങ്ങൾ ചോദിക്കുന്നതിന്, സന്ദർശിക്കുക https://ksfe.com/contact-us",
+                    body: "Find your nearest branch\n\nhttps://ksfe.com/branch-locator",
                 },
             },
 
@@ -327,31 +339,8 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                 Authorization: `Bearer ${access_token}`,
             },
         });
-    }
 
-    // ------------------Branch Locator------------------
-    else if (msg?.interactive?.button_reply?.id === "branch_locator") {
-        axios({
-            method: "POST",
-            url:
-                "https://graph.facebook.com/v13.0/" +
-                phone_no_id +
-                "/messages?access_token=" +
-                access_token,
-            data: {
-                messaging_product: "whatsapp",
-                to: from,
-                type: "text",
-                text: {
-                    body: "നിങ്ങളുടെ ഏറ്റവും അടുത്തുള്ള ശാഖ കണ്ടെത്തുക\n\nhttps://ksfe.com/branch-locator",
-                },
-            },
-
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${access_token}`,
-            },
-        });
+        await showMenu(phone_no_id, access_token, from);
     }
 
     //---------------------- Products and Services catalogue ----------------------
@@ -421,7 +410,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
     }
 
     //--------------- Product & Services List Reply--------------
-    else if (msg?.interactive?.type === "list_reply") {
+    if (msg?.interactive?.type === "list_reply") {
         if (msg?.interactive?.list_reply?.id === "chitty") {
             await axios({
                 method: "POST",
@@ -435,7 +424,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                     to: from,
                     type: "text",
                     text: {
-                        body: "*Chitty*\n\n1. KSFE Chitty\nhttps://ksfe.com/services/ksfe-chitty/",
+                        body: "*KSFE Chitty*\nIt is a unique financial product, which blends the advantages of both investment and advance. It is a risk free safe haven for the public as KSFE conducts chitties, fully governed by the provisions of Central Chit Fund Act 1982 only. Installment per month for chitties range from Rs. 1,000 to Rs. 6,00,000 and the usual duration of chitties range from 30 months to 120 months. KSFE conducts normal chitties (Single division) and division chitties (usually called Multidivision chitty or Narukku Lela chitty).\nMore information: https://ksfe.com/services/ksfe-chitty/",
                     },
                 },
 
@@ -459,7 +448,21 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                     to: from,
                     type: "text",
                     text: {
-                        body: "*Loans & Advances*\n\n1. Gold Loan\nhttps://ksfe.com/services/gold-loan/\n\n2. Janamitram Gold Loan\nhttps://ksfe.com/services/janamithram-gold-loan/\n\n3. KSFE Home Loan\nhttps://ksfe.com/services/ksfe-home-loan/\n\n4. KSFE Personal Loan\nhttps://ksfe.com/services/ksfe-personal-loan/\n\n5. Chitty Loan\nhttps://ksfe.com/services/chitty-loan/\n\n6. KSFE Passbook Loan\nhttps://ksfe.com/services/ksfe-passbook-loan/\n\n7. Customer / Vehicle Loan\nhttps://ksfe.com/services/consumer-vehicle-loan/\n\n8. Car Loan\nhttps://ksfe.com/services/car-loan/\n\n9. Sugama Akshaya (Overdraft) Scheme\nhttps://ksfe.com/services/sugama-akshaya-overdraft-scheme/",
+                        body: "*Loans & Advances*\nKSFE offers a number of loan schemes to help those who need fund for various purposes.  KSFE Loans are having relatively low interest rates, are a great relief to the people.  KSFE offers Gold loans, Home loans, Personal loans and Chit loans  and other  various loan schemes\n\n*1. Gold Loan*\nPurpose:\nThe Scheme is intended to provide short term loans for people who are urgently in need of money, on the security of gold ornaments.\n\nFeatures of the product:\n- Maximum Amount per Gram\n- low interest rate\n- Fast processing\n\nMaximum Loan period 12 Months. Loan can renew the loan a further period of one year after remmitting the due interest and this facility can be availed up to 36 Months.\n\nMaximum Loan amount  Rs 25 Lakhs per  individual, per day.\n\nFlexible payment and repayment option. No other charges, other than appraiser charges.\n\n:Business Hours: loan counter will be open from 10.00 am to 4.30 pm on all working days.\n\nInterest rates:\nGold loan upto Rs 20,000: 7.00% p.a.\nGold loan above Rs 20,000: 8.90% p.a.\nMore information: https://ksfe.com/services/gold-loan/\n\n",
+
+                        // 2. Janamitram Gold Loan\nhttps://ksfe.com/services/janamithram-gold-loan/\n\n
+
+                        // 3. KSFE Home Loan\nhttps://ksfe.com/services/ksfe-home-loan/\n\n
+
+                        // 4. KSFE Personal Loan\nhttps://ksfe.com/services/ksfe-personal-loan/\n\n
+
+                        // 5. Chitty Loan\nhttps://ksfe.com/services/chitty-loan/\n\n
+
+                        // 6. KSFE Passbook Loan\nhttps://ksfe.com/services/ksfe-passbook-loan/\n\n
+
+                        // 7. Customer / Vehicle Loan\nhttps://ksfe.com/services/consumer-vehicle-loan/\n\n8. Car Loan\nhttps://ksfe.com/services/car-loan/\n\n
+
+                        // 9. Sugama Akshaya (Overdraft) Scheme\nhttps://ksfe.com/services/sugama-akshaya-overdraft-scheme/,
                     },
                 },
 
@@ -483,7 +486,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                     to: from,
                     type: "text",
                     text: {
-                        body: "*Deposit Schemes*\n\n1. Fixed Deposit\nhttps://ksfe.com/services/fixed-deposit/\n\n2. Chitty Security Deposit In Trust\nhttps://ksfe.com/services/chitty-security-deposit/\n\n3. Short Term Deposits\nhttps://ksfe.com/services/short-term-deposits/\n\n4. Sugama Deposit Scheme\nhttps://ksfe.com/services/sugama-deposit-scheme/\n\n5. Nettam Deposit Scheme\nhttps://ksfe.com/services/nettam-deposit-scheme/",
+                        body: "*Deposit Schemes*\nKSFE offers various types of deposits  with attractive interest rates.   This includes short-term and long-term deposits.  In addition, there are deposits equivalent to savings deposits in KSFE, called Sugama.  Chit Money deposits and Senior Citizens' deposits have a higher interest rate than regular fixed deposits.\n1. Fixed Deposit\nhttps://ksfe.com/services/fixed-deposit/\n\n2. Chitty Security Deposit In Trust\nhttps://ksfe.com/services/chitty-security-deposit/\n\n3. Short Term Deposits\nhttps://ksfe.com/services/short-term-deposits/\n\n4. Sugama Deposit Scheme\nhttps://ksfe.com/services/sugama-deposit-scheme/\n\n5. Nettam Deposit Scheme\nhttps://ksfe.com/services/nettam-deposit-scheme/",
                     },
                 },
 
@@ -509,7 +512,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                     to: from,
                     type: "text",
                     text: {
-                        body: "*Securities Acceptable*\n\n1. Personal Surety\nhttps://ksfe.com/services/personal-surety/\n\n2. FD of KSFE and Other Bank Deposits\nhttps://ksfe.com/services/fd-of-ksfe-and-other-bank-deposits/\n\n3. Sugama Security Deposit\nhttps://ksfe.com/services/sugama-security-deposit/\n\n4. Life Cover Policy\nhttps://ksfe.com/services/life-cover-policy/\n\n5. Bank Guarantee\nhttps://ksfe.com/services/bank-guarantee/\n\n6. Pass Book of Non-Prized Chitties of KSFE\nhttps://ksfe.com/services/pass-book-of-non-prized-chitties-of-ksfe/\n\n7. Kissan Vikas Patra\nhttps://ksfe.com/services/kissan-vikas-patra/\n\n8. Property Security\nhttps://ksfe.com/services/property-security/\n\n9. Gold Security\nhttps://ksfe.com/services/gold-security/",
+                        body: "*Securities Acceptable*\nVarious schemes of KSFE that offers financial assistance such as Chitties and loans can  be availed against the security provided by the customer. Security is defined as, “anything, such as Personal Surety of employees of Institutions approved by KSFE, landed property, Fixed Deposit receipts,  Gold ornaments etc. kept as a guarantee for the fulfillment of an undertaking regarding the repayment of the Chitty/advance, along with interest thereon, to be paid in case of default”. Various types of securities accepted by the KSFE for its different schemes are the following:\n1. Personal Surety\nhttps://ksfe.com/services/personal-surety/\n\n2. FD of KSFE and Other Bank Deposits\nhttps://ksfe.com/services/fd-of-ksfe-and-other-bank-deposits/\n\n3. Sugama Security Deposit\nhttps://ksfe.com/services/sugama-security-deposit/\n\n4. Life Cover Policy\nhttps://ksfe.com/services/life-cover-policy/\n\n5. Bank Guarantee\nhttps://ksfe.com/services/bank-guarantee/\n\n6. Pass Book of Non-Prized Chitties of KSFE\nhttps://ksfe.com/services/pass-book-of-non-prized-chitties-of-ksfe/\n\n7. Kissan Vikas Patra\nhttps://ksfe.com/services/kissan-vikas-patra/\n\n8. Property Security\nhttps://ksfe.com/services/property-security/\n\n9. Gold Security\nhttps://ksfe.com/services/gold-security/",
                     },
                 },
 
@@ -533,7 +536,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                     to: from,
                     type: "text",
                     text: {
-                        body: "*Fee Based Services*\n\n1. Money Transfer Services\nhttps://ksfe.com/services/money-transfer-services/\n\n2. Safe Deposit Locker\nKSFE provides Safe Deposit Locker facility in some units in order to cater to wide range of services to the public. Lockers may be hired in the names of individuals, firms, companies, association of persons or clubs, trustees, NRIs, Govt. departments, co-operative societies and/or body of individuals. Lockers can also be opened in the name of minors duly represented by a guardian. The rent of the locker is fixed at the rate of Rs.800 + tax for public and Rs.700+ tax for chitty subscribers, on yearly basis. Nomination facility is available for locker holders.\nMore information: https://ksfe.com/services/safe-deposit-locker/",
+                        body: "*Fee Based Services*\nKSFE provide fee based services such as Western Union Money Transfer, Express Money Transfer and Safe Deposit Locker facility to the people.\n1. Money Transfer Services\nhttps://ksfe.com/services/money-transfer-services/\n\n2. Safe Deposit Locker\nKSFE provides Safe Deposit Locker facility in some units in order to cater to wide range of services to the public. Lockers may be hired in the names of individuals, firms, companies, association of persons or clubs, trustees, NRIs, Govt. departments, co-operative societies and/or body of individuals. Lockers can also be opened in the name of minors duly represented by a guardian. The rent of the locker is fixed at the rate of Rs.800 + tax for public and Rs.700+ tax for chitty subscribers, on yearly basis. Nomination facility is available for locker holders.\nMore information: https://ksfe.com/services/safe-deposit-locker/",
                     },
                 },
 
@@ -548,7 +551,9 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
 
         //---------------------- FAQ List Reply----------------------
         else {
-            let qn = msg?.interactive?.list_reply?.id;
+            let qn = await msg?.interactive?.list_reply?.id;
+            // let ln = qn[0];
+
             await axios({
                 method: "POST",
                 url:
@@ -563,9 +568,9 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                     text: {
                         body:
                             `*` +
-                            faqListMalayalam[qn - 1].question +
+                            faqListEnglish[qn - 1].question +
                             `*\n\n` +
-                            faqListMalayalam[qn - 1].answer,
+                            faqListEnglish[qn - 1].answer,
                     },
                 },
 
@@ -574,6 +579,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                     Authorization: `Bearer ${access_token}`,
                 },
             });
+
             await showFaqOptions(phone_no_id, access_token, from);
 
             await showMenu(phone_no_id, access_token, from);
