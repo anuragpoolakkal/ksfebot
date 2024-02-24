@@ -266,8 +266,170 @@
             },
             {
                 "role": "assistant",
-                "content": "The total of the periodic subscription, called the chitty amount, will be given out as “prize money” to the person who bids by allowing for the maximum reduction in the prize money. The maximum reduction possible is 30%, 35%, and 40% depending on the type of chitty. Thus"
+                "content": "The total of the periodic subscription, called the chitty amount, will be given out as “prize money” to the person who bids by allowing for the maximum reduction in the prize money. The maximum reduction possible is 30%, 35%, and 40% depending on the type of chitty. Thus each subscriber gets an opportunity to receive the prize money once during the tenure of the chitty. All the promoters have to contribute the periodic subscription till the end of the chitty."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "What is a Sugama Deposit Scheme?"
+            },
+            {
+                "role": "assistant",
+                "content": "Sugama Deposit Scheme is one of the best deposit schemes offered by KSFE. This scheme in its mode of action/procedure, is comparable to the Savings Bank deposits in banks, but with a higher interest rate. Sugama Scheme is the best in the savings account category as it is offering an interest rate of 4.50%. Sugama acts as a safe and sound transaction scheme for automated chitty installment repayment, deposit interest withdrawals and day-to-day dealings."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Tell me about KSFE's home loan."
+            },
+            {
+                "role": "assistant",
+                "content": "KSFE helps you build your dream home.KSFE Home Loan is also available for purchasing a land for housing, renovation of an existing house, or for the outright purchase of a house. To avail of this loan scheme, one must fulfill/meet any one of the following criteria: the applicant must be a salaried person, a businessman who is an income tax assessee, an NRI, a person earning rental income, or a professional like a doctor/engineer/lawyer/chartered accountant. The principal is repayable within a period of 360 months (i.e., 30 years) or upon the applicant’s attainment of 70 years of age, whichever occurs earlier. Customers can take a Maximum Loan amount of Rs One Crore as an advance. For more information, visit: https://ksfe.com/services/ksfe-home-loan/."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "What are the eligibility criteria for a home loan from KSFE?"
+            },
+            {
+                "role": "assistant",
+                "content": "To avail home loan scheme, one must fulfill/meet any one of the following criteria : the applicant must be a salaried person, businessman who are income tax assessee, NRI, persons earning rental income or professionals like doctors/engineers/lawyers/chartered accountant. The principal is repayable within a period of 360 months (i.e, 30 years) or applicant’s attainment of 70 years of age, whichever is earlier. Customer can take  Maximum Loan amount of Rs One Crore as advance. For more information visit: https://ksfe.com/services/ksfe-home-loan/."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "What are the eligibility criteria for a car loan from KSFE?"
+            },
+            {
+                "role": "assistant",
+                "content": "This loan can be availed by salaried persons having a net monthly pay exceeding Rs.10,000 and self-employed professionals/businessmen/income tax assessee having an average annual income more than Rs.2 lakhs for the last 3 years. The minimum period of loan is 12 months and the maximum is 60 months. For more information visit: https://ksfe.com/services/car-loan/."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Tell me about KSFE's car loan."
+            },
+            {
+                "role": "assistant",
+                "content": "Car loan is the loan offered by KSFE for buying new cars. This loan can be availed by salaried persons having a net monthly pay exceeding Rs.10,000 and self-employed professionals/businessmen/income tax assessee having an average annual income more than Rs.2 lakhs for the last 3 years. The minimum period of loan is 12 months and the maximum is 60 months. Advance up to 85% of road cost can be sanctioned under Special Car loan. Margin Money represents the difference between the Road cost and the advance sanctioned under Car loan. This amount is to be remitted by the borrower in advance before issuing the cheque. For more information visit: https://ksfe.com/services/car-loan/."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Tell me about KSFE's car loan interest rate."
+            },
+            {
+                "role": "assistant",
+                "content": "KSFE offers competitive car loan interest rates that vary based on the loan amount and tenure. For the most accurate information, it's best to check with your nearest branch. Visit https://ksfe.com/services/car-loan/ for more details."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Tell me about KSFE's home loan interest rate."
+            },
+            {
+                "role": "assistant",
+                "content": "KSFE offers competitive home loan interest rates that vary based on the loan amount and tenure. For the most accurate information, it's best to check with your nearest branch. Visit https://ksfe.com/services/ksfe-home-loan/ for more details."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Tell me about KSFE's Max gold loan."
+            },
+            {
+                "role": "assistant",
+                "content": "The max gold loan offerings from KSFE come with a tenure of 90 days, providing borrowers with a short-term financing solution. The maximum sanctionable loan amount is set at 90% of the market value of the gold being utilized as collateral. When it comes to the gold pledged, KSFE accepts gold with a purity of 916/22ct. Additionally, the interest on the loan is structured to be payable on a monthly basis. For detailed information visit https://ksfe.com/services/max-gold-loan/."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Tell me about KSFE's Janamithram Gold Loan."
+            },
+            {
+                "role": "assistant",
+                "content": "Janamithram Gold Loan is intended to make the repayment to Gold Loan on EMI basis. Tenure of the loan is one year. For detailed information visit https://ksfe.com/services/max-gold-loan/."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Tell me about KSFE's Janamithram Gold Loan."
+            },
+            {
+                "role": "assistant",
+                "content": "Janamithram Gold Loan is intended to make the repayment to Gold Loan on EMI basis. Tenure of the loan is one year. The repayment, covering both principal and interest, is spread across 12 equal installments, with the due date as the date of loan disbursal. Individuals can avail themselves of a maximum loan amount of Rs.10 Lakhs per day, but it's important to note that any default may incur a penal interest of 12%. There are no processing charges associated with this loan. The lump sum remittance to reduce the EMI amount is not permitted. Partial redemption of ornaments is allowed once in the loan period only after remittance of six installment. For detailed information visit https://ksfe.com/services/max-gold-loan/."
             }
         ]
     }
+    
+
 ]
