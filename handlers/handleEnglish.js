@@ -1,5 +1,6 @@
 import axios from "axios";
 import { OpenAI } from "openai";
+import "dotenv/config";
 // import { OpenAI } from "@langchain/openai";
 // import { PromptTemplate } from "@langchain/core/prompts";
 // import { LLMChain } from "langchain/chains";
@@ -39,7 +40,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
 
     const askAI = async (prompt) => {
         const openai = new OpenAI({
-            apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+            apiKey: process.env.OPENAI_API_KEY,
             dangerouslyAllowBrowser: true,
         });
 

@@ -1,5 +1,7 @@
 import axios from "axios";
 import OpenAI from "openai";
+import { Translate } from "@google-cloud/translate/build/src/v2/index.js";
+import "dotenv/config";
 import {
     faqListMalayalam,
     faqListMlOptions,
@@ -10,11 +12,45 @@ import {
 
 import { basePrompt, showChangeLanguageMenu } from "../constants/english.js";
 
+const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
+
+const translate = new Translate({
+    credentials: CREDENTIALS,
+    projectId: CREDENTIALS.projectId,
+});
+
+const detectLanguage = async (text) => {
+    try {
+        let response = await translate.detect(text);
+        return response[0].language;
+    } catch (error) {
+        console.error(error);
+        return 0;
+    }
+};
+
+const translateText = async (text, targetLanguage) => {
+    try {
+        let [response] = await translate.translate(text, targetLanguage);
+        return response;
+    } catch (error) {
+        console.error(error);
+        return 0;
+    }
+};
 
 export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
     const askAI = async (prompt) => {
+        var promptLang = await detectLanguage(prompt);
+
+        if (promptLang == "ml") {
+            var promptInEn = await translateText(prompt, "en");
+        } else {
+            var promptInEn = prompt;
+        }
+
         const openai = new OpenAI({
-            apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
+            apiKey: process.env.OPENAI_API_KEY,
             dangerouslyAllowBrowser: true,
         });
 
@@ -22,7 +58,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
             model: "gpt-3.5-turbo",
             messages: [
                 { role: "system", content: basePrompt },
-                { role: "user", content: prompt },
+                { role: "user", content: promptInEn },
             ],
         });
 
@@ -30,9 +66,14 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
         console.log("Content: ", completion.choices[0].message);
 
         var gptReply = await completion.choices[0].message.content;
-        // const isMenu = await completion.choices[0].message.content.isMenu;
 
-        return gptReply;
+        if (promptLang == "ml") {
+            var reply = await translateText(gptReply, "ml");
+        } else {
+            var reply = gptReply;
+        }
+
+        return reply;
     };
 
     if (msg?.type === "text") {
