@@ -410,7 +410,7 @@
             },
             {
                 "role": "assistant",
-                "content": "Janamithram Gold Loan is intended to make the repayment to Gold Loan on EMI basis. Tenure of the loan is one year. For detailed information visit https://ksfe.com/services/max-gold-loan/."
+                "content": "Janamithram Gold Loan is intended to make the repayment to Gold Loan on EMI basis. Tenure of the loan is one year. The repayment, covering both principal and interest, is spread across 12 equal installments, with the due date as the date of loan disbursal. Individuals can avail themselves of a maximum loan amount of Rs.10 Lakhs per day, but it's important to note that any default may incur a penal interest of 12%. There are no processing charges associated with this loan. The lump sum remittance to reduce the EMI amount is not permitted. Partial redemption of ornaments is allowed once in the loan period only after remittance of six installment. For detailed information visit https://ksfe.com/services/janamithram-gold-loan/."
             }
         ]
     },
@@ -422,14 +422,1148 @@
             },
             {
                 "role": "user",
-                "content": "Tell me about KSFE's Janamithram Gold Loan."
+                "content": "I want to invest 50 lakhs for a tenure of 10 years. Could you please advise me on the most suitable chit? Additionally, could you inform me whether it is preferable to wait until the chit reaches its full term or if periodically calling and placing funds in a fixed deposit is a better option?"
             },
             {
                 "role": "assistant",
-                "content": "Janamithram Gold Loan is intended to make the repayment to Gold Loan on EMI basis. Tenure of the loan is one year. The repayment, covering both principal and interest, is spread across 12 equal installments, with the due date as the date of loan disbursal. Individuals can avail themselves of a maximum loan amount of Rs.10 Lakhs per day, but it's important to note that any default may incur a penal interest of 12%. There are no processing charges associated with this loan. The lump sum remittance to reduce the EMI amount is not permitted. Partial redemption of ornaments is allowed once in the loan period only after remittance of six installment. For detailed information visit https://ksfe.com/services/max-gold-loan/."
+                "content": "Chittis with values up to 50 lakhs are offered in various schemes at several branches of KSFE. You can select suitable chits. For additional information, please visit the website www.ksfe.com."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Where should one file a complaint if an employee of KSFE engages in corruption? Is there an online system available?"
+            },
+            {
+                "role": "assistant",
+                "content": "A complaint against KSFE can be submitted to the Branch Manager. If the response received from there is not satisfactory, then the Regional Office and Head Office can be approached. Branch, Regional Office, and Head Office can be contacted via email."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "If the 5 lakh chitty is drawn in the 8th installment, how much will be the chitty amount?"
+            },
+            {
+                "role": "assistant",
+                "content": " It is not possible to say in advance what amount the bid will be fixed for."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": " How many members are there in multidivision ksfe chitty?"
+            },
+            {
+                "role": "assistant",
+                "content": "Multidivision Chitti starts at different time in many divisions like 4th, 8th and 16th. It can only be answered if you clearly point out which one it is."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "I am the sole nominee for my father, who had a fixed deposit with KSFE and has now passed away. I would like to know what documentation is required to claim my father's deposit."
+            },
+            {
+                "role": "assistant",
+                "content": "Please be present at the branch along with his death certificate and family membership certificate. If there is no objection to continuing or releasing the aforementioned fixed deposit on your behalf to other individuals mentioned in the family membership certificate, the branch will take appropriate action."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Is there any penalty for a one-day delay in the payment of the KSFE Pravasi chitty amount due to a banking issue?"
+            },
+            {
+                "role": "assistant",
+                "content": "Normally, a 12% interest rate per year is charged on the installment amount for delayed payments. If the chit is prized, the dividend will also be waived."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "The KSFE chit has matured. It has closed three times. However, it couldn't be encashed. What should be done to retrieve the invested amount?"
+            },
+            {
+                "role": "assistant",
+                "content": "If you approach the branch with the passbook, it is sufficient."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "The chit of 12,500 x 40 completed 6 months, starting in March 2021. Even after calling for the chit, is it possible to accumulate the remaining amounts as installments now? Will there be any interest accrued?"
+            },
+            {
+                "role": "assistant",
+                "content": "If the chit is to be called, the accrued interest until the current installment must be paid together. The interest rate is 12%. However, if the chit is not called and the remaining amounts are to be accumulated, it can be done as installments, and interest will be accrued accordingly."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Is it possible to transfer a KSFE chit from one customer to another?"
+            },
+            {
+                "role": "assistant",
+                "content": "According to the terms chits that are not called can be transferred."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "I made a payment via UPI (Gpay) for my KSFE chit. The amount has been debited from my account, but it has not been credited to my chit. What should I do?"
+            },
+            {
+                "role": "assistant",
+                "content": "If you send the details of that transaction to it@ksfe.com, it can be verified. Alternatively, you can contact at the number 9446007930."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "What will be the amount received if a Multi-Division chit of 5 lakhs is called for 398,500 rupees?"
+            },
+            {
+                "role": "assistant",
+                "content": "The consumer receives the remaining amount after deducting GST and documentation charges from 3,98,500."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "The land tax certificate indicates 'Nilam,' while in the Aadaram, it is recorded as 'Kara Bhoomi.' Will KSFE accept this property as collateral?"
+            },
+            {
+                "role": "assistant",
+                "content": "The decision on whether to acquire the property is based on the legal report by the legal advisor provided above the records of the property, as well as the valuation reports presented by the valuation team. This decision is fundamental to acquiring the property."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "I joined a chit with an amount of 5 lakhs, and it has been 7 months. Due to a financial crisis, I am unable to continue with the chit. I haven't called for the chit. Can I get back the deducted cash if I stop it?"
+            },
+            {
+                "role": "assistant",
+                "content": "If the chit has matured or if someone is substituting for you in the chit, then you will receive the amount you had pledged."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "The chit is worth 6,00,000, and I received 5,01,500. How much GST will be deducted?"
+            },
+            {
+                "role": "assistant",
+                "content": "The GST is calculated based on the premium before deducting the commission. For a standard chit of 6 lakhs, the GST amounts to 5436 rupees."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "I had a chit for 10 years, and I paid correctly for 1 year and 5 months. Now, I want to withdraw my chit. I would like to know if I will receive the full amount of what I paid, or if there will be any deductions upon withdrawal."
+            },
+            {
+                "role": "assistant",
+                "content": "If the chit remains non-prized, you will receive the amount deposited in the chit after the termination of the chit or after substituting the chit to another person."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "What are the consequences when we lose the chitty book?"
+            },
+            {
+                "role": "assistant",
+                "content": "You may approach the branch for a duplicate passbook by remitting a fee."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "I paid the KSFE chitty amount twice in the month of May. Consequently, I did not make any payment in June. Upon checking the online portal in July, it displays the total amount in the Suspense category, and the Net payable amount is 0. Should I make a payment in July, or will it be adjusted from the Suspense amount?"
+            },
+            {
+                "role": "assistant",
+                "content": "From your side, it is understood that you had remitted the May and June installments. Therefore, you should remit the July installment after deducting the amount in the suspense account, if any."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "To secure a KSFE chit of 2 lakhs, how much gold security is required?"
+            },
+            {
+                "role": "assistant",
+                "content": "The question can be answered only if you know the future liability of the chit."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "What documents do I need to submit as property security to claim the KSFE Pravasi Chitty prize money? Additionally, which form should I sign to receive the money after the legal scrutiny and valuation of the property? Is this form available online?"
+            },
+            {
+                "role": "assistant",
+                "content": "Normally the documents to be submitted are:\n 1. Prime document \n2. The prior documents up to 13 years \n3. Encumbrance Certificate up to 13 years ( can be obtained from Register Office) \n4. Possession Certificate (can be obtained from Village Office) \n5. Location Certificate & Location Sketch(can be obtained from Village Office) \n6. Land Tax Receipt \n7. Building Tax Receipt (17 building exists). \nYou can visit  www.pravasi.ksfe.com for further help."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "KSFE Pravasi Chitty amount was paid one day late due to a bank issue. Is there any penalty for this?"
+            },
+            {
+                "role": "assistant",
+                "content": "Please Contact the KSFE Pravasi Chitty office."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Is the salary certificate of army personnel accepted as surety by KSFE?"
+            },
+            {
+                "role": "assistant",
+                "content": "The acceptance of the salary certificate of soldiers as surety is not currently in practice at KSFE."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "I am not attending the auction for the prize money. What will happen upon the completion of the chitty time period of 5 years?"
+            },
+            {
+                "role": "assistant",
+                "content": "After the completion of the chitty, you will receive an amount after deducting 5% from the total chitty amount (GST @18% on 5% will also be deducted). However, it is advisable to attend the auction, either through proxy or directly, at least during the last session of the chitty termination. This way, you may receive almost the same amount as before the termination of the chitty."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "I have joined a 50 lakh chitty for 40 months. May I know how much I might get back after the chitty is over?"
+            },
+            {
+                "role": "assistant",
+                "content": "From the gross amount of the chitty (in your case Rs.50 lakhs), 5% will be deducted as the foreman’s commission, and 18% of the foreman’s commission amount will be deducted toward applicable GST."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Why is the suspense amount showing as -9000 and asking me to pay 34000 when I have no due amount till date and paid 25000 last month? I had been prized last month but did not collect the amount. This time they are asking me to pay 34k."
+            },
+            {
+                "role": "assistant",
+                "content": "Please submit your query with chitty account details at the branch where you hold the chitty. For the email id of the branch, visit https://ksfe.com."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "I won INR 7000000 this month through an auction. It is a 40-month, 2.5 Lakhs (1 Cr) chit. What would be the amount you are going to disburse?"
+            },
+            {
+                "role": "assistant",
+                "content": "From the bid (won) amount GST@18% of the Foreman's commission amounting to Rs. 90000/- will be levied during payment."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "What is the maximum amount of subscription in Pravasi chits?"
+            },
+            {
+                "role": "assistant",
+                "content": "KSFE currently offers a chit with a gross monthly subscription amount of ₹125000. However, the minimum amount for a gross monthly subscription of ₹125000 will be ₹93750 when the auction discount reaches 30% of the sala of the chit."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Can I give standing instruction to banks for KSFE Pravasi Chits installment remittance?"
+            },
+            {
+                "role": "assistant",
+                "content": "As of now, this facility is not available. We are planning to incorporate this feature in due course."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Can I make debit or credit card payments for KSFE Pravasi Chits?"
+            },
+            {
+                "role": "assistant",
+                "content": "You can make payments using your Debit card however, Credit card payments are not allowed in Pravasi chits."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Are the auction timings for all KSFE Pravasi Chits on a particular date the same?"
+            },
+            {
+                "role": "assistant",
+                "content": "No, the auction timing of each chit on a particular date will be different. The subscriber has the option to select a chit with his preferred auction timing at the time of enrolling in a chit"
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Is there a monthly due date for remitting the KSFE Pravasi Chits installment?"
+            },
+            {
+                "role": "assistant",
+                "content": "Yes, every chit has a monthly due date. Subscribers are supposed to make their monthly chit payments before the due date to participate in the auctions."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Is it mandatory to remit the monthly instalment of KSFE Pravasi Chits as a whole?"
+            },
+            {
+                "role": "assistant",
+                "content": "Yes, the monthly instalments should be made in full; no partial payment option is provided."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Does KSFE accept foreign currency for enrolling in KSFE Pravasi Chits?"
+            },
+            {
+                "role": "assistant",
+                "content": "No, Pravasi Chits do not accept foreign currency for payments."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Does KSFE accept cash for enrolling in KSFE Pravasi Chits?"
+            },
+            {
+                "role": "assistant",
+                "content": "No, Pravasi chits do not allow the subscribers to make payments in cash. All the payments are to be made online."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Can I make daily or weekly part payments before the monthly due date?"
+            },
+            {
+                "role": "assistant",
+                "content": "No, the daily or weekly part payment option is not available in Pravasi chits."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Is there any penalty for belated payments in KSFE Pravasi Chits?"
+            },
+            {
+                "role": "assistant",
+                "content": "Yes. The penalty for defaulted payments is calculated on the actual number of days delayed for making the payment. Please read the Chit Agreement for more details."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "What is the maximum auction discount in KSFE Pravasi Chits?"
+            },
+            {
+                "role": "assistant",
+                "content": "30% of Sala of the Chit."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Is PAN Card mandatory for joining KSFE Pravasi Chits?"
+            },
+            {
+                "role": "assistant",
+                "content": "No, a PAN card is not mandatory for joining Pravasi Chit. However, if you deposit the prize money as a fixed deposit, TDS will be deducted from FD interest. If you plan to claim the refund of the deducted TDS, you should provide PAN card details at the time of depositing the prize money. This way, we can upload the deducted TDS details against your PAN to the Income Tax website, helping you to claim the refund of your deducted TDS."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Can I make payments in Pravasi Chit through cash at any of the KSFE branches?"
+            },
+            {
+                "role": "assistant",
+                "content": "No, in Pravasi chitty, customers cannot make payments in cash. Only online payments are accepted. However, cheques are accepted at KSFE branches, but the amount will be credited to the concerned chits only after the realization of the same."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Can the prize money from KSFE Pravasi Chits be transferred to an NRI account?"
+            },
+            {
+                "role": "assistant",
+                "content": "No, as per existing RBI guidelines, the chit prize money can only be transferred to an NRO Account/regular Savings Account."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "What are the formalities for availing KSFE Pravasi Chits prize money?"
+            },
+            {
+                "role": "assistant",
+                "content": "For availing Chit prize money, the subscriber has to provide sufficient security for the future liability of the prized Chit. The subscriber has the option to provide different types of securities such as property security, gold, personal surety (salary certificate of salaried employees of institutions recognized by KSFE), fixed deposits of different banks and of KSFE, bank guarantee, insurance policies, etc., as per his convenience. The subscriber also has the option of depositing the prize money at KSFE itself, which doesn't require any other security."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "How can I transfer my KSFE chitty from one branch to another?"
+            },
+            {
+                "role": "assistant",
+                "content": "The transfer of a chitty from one branch to another is not possible. However, the numbers of a chitty from one branch can be enrolled in another branch through online means."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "What are the procedures to get duplicate KSFE pass book?"
+            },
+            {
+                "role": "assistant",
+                "content": "If the chitty passbook is lost, a duplicate passbook can be obtained by providing a sworn affidavit on a stamp paper worth Rs. 100."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Shall we give gold and LIC surrender value together as security for ksfe chit?"
+            },
+            {
+                "role": "assistant",
+                "content": "Gold and LIC policy can be given as security for the chit. Similarly, any type of security accepted by KSFE can be given either individually or collectively."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "What is the required credit score for ksfe housing loan?"
+            },
+            {
+                "role": "assistant",
+                "content": "KSFE house loan does not require a credit score. The loan is approved based on the value of the property given as security, the individual's income, and the purpose of the loan, after careful consideration."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "How is the paid-up value of a non-prized chitty passbook calculated?"
+            },
+            {
+                "role": "assistant",
+                "content": "The paid-up value is calculated, taking into account the termination of the chitty for which the non-prized passbook is given as security."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "My KSFE chitty value is 10 lakh, and I have completed 2 years of installments. Now, I'm not able to pay for further installments. How can I sell or exchange my chitty to another person?"
+            },
+            {
+                "role": "assistant",
+                "content": "If the chitty has not completed 60% of its total duration, you can substitute it with any interested party. Once the substitution is done, you can avail the amount remitted by you. Otherwise, you will get the amount once the total duration of the chitty is over."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "I have a KSFE chitty. I received it, but now I am working in Saudi Arabia. I want to fix the amount in a fixed deposit there. What is the process for doing it?"
+            },
+            {
+                "role": "assistant",
+                "content": "Please contact your branch for required forms. For contact details of the branch visit www.ksfe.com"
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Can I transfer my home loan in hdfc to ksfe?"
+            },
+            {
+                "role": "assistant",
+                "content": "Loan to Loan take over is not possible in KSFE at present. But you can use KSFE chitty prize amount for the purpose. For details please contact nearest branch. For branch details visit www.ksfe.com"
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "I made online payment for KSFE Chitty and the amount debited from my account. But it is not credited to my chitti. What to do now ?"
+            },
+            {
+                "role": "assistant",
+                "content": "Please contact ecollection@ksfe.com."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "I have a home loan of 31 lakh taken in 2021 with a tenure of 30 years. Now, its interest rate has increased from 6.9% to 9.5% due to RBI increasing the loan rates. I want to transfer my home loan to a chitty. What do I have to do for that?"
+            },
+            {
+                "role": "assistant",
+                "content": "Please connect with your nearest KSFE branch. Visit www.ksfe.com for branch details."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "What is suspense amount in KSFE Chitty?"
+            },
+            {
+                "role": "assistant",
+                "content": "If the installment amount in any particular month is more or less than the usual, it will be reflected in the Suspense account as either a credit or debit. When the next installment is paid, it needs to be adjusted accordingly. Additionally, charges like notice charges will be debited to the suspense account."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "I made online payment for KSFE pravasi chitty and the amount debited from my account.But it is not credited to my chitti. What to do now ?"
+            },
+            {
+                "role": "assistant",
+                "content": "Please contact Pravasi Centre or pravasi@ksfe.com"
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "How can i pay a missed KSFE chitty installment? How can I settle due amount before next auction?"
+            },
+            {
+                "role": "assistant",
+                "content": "Contact the branch to know the due amount. You have to update your account before next auction if you have to participate in chitty auction."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "What should I do if I made a chitty payment through online, selected Federal Bank, and the amount was debited from my bank account, but I didn't receive the receipt? When I check the download receipt option, it shows the transaction is initiated. Please suggest a solution."
+            },
+            {
+                "role": "assistant",
+                "content": "May be some network issue. Please try again or Please contact 9446001861 or ecollection@ksfe.com"
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Once you have submitted all the required documents, how will KSFE provide the money? Will it be in direct cash or through a bank cheque?"
+            },
+            {
+                "role": "assistant",
+                "content": "Normal banking instruments like Cheque/RTGS/NEFT are used."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "I lost my KSFE gold loan details. Is there any way to know my gold loan account number?"
+            },
+            {
+                "role": "assistant",
+                "content": "Please contact your branch."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "What can i do to handover my prized ksfe chitti to another person and register the chitti in his name?"
+            },
+            {
+                "role": "assistant",
+                "content": "A prized Chitty can't be transferred to another person's name."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "If I win the chitty auction initially in KSFE, do I have to pay the monthly chitty installment later?"
+            },
+            {
+                "role": "assistant",
+                "content": "The interest on the deposit must be deducted from the balance amount in the account when calculating the remaining installment."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "When obtaining the chitty amount from KSFE, is it necessary to mention our chitty number separately?"
+            },
+            {
+                "role": "assistant",
+                "content": "Chitty subscribers who have not linked their chitty numbers to the passbook will be included in the lucky draw without being separately informed."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Will the documents of a vehicle without liabilities be accepted?"
+            },
+            {
+                "role": "assistant",
+                "content": "No."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "If a chit of 2 lakh is paid 20,000 per month and if the first bid is won, the amount received will be 1,97,000. If not claimed until the chit ends, how much should be paid instead of 20,000 per month?"
+            },
+            {
+                "role": "assistant",
+                "content": "If the chit is worth 20 lakhs, the installment amount received (20,000 x 100 months) will be 19,00,000/-. From this amount, 18,000/- will be deducted for GST and documentation charges applicable to the security."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Is it possible to change the PAN card number through the KSFE Power Appil?"
+            },
+            {
+                "role": "assistant",
+                "content": "The mobile app can only be operated using the valid PAN number currently provided at the branch."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Will the KSFE Power app be available in the Gulf?"
+            },
+            {
+                "role": "assistant",
+                "content": "Available in countries, excluding some countries including Qatar."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "KSFE Power app is not working on an old Android phone. What should I do?"
+            },
+            {
+                "role": "assistant",
+                "content": "Power App is available only on phones with Android Version 10 or above."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Do we have to pay the amount shown in the suspense amount?"
+            },
+            {
+                "role": "assistant",
+                "content": "If the suspense amount is a debit balance, you have to pay it. If the suspense amount is a credit balance, it will be adjusted in the next installment."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Is it possible to change the PAN card number in the KSFE Power App?"
+            },
+            {
+                "role": "assistant",
+                "content": "The mobile app can only operate using the PAN number that is currently registered with the branch."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Can I view FD in the KSFE Power app?"
+            },
+            {
+                "role": "assistant",
+                "content": "Details related to FD are not available in the Power App."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "How long does it typically take for KSFE to disburse the lelam amount to a KSFE Pravasi chitty customer?"
+            },
+            {
+                "role": "assistant",
+                "content": "Normally, if the security is submitted properly, chitty prize money will be disbursed on the next auction date of the chitty."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "Can KSFE payments be made through Google Pay?"
+            },
+            {
+                "role": "assistant",
+                "content": "The online payment portal of KSFE supports transactions through Google Pay."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "If added to a new chit, will the lelam be available in the first auction itself?"
+            },
+            {
+                "role": "assistant",
+                "content": "The first auction for the initial lelam occurs after the branch determines the date following the payment of the first installment."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            {
+                "role": "user",
+                "content": "It is possible to repay loans through the KSFE Power app."
+            },
+            {
+                "role": "assistant",
+                "content": "If you update the Power app, it is possible to obtain information and repay loans."
+            }
+        ]
+    },
+    {
+        "messages": [
+            {
+                "role": "system",
+                "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
+            },
+            { "role": "user", "content": "Is it possible to change the name on my chit to my mother's/father's name?" },
+            {
+                "role": "assistant",
+                "content": "If the chit is non-prized and has not exceeded 60% of the chit duration, it can be substituted."
             }
         ]
     }
+
     
 
 ]
