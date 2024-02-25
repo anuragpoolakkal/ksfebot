@@ -1,4 +1,4 @@
-## Questions to be answered
+<!-- ## Questions to be answered
 
 1. How can I apply for auto deduction for chitty amount?
 2. How can I get my chitty details?
@@ -11,4 +11,8 @@
 9. What is the interest rate of loan?
 10. How can I join in a Sugama Deposit scheme?
 11. What is a Sugama Deposit Scheme?
-12. How can I get a GST bill from KSFE?
+12. How can I get a GST bill from KSFE? -->
+
+## Cost Estimation
+    
+In this final section we estimate the total number of tokens that will be used for fine-tuning which allows us to approximate the cost. It is worth noting that the duration of the fine-tuning jobs will also increase with the token count.

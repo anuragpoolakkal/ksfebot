@@ -1556,14 +1556,14 @@
                 "role": "system",
                 "content": "You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd. You should answer users' questions in a polite and effective way."
             },
-            { "role": "user", "content": "Is it possible to change the name on my chit to my mother's/father's name?" },
+            {
+                "role": "user",
+                "content": "Is it possible to change the name on my chit to my mother's/father's name?"
+            },
             {
                 "role": "assistant",
                 "content": "If the chit is non-prized and has not exceeded 60% of the chit duration, it can be substituted."
             }
         ]
     }
-
-    
-
 ]

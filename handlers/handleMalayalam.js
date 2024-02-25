@@ -1,7 +1,5 @@
 import axios from "axios";
 import OpenAI from "openai";
-import translate from "translate";
-
 import {
     faqListMalayalam,
     faqListMlOptions,
@@ -12,11 +10,9 @@ import {
 
 import { basePrompt, showChangeLanguageMenu } from "../constants/english.js";
 
-export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
-    const promptInEn = await translate(prompt, "ml");
-    console.log(promptInEn);
 
-    const askAI = async (promptInEn) => {
+export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
+    const askAI = async (prompt) => {
         const openai = new OpenAI({
             apiKey: process.env.NEXT_PUBLIC_OPENAI_API_KEY,
             dangerouslyAllowBrowser: true,
@@ -26,7 +22,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
             model: "gpt-3.5-turbo",
             messages: [
                 { role: "system", content: basePrompt },
-                { role: "user", content: promptInEn },
+                { role: "user", content: prompt },
             ],
         });
 
@@ -51,9 +47,6 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
             // AI reply
         } else {
             const answer = await askAI(msg?.text?.body);
-            const resInMl = await translate(answer, "en");
-            console.log(resInMl);
-            
 
             await axios({
                 method: "POST",
@@ -67,7 +60,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                     to: from,
                     type: "text",
                     text: {
-                        body: resInMl,
+                        body: answer,
                     },
                 },
 
