@@ -1,11 +1,7 @@
 import axios from "axios";
 import { OpenAI } from "openai";
 import "dotenv/config";
-// import { OpenAI } from "@langchain/openai";
-// import { PromptTemplate } from "@langchain/core/prompts";
-// import { LLMChain } from "langchain/chains";
-// import { BufferMemory } from "langchain/memory";
-// import { HumanMessage } from "@langchain/core/messages";
+import { Translate } from "@google-cloud/translate/build/src/v2/index.js";
 
 import {
     faqListEnglish,
@@ -17,55 +13,67 @@ import {
     basePrompt,
 } from "../constants/english.js";
 
+const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
+
+const translate = new Translate({
+    credentials: CREDENTIALS,
+    projectId: CREDENTIALS.projectId,
+});
+
+const detectLanguage = async (text) => {
+    try {
+        let response = await translate.detect(text);
+        return response[0].language;
+    } catch (error) {
+        console.error(error);
+        return 0;
+    }
+};
+
+const translateText = async (text, targetLanguage) => {
+    try {
+        let [response] = await translate.translate(text, targetLanguage);
+        return response;
+    } catch (error) {
+        console.error(error);
+        return 0;
+    }
+};
+
 export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
-    // const llm = new OpenAI({
-    //     modelName: "gpt-3.5-turbo",
-    //     apiKey: process.env.OPENAI_API_KEY,
-    //     dangerouslyAllowBrowser: true,
-    //     temperature: 0,
-    //     maxTokens: 100,
-    //     maxRetries: 1,
-    // });
-
-    // const prompt = PromptTemplate.fromTemplate(basePrompt);
-
-    // const llmMemory = new BufferMemory({ memoryKey: "chat_history" });
-
-    // const conversationChain = new LLMChain({
-    //     llm,
-    //     prompt,
-    //     verbose: true,
-    //     memory: llmMemory,
-    // });
-
     const askAI = async (prompt) => {
+        var promptLang = await detectLanguage(prompt);
+
+        if (promptLang == "ml") {
+            var promptInEn = await translateText(prompt, "en");
+        } else {
+            var promptInEn = prompt;
+        }
+
         const openai = new OpenAI({
             apiKey: process.env.OPENAI_API_KEY,
-            dangerouslyAllowBrowser: true,
         });
 
-        const stream = await openai.beta.chat.completions.stream({
+        const completion = await openai.chat.completions.create({
             model: "gpt-3.5-turbo",
             messages: [
                 { role: "system", content: basePrompt },
-                { role: "user", content: prompt },
+                { role: "user", content: promptInEn },
             ],
-            stream: true,
         });
 
-        // stream.on("content", (delta, snapshot) => {
-        //     process.stdout.write(delta);
-        // });
+        console.log("completion: ", completion);
+        console.log("Content: ", completion.choices[0].message);
 
-        // or, equivalently:
-        for await (const chunk of stream) {
-            process.stdout.write(chunk.choices[0]?.delta?.content || "");
+        var gptReply = await completion.choices[0].message.content;
+
+        if (promptLang == "ml") {
+            var reply = await translateText(gptReply, "ml");
+        } else {
+            var reply = gptReply;
         }
 
-        const chatCompletion = await stream.finalChatCompletion();
-        console.log(chatCompletion); // {id: "…", choices: […], …}
-
-        return chatCompletion.choices[0].message.content;
+        return reply;
     };
 
     if (msg?.type === "text") {
@@ -81,18 +89,6 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
         } else {
             const answer = await askAI(msg?.text?.body);
 
-            // var response = await conversationChain.invoke({
-            //     question: msg?.text?.body,
-            // });
-
-            // await llmMemory.chatHistory.addMessage(
-            //     new HumanMessage(msg?.text?.body)
-            // );
-
-            // await llmMemory.chatHistory.addMessage(
-            //     new AIMessage(response.text)
-            // );
-
             await axios({
                 method: "POST",
                 url:
@@ -106,7 +102,6 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                     type: "text",
                     text: {
                         body: answer,
-                        // body: response.text,
                     },
                 },
 
