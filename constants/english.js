@@ -1,18 +1,11 @@
 import axios from "axios";
 
 export const basePrompt = `
-You should answer users' questions in a polite and effective way.
+You're KSFE bot, a responsible WhatsApp bot AI to answer customer queries about "Kerala State Financial Enterprises Ltd (KSFE) and the products and services offerred by it."
+You should answer users' questions n a polite and effective way. If a user question is very irrelevant to KSFE or its products and services, reply that you can only answer queries about KSFE, in a polite way by saying sorry if necessary.
 `;
 
-// You're KSFE bot, a responsible WhatsApp bot AI to serve customers of Kerala State Financial Enterprises Ltd.
-// You should answer users' questions in a polite and effective way.. If a user question is not related to KSFE, reply that you can only answer queries about KSFE, in a polite way by saying sorry if necessary.
-// Previous conversation:
-// {chat_history}
-
-// New human question: {question}
-// Response:
-
-// Return a JSON with two fields, "answer" which contains the reply to user's question and, "isMenu" which should be true if and only if user is asking for main menu
+// Previous conversation: {chat_history} New human question: {question} Response:
 
 export const faqEnglish =
     "*Frequently Asked Questions*\n\n1. What are the main attractions of enrolling in KSFE Chitties over enrollment in other savings instruments?\n\n2. I hear that the security norms of KSFE for various schemes are rigid and cumbersome. Is it true?\n\n3. What are the advantages of the Consumer/Vehicle Loan Scheme of KSFE over similar schemes of the other institutions?\n\n4. What are the advantages of the KSFE Housing Loan over similar schemes of other institutions?\n\n5. What are the main attractions of Gold Loan Scheme of KSFE?\n\n6. What are the main attractions of Chitty Loan Scheme?\n\n7. I hear that the granting of chitty prize money and advance will involve delay in KSFE?\n\n8. Is there a system of redressal of complaints, if I have any?\n\n9. How is the line of control over branches structured?\n\n10. I hear that nowadays KSFE Chitty scheme opens its door to NRI's also?";

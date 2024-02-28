@@ -40,8 +40,10 @@ const translateText = async (text, targetLanguage) => {
     }
 };
 
+const history = new Map();
+
 export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
-    const askAI = async (prompt) => {
+    const askAI = async (prompt, conversation, lastUserMsg, lastAIMsg) => {
         var promptLang = await detectLanguage(prompt);
 
         if (promptLang == "ml") {
@@ -52,20 +54,21 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
 
         const openai = new OpenAI({
             apiKey: process.env.OPENAI_API_KEY,
+            dangerouslyAllowBrowser: true,
         });
 
         const completion = await openai.chat.completions.create({
             model: process.env.MODEL,
             messages: [
                 { role: "system", content: basePrompt },
+                { role: "user", content: conversation },
+                { role: "user", content: lastUserMsg },
+                { role: "assistant", content: lastAIMsg },
                 { role: "user", content: promptInEn },
             ],
         });
 
-        console.log("completion: ", completion);
-        console.log("Content: ", completion.choices[0].message);
-
-        var gptReply = await completion.choices[0].message.content;
+        var gptReply = completion.choices[0].message.content;
 
         if (promptLang == "ml") {
             var reply = await translateText(gptReply, "ml");
@@ -87,7 +90,41 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
 
             // AI reply
         } else {
-            const answer = await askAI(msg?.text?.body);
+            // If a user is sending message for first time (if his history is empty), initialize an array to store chat history of the user
+            if (history.get(from) == null) {
+                history.set(from, []);
+            }
+
+            // Fetch the chat history array of user and store it a temporary chatHistory array
+            const chatHistory = await history.get(from);
+
+            // Fetch last conversation between user and AI
+            const lastAIMsg = chatHistory?.length ? chatHistory?.pop() : "";
+            const lastUserMsg = chatHistory?.length ? chatHistory?.pop() : "";
+
+            // Pass previous conversation and last conversation seperately to AI
+            const answer = await askAI(
+                msg?.text?.body,
+                chatHistory.toString(),
+                lastUserMsg,
+                lastAIMsg
+            );
+
+            // Store last conversation back to chat history
+            await chatHistory.push(lastUserMsg);
+            await chatHistory.push(lastAIMsg);
+
+            // Store current user message to chat history
+            await chatHistory.push(msg?.text.body);
+
+            // Store current assistant response to chat history
+            await chatHistory.push(answer);
+
+            // Store temporary array chatHistory to the history Map
+            history.set(from, chatHistory);
+
+            // If chat history is more than 10 messages long, remove old message
+            if (chatHistory.length > 10) await chatHistory.shift();
 
             await axios({
                 method: "POST",
