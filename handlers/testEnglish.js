@@ -44,7 +44,9 @@ const translateText = async (text, targetLanguage) => {
 const history = new Map();
 
 export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
-    const askAI = async (prompt) => {
+    const askAI = async (prompt, conversation) => {
+        console.log(`Conversation`, conversation);
+
         var promptLang = await detectLanguage(prompt);
 
         if (promptLang == "ml") {
@@ -62,12 +64,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
             model: process.env.MODEL,
             messages: [
                 { role: "system", content: basePrompt },
-                {
-                    role: "system",
-                    content:
-                        `This is user message history which you have to consider while responding:` +
-                        chatHistory.toString(),
-                },
+                { role: "user", content: conversation },
                 { role: "user", content: promptInEn },
             ],
         });
@@ -96,17 +93,24 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
 
             // AI reply
         } else {
+            // If a user is sending message for first time (if his history is empty), initialize an array to store chat history of the user
             if (history.get(from) == null) {
                 history.set(from, []);
             }
 
-            const chatHistory = history.get(from);
-            chatHistory.push(msg);
+            // Fetch the chat history array of user and store it a temporary chatHistory array
+            const chatHistory = await history.get(from);
+
+            // If chat history is more than 10 messages long, remove old message
+            if (chatHistory.length > 5) await chatHistory.shift();
+
+            // Store user message to chat history
+            await chatHistory.push(msg?.text.body);
+
+            // Store temporary array chatHistory to the history Map
             history.set(from, chatHistory);
 
-            console.log(`CHATHISTORY`, chatHistory);
-
-            const answer = await askAI(msg?.text?.body);
+            const answer = await askAI(msg?.text?.body, chatHistory.toString());
 
             await axios({
                 method: "POST",
