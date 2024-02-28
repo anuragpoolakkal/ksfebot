@@ -13,34 +13,6 @@ import {
     basePrompt,
 } from "../constants/english.js";
 
-import { BufferMemory } from "langchain/memory";
-import { HumanMessage, AIMessage } from "@langchain/core/messages";
-import { OpenAI } from "@langchain/openai";
-import { PromptTemplate } from "@langchain/core/prompts";
-import { LLMChain } from "langchain/chains";
-
-const llm = new OpenAI({ temperature: 0 });
-
-const prompt = PromptTemplate.fromTemplate(basePrompt);
-
-const llmMemory = new BufferMemory({ memoryKey: "chat_history" });
-
-const conversationChain = new LLMChain({
-    llm,
-    prompt,
-    verbose: true,
-    memory: llmMemory,
-});
-
-const res1 = await conversationChain.invoke({ question: "What is your name?" });
-const res2 = await conversationChain.invoke({
-    question: "What did I just ask you?",
-});
-
-console.log(res1);
-
-console.log(res2);
-
 const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
 
 const translate = new Translate({
@@ -54,6 +26,7 @@ const detectLanguage = async (text) => {
         return response[0].language;
     } catch (error) {
         console.error(error);
+        s;
         return 0;
     }
 };
@@ -67,6 +40,8 @@ const translateText = async (text, targetLanguage) => {
         return 0;
     }
 };
+
+const history = new Map();
 
 export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
     const askAI = async (prompt) => {
@@ -84,14 +59,19 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
         });
 
         const completion = await openai.chat.completions.create({
-            model: "gpt-3.5-turbo",
+            model: process.env.MODEL,
             messages: [
                 { role: "system", content: basePrompt },
+                {
+                    role: "system",
+                    content:
+                        `This is user message history which you have to consider while responding:` +
+                        chatHistory.toString(),
+                },
                 { role: "user", content: promptInEn },
             ],
         });
 
-        console.log("completion: ", completion);
         console.log("Content: ", completion.choices[0].message);
 
         var gptReply = await completion.choices[0].message.content;
@@ -116,6 +96,16 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
 
             // AI reply
         } else {
+            if (history.get(from) == null) {
+                history.set(from, []);
+            }
+
+            const chatHistory = history.get(from);
+            chatHistory.push(msg);
+            history.set(from, chatHistory);
+
+            console.log(`CHATHISTORY`, chatHistory);
+
             const answer = await askAI(msg?.text?.body);
 
             await axios({

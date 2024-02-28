@@ -54,7 +54,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
         });
 
         const completion = await openai.chat.completions.create({
-            model: "gpt-3.5-turbo",
+            model: process.env.MODEL,
             messages: [
                 { role: "system", content: basePrompt },
                 { role: "user", content: promptInEn },

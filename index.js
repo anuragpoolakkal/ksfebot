@@ -3,10 +3,11 @@ import bodyParser from "body-parser";
 import axios from "axios";
 import "dotenv/config";
 
-import { handleEnglish } from "./handlers/handleEnglish.js";
+import { handleEnglish } from "./handlers/testEnglish.js";
 import { handleMalayalam } from "./handlers/handleMalayalam.js";
 import { showChangeLanguageMenu } from "./constants/english.js";
 
+// const userData = {};
 const preferredLanguage = new Map();
 
 const router = express().use(bodyParser.json());
@@ -66,7 +67,9 @@ router.post("/endpoint", async (req, res) => {
                 // let name =
                 //     body_param.entry[0].changes[0].value.contacts[0].profile
                 //         .name;
+
                 let language = preferredLanguage.get(from);
+                // let language = userData[from]?.preferred_language;
 
                 // Welcome message and language selection
 
