@@ -497,21 +497,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                     to: from,
                     type: "text",
                     text: {
-                        body: "*Loans & Advances*\nKSFE offers a number of loan schemes to help those who need fund for various purposes.  KSFE Loans are having relatively low interest rates, are a great relief to the people.  KSFE offers Gold loans, Home loans, Personal loans and Chit loans  and other  various loan schemes\n\n*1. Gold Loan*\nPurpose:\nThe Scheme is intended to provide short term loans for people who are urgently in need of money, on the security of gold ornaments.\n\nFeatures of the product:\n- Maximum Amount per Gram\n- low interest rate\n- Fast processing\n\nMaximum Loan period 12 Months. Loan can renew the loan a further period of one year after remmitting the due interest and this facility can be availed up to 36 Months.\n\nMaximum Loan amount  Rs 25 Lakhs per  individual, per day.\n\nFlexible payment and repayment option. No other charges, other than appraiser charges.\n\n:Business Hours: loan counter will be open from 10.00 am to 4.30 pm on all working days.\n\nInterest rates:\nGold loan upto Rs 20,000: 7.00% p.a.\nGold loan above Rs 20,000: 8.90% p.a.\nMore information: https://ksfe.com/services/gold-loan/\n\n",
-
-                        // 2. Janamitram Gold Loan\nhttps://ksfe.com/services/janamithram-gold-loan/\n\n
-
-                        // 3. KSFE Home Loan\nhttps://ksfe.com/services/ksfe-home-loan/\n\n
-
-                        // 4. KSFE Personal Loan\nhttps://ksfe.com/services/ksfe-personal-loan/\n\n
-
-                        // 5. Chitty Loan\nhttps://ksfe.com/services/chitty-loan/\n\n
-
-                        // 6. KSFE Passbook Loan\nhttps://ksfe.com/services/ksfe-passbook-loan/\n\n
-
-                        // 7. Customer / Vehicle Loan\nhttps://ksfe.com/services/consumer-vehicle-loan/\n\n8. Car Loan\nhttps://ksfe.com/services/car-loan/\n\n
-
-                        // 9. Sugama Akshaya (Overdraft) Scheme\nhttps://ksfe.com/services/sugama-akshaya-overdraft-scheme/,
+                        body: `*Loans & Advances*\nKSFE offers a number of loan schemes to help those who need fund for various purposes.  KSFE Loans are having relatively low interest rates, are a great relief to the people. KSFE offers Gold loans, Home loans, Personal loans and Chit loans  and other  various loan schemes\n\n*1. Gold Loan*\nPurpose:\nThe Scheme is intended to provide short term loans for people who are urgently in need of money, on the security of gold ornaments.\n\nFeatures of the product:\n- Maximum Amount per Gram\n- low interest rate\n- Fast processing\n\nMaximum Loan period 12 Months. Loan can renew the loan a further period of one year after remmitting the due interest and this facility can be availed up to 36 Months.\n\nMaximum Loan amount  Rs 25 Lakhs per  individual, per day.\n\nFlexible payment and repayment option. No other charges, other than appraiser charges.\n\n:Business Hours: loan counter will be open from 10.00 am to 4.30 pm on all working days.\n\nInterest rates:\nGold loan upto Rs 20,000: 7.00% p.a.\nGold loan above Rs 20,000: 8.90% p.a.\nMore information: https://ksfe.com/services/gold-loan/\n\n*2. Janamitram Gold Loan*\nhttps://ksfe.com/services/janamithram-gold-loan/\n\n*3. KSFE Max Gold Loan*\nhttps://ksfe.com/services/max-gold-loan/\n\n*4. KSFE Home Loan*\nhttps://ksfe.com/services/ksfe-home-loan/\n\n*5. KSFE Personal Loan*\nhttps://ksfe.com/services/ksfe-personal-loan/\n\n*6. Chitty Loan*\nhttps://ksfe.com/services/chitty-loan/\n\n*7. KSFE Passbook Loan*\nhttps://ksfe.com/services/ksfe-passbook-loan/\n\n*8. Customer / Vehicle Loan*\nhttps://ksfe.com/services/consumer-vehicle-loan/\n\n*9. Car Loan*\nhttps://ksfe.com/services/car-loan/\n\n*10. Sugama Akshaya (Overdraft) Scheme*\nhttps://ksfe.com/services/sugama-akshaya-overdraft-scheme/`,
                     },
                 },
 
