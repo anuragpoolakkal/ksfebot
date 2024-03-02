@@ -9,7 +9,7 @@ import { handleMalayalam } from "./handlers/handleMalayalam.js";
 import { showChangeLanguageMenu, sendText } from "./constants/english.js";
 
 const preferredLanguage = new Map();
-export const callbackReq = new Map();
+// export const callbackReq = new Map();
 
 const router = express().use(bodyParser.json());
 
@@ -113,9 +113,9 @@ router.post("/endpoint", async (req, res) => {
                         language = "malayalam";
                     }
 
-                    if (msg?.interactive?.button_reply?.id === "request_call") {
-                        callbackReq.set(from, true);
-                    }
+                    // if (msg?.interactive?.button_reply?.id === "request_call") {
+                    //     callbackReq.set(from, true);
+                    // }
                 }
 
                 if (language === "english") {
