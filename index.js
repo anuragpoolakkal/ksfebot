@@ -1,4 +1,5 @@
 import express from "express";
+import mongoose from "mongoose";
 import bodyParser from "body-parser";
 import axios from "axios";
 import "dotenv/config";
@@ -8,15 +9,28 @@ import { handleMalayalam } from "./handlers/handleMalayalam.js";
 import { showChangeLanguageMenu } from "./constants/english.js";
 
 const preferredLanguage = new Map();
+export const callbackReq = new Map();
 
 const router = express().use(bodyParser.json());
 
 const verify_token = process.env.VERIFY_TOKEN;
 const access_token = process.env.ACCESS_TOKEN;
 
-router.listen(process.env.PORT || 9000, () => {
-    console.log(`Webhook is listening\nComplete this project before March 1`);
-});
+mongoose.set("strictQuery", true);
+
+mongoose
+    .connect(process.env.MONGO_URI)
+    .then(() => {
+        router.listen(process.env.PORT || 9000, () =>
+            console.log(
+                `Webhook is listening\nComplete this project before March 1`
+            )
+        );
+    })
+    .catch((error) => {
+        console.error(`Failed to connect to MongoDB: ${error}`);
+        process.exit(1); // Exit the process if unable to connect to the database
+    });
 
 router.get("/", (req, res) => {
     res.status(200).send("200 | Server Running");
@@ -70,8 +84,8 @@ router.post("/endpoint", async (req, res) => {
                 let language = preferredLanguage.get(from);
                 // let language = userData[from]?.preferred_language;
 
-                // Welcome message and language selection
                 if (msg?.type === "text" && language === undefined) {
+                    // Welcome message and language selection
                     // Welcome message
                     await axios({
                         method: "POST",
@@ -112,6 +126,10 @@ router.post("/endpoint", async (req, res) => {
                     if (msg?.interactive?.button_reply?.id === "malayalam") {
                         preferredLanguage.set(from, "malayalam");
                         language = "malayalam";
+                    }
+
+                    if (msg?.interactive?.button_reply?.id === "request_call") {
+                        callbackReq.set(from, true);
                     }
                 }
 

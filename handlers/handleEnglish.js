@@ -2,6 +2,8 @@ import axios from "axios";
 import { OpenAI } from "openai";
 import "dotenv/config";
 import { Translate } from "@google-cloud/translate/build/src/v2/index.js";
+import CallbackRequest from "../models/CallbackRequest.js";
+import { callbackReq } from "../index.js";
 
 import {
     faqListEnglish,
@@ -41,6 +43,7 @@ const translateText = async (text, targetLanguage) => {
 };
 
 const history = new Map();
+const userDetails = new Map();
 
 export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
     const askAI = async (prompt, conversation, lastUserMsg, lastAIMsg) => {
@@ -79,7 +82,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
         return reply;
     };
 
-    if (msg?.type === "text") {
+    if (callbackReq.get(from) != true && msg?.type === "text") {
         // Bot commands
         if (msg?.text?.body === "/menu") {
             await showMenu(phone_no_id, access_token, from);
@@ -221,15 +224,15 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                             {
                                 type: "reply",
                                 reply: {
-                                    id: "products",
-                                    title: "Products & Services",
+                                    id: "request_call",
+                                    title: "Request a Call",
                                 },
                             },
                             {
                                 type: "reply",
                                 reply: {
-                                    id: "about_ksfe",
-                                    title: "About KSFE",
+                                    id: "products",
+                                    title: "Products & Services",
                                 },
                             },
                             {
@@ -268,6 +271,13 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
                     },
                     action: {
                         buttons: [
+                            {
+                                type: "reply",
+                                reply: {
+                                    id: "about_ksfe",
+                                    title: "About KSFE",
+                                },
+                            },
                             {
                                 type: "reply",
                                 reply: {
@@ -392,11 +402,119 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
         await showMenu(phone_no_id, access_token, from);
     }
 
-    //---------------------- Products and Services catalogue ----------------------
-    if (msg?.interactive?.button_reply?.id === "products") {
-        await showProductList(phone_no_id, access_token, from);
+    //---------------------- Request a Callback  ----------------------
+    if (msg?.interactive?.button_reply?.id === "request_call") {
+        if (userDetails.get(from) == null) {
+            userDetails.set(from, []);
+        }
 
-        await showMenu(phone_no_id, access_token, from);
+        const userData = await CallbackRequest.findOne({ phone: from });
+        if (userData) {
+            userData.date = Date.now;
+            await userData.save();
+        }
+
+        await axios({
+            method: "POST",
+            url:
+                "https://graph.facebook.com/v13.0/" +
+                phone_no_id +
+                "/messages?access_token=" +
+                access_token,
+            data: {
+                messaging_product: "whatsapp",
+                to: from,
+                type: "text",
+                text: {
+                    body: "What is your full name?",
+                },
+            },
+
+            headers: {
+                "Content-Type": "application/json",
+                Authorization: `Bearer ${access_token}`,
+            },
+        });
+    }
+
+    if (callbackReq.get(from) == true && msg?.type == "text") {
+        const userArray = userDetails.get(from);
+        console.log(`USERARRAY111111: ` + userArray);
+        if (userArray.length == 0) {
+            userArray.push(msg?.body?.text);
+            userDetails.set(from, userArray);
+        } else if (userArray.length == 1) {
+            userArray.push(msg?.body?.text);
+            userDetails.set(from, userArray);
+            console.log(`USERARRAY111111: ` + userArray);
+        } else if (userArray.length == 2) {
+            userArray.push(msg?.body?.text);
+            userDetails.set(from, userArray);
+
+            const newData = await new CallbackRequest({
+                phone: from,
+                name: userArray[0],
+                email: userArray[1],
+                district: userArray[2],
+                date: Date.now(),
+            });
+
+            await newData.save();
+
+            callbackReq.set(from, false);
+        }
+    }
+    if (callbackReq.get(from) == true) {
+        const userArray = userDetails.get(from);
+
+        console.log(`USERARRAY: ` + userArray);
+        console.log(`CALLBACKREQ: ` + callbackReq.get(from));
+
+        if (userArray.length == 1) {
+            await axios({
+                method: "POST",
+                url:
+                    "https://graph.facebook.com/v13.0/" +
+                    phone_no_id +
+                    "/messages?access_token=" +
+                    access_token,
+                data: {
+                    messaging_product: "whatsapp",
+                    to: from,
+                    type: "text",
+                    text: {
+                        body: "What is email?",
+                    },
+                },
+
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${access_token}`,
+                },
+            });
+        } else if (userArray.length == 2) {
+            await axios({
+                method: "POST",
+                url:
+                    "https://graph.facebook.com/v13.0/" +
+                    phone_no_id +
+                    "/messages?access_token=" +
+                    access_token,
+                data: {
+                    messaging_product: "whatsapp",
+                    to: from,
+                    type: "text",
+                    text: {
+                        body: "What is your district?",
+                    },
+                },
+
+                headers: {
+                    "Content-Type": "application/json",
+                    Authorization: `Bearer ${access_token}`,
+                },
+            });
+        }
     }
 
     //---------------------- About KSFE ----------------------
