@@ -6,7 +6,7 @@ import "dotenv/config";
 
 import { handleEnglish } from "./handlers/handleEnglish.js";
 import { handleMalayalam } from "./handlers/handleMalayalam.js";
-import { showChangeLanguageMenu } from "./constants/english.js";
+import { showChangeLanguageMenu, sendText } from "./constants/english.js";
 
 const preferredLanguage = new Map();
 export const callbackReq = new Map();
@@ -87,27 +87,12 @@ router.post("/endpoint", async (req, res) => {
                 if (msg?.type === "text" && language === undefined) {
                     // Welcome message and language selection
                     // Welcome message
-                    await axios({
-                        method: "POST",
-                        url:
-                            "https://graph.facebook.com/v13.0/" +
-                            phone_no_id +
-                            "/messages?access_token=" +
-                            access_token,
-                        data: {
-                            messaging_product: "whatsapp",
-                            to: from,
-                            type: "text",
-                            text: {
-                                body: "Hey, I'm KSFE Customer Support bot.",
-                            },
-                        },
-
-                        headers: {
-                            "Content-Type": "application/json",
-                            Authorization: `Bearer ${access_token}`,
-                        },
-                    });
+                    await sendText(
+                        phone_no_id,
+                        access_token,
+                        from,
+                        "Hey, I'm KSFE Customer Support bot."
+                    );
 
                     // Choose language
                     await showChangeLanguageMenu(

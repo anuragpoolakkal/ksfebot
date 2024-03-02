@@ -375,3 +375,27 @@ export const showMenu = async (phone_no_id, access_token, from) => {
         },
     });
 };
+
+export const sendText = async (phone_no_id, access_token, from, message) => {
+    await axios({
+        method: "POST",
+        url:
+            "https://graph.facebook.com/v13.0/" +
+            phone_no_id +
+            "/messages?access_token=" +
+            access_token,
+        data: {
+            messaging_product: "whatsapp",
+            to: from,
+            type: "text",
+            text: {
+                body: message,
+            },
+        },
+
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${access_token}`,
+        },
+    });
+};
