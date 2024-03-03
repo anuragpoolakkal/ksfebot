@@ -14,7 +14,13 @@ import {
     basePrompt,
     showChangeLanguageMenu,
     sendText,
+    sendButton,
 } from "../constants/english.js";
+
+import { handleRequestCall } from "./handleRequestCall.js";
+
+const history = new Map();
+const callbackReq = new Map();
 
 const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
 
@@ -42,8 +48,6 @@ const translateText = async (text, targetLanguage) => {
         return 0;
     }
 };
-
-const history = new Map();
 
 export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
     const askAI = async (prompt, conversation, lastUserMsg, lastAIMsg) => {
@@ -82,7 +86,44 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
         return reply;
     };
 
-    if (msg?.type === "text") {
+    if (
+        msg?.interactive?.button_reply?.id === "request_call" ||
+        callbackReq.set(from, true)
+    ) {
+        let status = await handleRequestCall(
+            msg,
+            access_token,
+            phone_no_id,
+            from,
+            "താങ്കളുടെ പേര് എന്താണ്?",
+            "താങ്കളുടെ ഇമെയിൽ വിലാസം എന്താണ്?",
+            "താങ്കളുടെ ജില്ല ഏതാണ്?"
+        );
+
+        if (status === "SUCCESS") {
+            await sendText(
+                phone_no_id,
+                access_token,
+                from,
+                "കോൾ അഭ്യർഥന വിജയകരമായി പൂർത്തീകരിച്ചു."
+            );
+            callbackReq.set(from, false);
+            await showMenu(phone_no_id, access_token, from);
+            return;
+        } else if (status === "FAIL") {
+            await sendText(
+                phone_no_id,
+                access_token,
+                from,
+                "കോൾ അഭ്യർഥന പരാജയപ്പെട്ടു!"
+            );
+            callbackReq.set(from, false);
+            await showMenu(phone_no_id, access_token, from);
+            return;
+        }
+    }
+
+    if (callbackReq.get(from) !== true && msg?.type === "text") {
         // Bot commands
         if (msg?.text?.body === "/menu") {
             await showMenu(phone_no_id, access_token, from);
@@ -134,70 +175,20 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
     }
 
     if (msg?.interactive?.button_reply?.id === "malayalam") {
-        await axios({
-            method: "POST",
-            url:
-                "https://graph.facebook.com/v13.0/" +
-                phone_no_id +
-                "/messages?access_token=" +
-                access_token,
-            data: {
-                messaging_product: "whatsapp",
-                to: from,
-                type: "interactive",
-                interactive: {
-                    type: "button",
-                    body: {
-                        text: "ഞാൻ നിങ്ങളെ എങ്ങനെയാണ് സഹായിക്കേണ്ടത്?\n\n\n_പ്രധാനപ്പെട്ട ബോട് കമാൻഡുകൾ:_\n_*/menu* മെനു ലഭിക്കുന്നതിന്_\n_*/products* സേവനങ്ങളുടെ വിവരങ്ങൾക്ക്_\n_*/language* ഭാഷ മാറ്റുന്നതിന്_",
-                    },
-                    action: {
-                        buttons: [
-                            {
-                                type: "reply",
-                                reply: {
-                                    id: "faq",
-                                    title: "ചോദ്യങ്ങൾ",
-                                },
-                            },
-                            {
-                                type: "reply",
-                                reply: {
-                                    id: "branch_locator",
-                                    title: "ബ്രാഞ്ച് ലൊക്കേറ്റർ",
-                                },
-                            },
-                            {
-                                type: "reply",
-                                reply: {
-                                    id: "contact",
-                                    title: "ഞങ്ങളെ ബന്ധപ്പെടുക",
-                                },
-                            },
-                        ],
-                    },
-                },
-            },
-
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${access_token}`,
-            },
-        });
-
-        await sendButtons(
+        await sendButton(
             phone_no_id,
             access_token,
             from,
-            "How can I help you?\n\n\n_Important bot commands:_\n_*/menu* for main menu_\n_*/products* for products & services_\n_*/language* to change language_",
+            "ഞാൻ നിങ്ങളെ എങ്ങനെയാണ് സഹായിക്കേണ്ടത്?\n\n\n_പ്രധാനപ്പെട്ട ബോട് കമാൻഡുകൾ:_\n_*/menu* മെനു ലഭിക്കുന്നതിന്_\n_*/products* സേവനങ്ങളുടെ വിവരങ്ങൾക്ക്_\n_*/language* ഭാഷ മാറ്റുന്നതിന്_",
             "faq",
-            "Questions",
+            "ചോദ്യങ്ങൾ",
             "branch_locator",
-            "Branch Locator",
+            "ബ്രാഞ്ച് ലൊക്കേറ്റർ",
             "contact",
-            "Contact us"
+            "ഞങ്ങളെ ബന്ധപ്പെടുക"
         );
 
-        await sendButtons(
+        await sendButton(
             phone_no_id,
             access_token,
             from,
@@ -228,6 +219,13 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                     },
                     action: {
                         buttons: [
+                            {
+                                type: "reply",
+                                reply: {
+                                    id: "about_ksfe",
+                                    title: "കെഎസ്എഫ്ഇയെ അറിയുക",
+                                },
+                            },
                             {
                                 type: "reply",
                                 reply: {
@@ -419,9 +417,9 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
                 access_token,
                 from,
                 `*` +
-                    faqListEnglish[qn - 1].question +
+                    faqListMalayalam[qn - 1].question +
                     `*\n\n` +
-                    faqListEnglish[qn - 1].answer
+                    faqListMalayalam[qn - 1].answer
             );
 
             await showFaqOptions(phone_no_id, access_token, from);

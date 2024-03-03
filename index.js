@@ -9,7 +9,6 @@ import { handleMalayalam } from "./handlers/handleMalayalam.js";
 import { showChangeLanguageMenu, sendText } from "./constants/english.js";
 
 const preferredLanguage = new Map();
-// export const callbackReq = new Map();
 
 const router = express().use(bodyParser.json());
 
@@ -61,7 +60,17 @@ router.post("/endpoint", async (req, res) => {
     try {
         let body_param = req.body;
 
-        console.log(JSON.stringify(body_param, null, 2));
+        if (
+            typeof body_param.entry[0].changes[0].value.messages !== "undefined"
+        ) {
+            console.log(
+                JSON.stringify(
+                    body_param.entry[0].changes[0].value.messages,
+                    null,
+                    2
+                )
+            );
+        }
 
         if (body_param.object) {
             if (
@@ -148,7 +157,6 @@ router.post("/endpoint", async (req, res) => {
                 });
             }
         }
-        console.log("POST: Someone is pinging!");
         return res.sendStatus(200);
     } catch (error) {
         console.error({ error });

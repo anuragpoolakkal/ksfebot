@@ -7,24 +7,23 @@ export const handleRequestCall = async (
     msg,
     access_token,
     phone_no_id,
-    from
+    from,
+    nameQn,
+    emailQn,
+    districtQn
 ) => {
     if (msg?.interactive?.button_reply?.id === "request_call") {
         const userData = userDetails.get(from);
         if (userData?.length > 0) {
-            const doc = await CallbackRequest.findone({ phone: from });
-            doc.date = new Date();
-            await doc.save();
+            const userField = await CallbackRequest.findOne({ phone: from });
+            userField.date = new Date();
+            await userField.save();
         } else {
             userDetails.set(from, []);
-            await sendText(
-                phone_no_id,
-                access_token,
-                from,
-                "What is your full name?"
-            );
+            await sendText(phone_no_id, access_token, from, nameQn);
         }
     }
+
     if (msg?.type === "text") {
         const userData = userDetails.get(from);
         if (userData?.length === 0) {
@@ -33,31 +32,21 @@ export const handleRequestCall = async (
             console.log("Len1 ->", userData);
             userDetails.set(from, userData);
             console.log("Len1 -> ", userDetails.get(from));
-            await sendText(
-                phone_no_id,
-                access_token,
-                from,
-                "What is your email?"
-            );
+            await sendText(phone_no_id, access_token, from, emailQn);
         } else if (userData?.length === 1) {
             // userDetails.set(from, { ...userData, email: msg.text });
             userData.push(msg?.text?.body);
             console.log("Len2 ->", userData);
             userDetails.set(from, userData);
             console.log("Len2 -> ", userDetails.get(from));
-            await sendText(
-                phone_no_id,
-                access_token,
-                from,
-                "What is your district?"
-            );
+            await sendText(phone_no_id, access_token, from, districtQn);
         } else if (userData?.length === 2) {
             // userDetails.set(from, { ...userData, district: msg.text });
             userData.push(msg?.text?.body);
             console.log("Len3 ->", userData);
             userDetails.set(from, userData);
             console.log("Len3 -> ", userDetails.get(from));
-            const new_doc = new CallbackRequest({
+            const newData = new CallbackRequest({
                 name: userData[0],
                 email: userData[1],
                 phone: from,
@@ -65,7 +54,7 @@ export const handleRequestCall = async (
                 date: new Date(),
             });
             try {
-                await new_doc.save();
+                await newData.save();
                 return "SUCCESS";
             } catch (error) {
                 return "ERROR";
