@@ -184,55 +184,31 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
             },
         });
 
-        await axios({
-            method: "POST",
-            url:
-                "https://graph.facebook.com/v13.0/" +
-                phone_no_id +
-                "/messages?access_token=" +
-                access_token,
-            data: {
-                messaging_product: "whatsapp",
-                to: from,
-                type: "interactive",
-                interactive: {
-                    type: "button",
-                    body: {
-                        text: "ㅤㅤㅤ",
-                    },
-                    action: {
-                        buttons: [
-                            {
-                                type: "reply",
-                                reply: {
-                                    id: "products",
-                                    title: "സേവനങ്ങൾ",
-                                },
-                            },
-                            {
-                                type: "reply",
-                                reply: {
-                                    id: "about_ksfe",
-                                    title: "കെഎസ്എഫ്ഇയെ അറിയുക",
-                                },
-                            },
-                            {
-                                type: "reply",
-                                reply: {
-                                    id: "pravasi_chitty",
-                                    title: "പ്രവാസി ചിട്ടി",
-                                },
-                            },
-                        ],
-                    },
-                },
-            },
+        await sendButtons(
+            phone_no_id,
+            access_token,
+            from,
+            "How can I help you?\n\n\n_Important bot commands:_\n_*/menu* for main menu_\n_*/products* for products & services_\n_*/language* to change language_",
+            "faq",
+            "Questions",
+            "branch_locator",
+            "Branch Locator",
+            "contact",
+            "Contact us"
+        );
 
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${access_token}`,
-            },
-        });
+        await sendButtons(
+            phone_no_id,
+            access_token,
+            from,
+            "ㅤㅤㅤ",
+            "request_call",
+            "കോൾ അഭ്യർഥിക്കുക",
+            "products",
+            "സേവനങ്ങൾ",
+            "pravasi_chitty",
+            "പ്രവാസി ചിട്ടി"
+        );
 
         await axios({
             method: "POST",

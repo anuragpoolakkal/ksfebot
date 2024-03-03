@@ -14,7 +14,10 @@ import {
     showMenu,
     basePrompt,
     sendText,
+    sendButton,
 } from "../constants/english.js";
+
+import { handleRequestCall } from "./handleRequestCall.js";
 
 const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
 
@@ -44,7 +47,8 @@ const translateText = async (text, targetLanguage) => {
 };
 
 const history = new Map();
-const userDetails = new Map();
+// const userDetails = new Map();
+const callbackReq = new Map();
 
 export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
     const askAI = async (prompt, conversation, lastUserMsg, lastAIMsg) => {
@@ -135,104 +139,31 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
     }
 
     if (msg?.interactive?.button_reply?.id === "english") {
-        await axios({
-            method: "POST",
-            url:
-                "https://graph.facebook.com/v13.0/" +
-                phone_no_id +
-                "/messages?access_token=" +
-                access_token,
-            data: {
-                messaging_product: "whatsapp",
-                to: from,
-                type: "interactive",
-                interactive: {
-                    type: "button",
-                    body: {
-                        text: "How can I help you?\n\n\n_Important bot commands:_\n_*/menu* for main menu_\n_*/products* for products & services_\n_*/language* to change language_",
-                    },
-                    action: {
-                        buttons: [
-                            {
-                                type: "reply",
-                                reply: {
-                                    id: "faq",
-                                    title: "Questions",
-                                },
-                            },
-                            {
-                                type: "reply",
-                                reply: {
-                                    id: "branch_locator",
-                                    title: "Branch Locator",
-                                },
-                            },
-                            {
-                                type: "reply",
-                                reply: {
-                                    id: "contact",
-                                    title: "Contact us",
-                                },
-                            },
-                        ],
-                    },
-                },
-            },
+        await sendButtons(
+            phone_no_id,
+            access_token,
+            from,
+            "How can I help you?\n\n\n_Important bot commands:_\n_*/menu* for main menu_\n_*/products* for products & services_\n_*/language* to change language_",
+            "faq",
+            "Questions",
+            "branch_locator",
+            "Branch Locator",
+            "contact",
+            "Contact us"
+        );
 
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${access_token}`,
-            },
-        });
-        await axios({
-            method: "POST",
-            url:
-                "https://graph.facebook.com/v13.0/" +
-                phone_no_id +
-                "/messages?access_token=" +
-                access_token,
-            data: {
-                messaging_product: "whatsapp",
-                to: from,
-                type: "interactive",
-                interactive: {
-                    type: "button",
-                    body: {
-                        text: "ㅤㅤㅤ",
-                    },
-                    action: {
-                        buttons: [
-                            {
-                                type: "reply",
-                                reply: {
-                                    id: "request_call",
-                                    title: "Request a Call",
-                                },
-                            },
-                            {
-                                type: "reply",
-                                reply: {
-                                    id: "products",
-                                    title: "Products & Services",
-                                },
-                            },
-                            {
-                                type: "reply",
-                                reply: {
-                                    id: "pravasi_chitty",
-                                    title: "Pravasi Chitty",
-                                },
-                            },
-                        ],
-                    },
-                },
-            },
-
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${access_token}`,
-            },
-        });
+        await sendButtons(
+            phone_no_id,
+            access_token,
+            from,
+            "ㅤㅤㅤ",
+            "request_call",
+            "Request a call",
+            "products",
+            "Products & Services",
+            "pravasi_chitty",
+            "Pravasi Chitty"
+        );
 
         await axios({
             method: "POST",

@@ -399,3 +399,66 @@ export const sendText = async (phone_no_id, access_token, from, message) => {
         },
     });
 };
+
+export const sendButton = async (
+    phone_no_id,
+    access_token,
+    from,
+    message,
+    id1,
+    title1,
+    id2,
+    title2,
+    id3,
+    title3
+) => {
+    await axios({
+        method: "POST",
+        url:
+            "https://graph.facebook.com/v13.0/" +
+            phone_no_id +
+            "/messages?access_token=" +
+            access_token,
+        data: {
+            messaging_product: "whatsapp",
+            to: from,
+            type: "interactive",
+            interactive: {
+                type: "button",
+                body: {
+                    text: message,
+                },
+                action: {
+                    buttons: [
+                        {
+                            type: "reply",
+                            reply: {
+                                id: "id1",
+                                title: title1,
+                            },
+                        },
+                        {
+                            type: "reply",
+                            reply: {
+                                id: id2,
+                                title: title2,
+                            },
+                        },
+                        {
+                            type: "reply",
+                            reply: {
+                                id: id3,
+                                title: title3,
+                            },
+                        },
+                    ],
+                },
+            },
+        },
+
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${access_token}`,
+        },
+    });
+};
