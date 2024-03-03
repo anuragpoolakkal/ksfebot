@@ -3,7 +3,7 @@ import { OpenAI } from "openai";
 import "dotenv/config";
 import { Translate } from "@google-cloud/translate/build/src/v2/index.js";
 import CallbackRequest from "../models/CallbackRequest.js";
-import { callbackReq } from "../index.js";
+// import { callbackReq } from "../index.js";
 
 import {
     faqListEnglish,
@@ -16,8 +16,11 @@ import {
     sendText,
     sendButton,
 } from "../constants/english.js";
-
 import { handleRequestCall } from "./handleRequestCall.js";
+
+const history = new Map();
+// const userDetails = new Map();
+const callbackReq = new Map();
 
 const CREDENTIALS = JSON.parse(process.env.CREDENTIALS);
 
@@ -45,10 +48,6 @@ const translateText = async (text, targetLanguage) => {
         return 0;
     }
 };
-
-const history = new Map();
-// const userDetails = new Map();
-const callbackReq = new Map();
 
 export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
     const askAI = async (prompt, conversation, lastUserMsg, lastAIMsg) => {
@@ -87,7 +86,31 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
         return reply;
     };
 
-    if (callbackReq.get(from) != true && msg?.type === "text") {
+    if (
+        msg?.interactive?.button_reply?.id === "request_call" ||
+        callbackReq.set(from, true)
+    ) {
+        let status = await handleRequestCall(
+            msg,
+            access_token,
+            phone_no_id,
+            from
+        );
+        if (status === "SUCCESS") {
+            await sendText(
+                phone_no_id,
+                access_token,
+                from,
+                "Request Successful"
+            );
+            callbackReq.set(from, false);
+        } else if (status === "FAIL") {
+            await sendText(phone_no_id, access_token, from, "Request Failed");
+            callbackReq.set(from, false);
+        }
+    }
+
+    if (callbackReq.get(from) !== true && msg?.type === "text") {
         // Bot commands
         if (msg?.text?.body === "/menu") {
             await showMenu(phone_no_id, access_token, from);
@@ -137,6 +160,30 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
             await sendText(phone_no_id, access_token, from, answer);
         }
     }
+
+    // if (
+    //     msg?.interactive?.button_reply?.id === "request_call" ||
+    //     callbackReq.get(from) === true
+    // ) {
+    //     let status = await handleRequestCall(
+    //         msg,
+    //         access_token,
+    //         phone_no_id,
+    //         from
+    //     );
+    //     if (status === "SUCCESS") {
+    //         await sendText(
+    //             phone_no_id,
+    //             access_token,
+    //             from,
+    //             "Requested Successful"
+    //         );
+    //         callbackReq.set(from, false);
+    //     } else if (status === "FAIL") {
+    //         await sendText(phone_no_id, access_token, from, "Request Failed");
+    //         callbackReq.set(from, false);
+    //     }
+    // }
 
     if (msg?.interactive?.button_reply?.id === "english") {
         await sendButtons(
@@ -250,106 +297,109 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
     }
 
     //---------------------- Request a Callback  ----------------------
-    if (msg?.interactive?.button_reply?.id === "request_call") {
-        if (userDetails.get(from) == null) {
-            userDetails.set(from, []);
-        }
+    // if (msg?.interactive?.button_reply?.id === "request_call") {
+    //     callbackReq.set(from, true);
+    // }
+    // if (msg?.interactive?.button_reply?.id === "request_call") {
+    //     if (userDetails.get(from) == null) {
+    //         userDetails.set(from, []);
+    //     }
 
-        const userData = await CallbackRequest.findOne({ phone: from });
-        if (userData) {
-            userData.date = Date.now;
-            await userData.save();
+    //     const userData = await CallbackRequest.findOne({ phone: from });
+    //     if (userData) {
+    //         userData.date = Date.now;
+    //         await userData.save();
 
-            await sendText(
-                phone_no_id,
-                access_token,
-                from,
-                "Requested a call."
-            );
+    //         await sendText(
+    //             phone_no_id,
+    //             access_token,
+    //             from,
+    //             "Requested a call."
+    //         );
 
-            callbackReq.set(from, false);
+    //         callbackReq.set(from, false);
 
-            await showMenu(phone_no_id, access_token, from);
-        }
+    //         await showMenu(phone_no_id, access_token, from);
+    //     }
 
-        await sendText(
-            phone_no_id,
-            access_token,
-            from,
-            "What is your full name?"
-        );
-    }
+    //     await sendText(
+    //         phone_no_id,
+    //         access_token,
+    //         from,
+    //         "What is your full name?"
+    //     );
+    // }
 
-    if (callbackReq.get(from) == true && msg?.type == "text") {
-        const userArray = userDetails.get(from);
-        console.log(`USERARRAY111111: ` + userArray);
-        if (userArray.length == 0) {
-            userArray.push(msg?.body?.text);
-            userDetails.set(from, userArray);
-        } else if (userArray.length == 1) {
-            userArray.push(msg?.body?.text);
-            userDetails.set(from, userArray);
-        } else if (userArray.length == 2) {
-            userArray.push(msg?.body?.text);
-            userDetails.set(from, userArray);
+    // if (callbackReq.get(from) == true && msg?.type == "text") {
+    //     const userArray = userDetails.get(from);
+    //     console.log(`USERARRAY111111: ` + userArray);
+    //     if (userArray.length == 0) {
+    //         userArray.push(msg?.body?.text);
+    //         userDetails.set(from, userArray);
+    //     } else if (userArray.length == 1) {
+    //         userArray.push(msg?.body?.text);
+    //         userDetails.set(from, userArray);
+    //     } else if (userArray.length == 2) {
+    //         userArray.push(msg?.body?.text);
+    //         userDetails.set(from, userArray);
 
-            await sendText(
-                phone_no_id,
-                access_token,
-                from,
-                `Your data:\n\nName: ` +
-                    userArray[0] +
-                    `\nEmail: ` +
-                    userArray[1] +
-                    `\nDistrict` +
-                    userArray[0]
-            );
+    //         await sendText(
+    //             phone_no_id,
+    //             access_token,
+    //             from,
+    //             `Your data:\n\nName: ` +
+    //                 userArray[0] +
+    //                 `\nEmail: ` +
+    //                 userArray[1] +
+    //                 `\nDistrict` +
+    //                 userArray[0]
+    //         );
 
-            const newData = await new CallbackRequest({
-                phone: from,
-                name: userArray[0],
-                email: userArray[1],
-                district: userArray[2],
-                date: Date.now(),
-            });
+    //         const newData = await new CallbackRequest({
+    //             phone: from,
+    //             name: userArray[0],
+    //             email: userArray[1],
+    //             district: userArray[2],
+    //             date: Date.now(),
+    //         });
 
-            await newData.save();
+    //         await newData.save();
 
-            callbackReq.set(from, false);
+    //         callbackReq.set(from, false);
 
-            await sendText(
-                phone_no_id,
-                access_token,
-                from,
-                "Requested a call."
-            );
+    //         await sendText(
+    //             phone_no_id,
+    //             access_token,
+    //             from,
+    //             "Requested a call."
+    //         );
 
-            await showMenu(phone_no_id, access_token, from);
-        }
-    }
+    //         await showMenu(phone_no_id, access_token, from);
+    //     }
+    // }
 
-    if (callbackReq.get(from) == true) {
-        const userArray = userDetails.get(from);
+    // if (callbackReq.get(from) == true) {
+    //     const userArray = userDetails.get(from);
 
-        console.log(`USERARRAY: ` + userArray);
-        console.log(`CALLBACKREQ: ` + callbackReq.get(from));
+    //     console.log(`USERARRAY: ` + userArray);
+    //     console.log(`CALLBACKREQ: ` + callbackReq.get(from));
 
-        if (userArray.length == 1) {
-            await sendText(
-                phone_no_id,
-                access_token,
-                from,
-                "What is your email?"
-            );
-        } else if (userArray.length == 2) {
-            await sendText(
-                phone_no_id,
-                access_token,
-                from,
-                "Which is your district?"
-            );
-        }
-    }
+    //     if (userArray.length == 1) {
+    //         await sendText(
+    //             phone_no_id,
+    //             access_token,
+    //             from,
+    //             "What is your email?"
+    //         );
+    //     } else if (userArray.length == 2) {
+    //         await sendText(
+    //             phone_no_id,
+    //             access_token,
+    //             from,
+    //             "Which is your district?"
+    //         );
+    //     }
+    // }
 
     //---------------------- About KSFE ----------------------
     if (msg?.interactive?.button_reply?.id === "about_ksfe") {
