@@ -17,7 +17,15 @@ export const handleRequestCall = async (
         if (userData?.length > 0) {
             const userField = await CallbackRequest.findOne({ phone: from });
             userField.date = new Date();
-            await userField.save();
+            try {
+                await userField.save();
+                return "SUCCESS";
+            } catch (err) {
+                console.error(err);
+                console.log(err);
+
+                return "ERROR";
+            }
         } else {
             userDetails.set(from, []);
             await sendText(phone_no_id, access_token, from, nameQn);

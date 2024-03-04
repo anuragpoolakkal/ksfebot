@@ -86,8 +86,9 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
 
     if (
         msg?.interactive?.button_reply?.id === "request_call" ||
-        callbackReq.set(from, true)
+        callbackReq.get(from) === true
     ) {
+        callbackReq.set(from, true);
         let status = await handleRequestCall(
             msg,
             access_token,
@@ -107,7 +108,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
             callbackReq.set(from, false);
             await showMenu(phone_no_id, access_token, from);
             return;
-        } else if (status === "FAIL") {
+        } else if (status === "ERROR") {
             await sendText(
                 phone_no_id,
                 access_token,
@@ -294,7 +295,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
             phone_no_id,
             access_token,
             from,
-            "The Kerala State Financial Enterprises Limited, popularly known as *KSFE*.\nKSFE started its operations on 6th November 1969, headquartered at Thrissur, with a capital of ₹2 Lakhs, 45 employees and 10 branches.\n\n*₹100 Cr* paid up capital\n*8300+* employees\n*50 Lacks+* customers\n*670+* branches\n*73000 Cr+* capital\n\n*KSFE at a Glance*\nKSFE is a Miscellaneous Non-Banking Company,Is fully owned by the Government of Kerala.\n\nKSFE is one of the most profit-making public sector undertakings of the State.\n\nFormed by the Government of Kerala with the objective of providing an alternative to the public from the private chit promoters in order to bring in social control over the chit fund business, so as to save the public from the clutches of unscrupulous fly-by-night chit fund operators.\n\nKSFE has been registering impressive profits every year, without fail since its inception.\n\nKSFE pays to the Government of Kerala crores of rupees every year by way of:\n- Guarantee Commission\n- Service Charges\n- Dividend\n\nMore information: https://ksfe.com/about-us/"
+            "The Kerala State Financial Enterprises Limited, popularly known as *KSFE*.\nKSFE started its operations on 6th November 1969, headquartered at Thrissur, with a capital of ₹2 Lakhs, 45 employees and 10 branches.\n\n*₹100 Cr* paid up capital\n*8300+* employees\n*50 Lakhs+* customers\n*670+* branches\n*73000 Cr+* capital\n\n*KSFE at a Glance*\nKSFE is a Miscellaneous Non-Banking Company, fully owned by the Government of Kerala.\n\nKSFE is one of the most profit-making public sector undertakings of Kerala.\n\nFormed by the Government of Kerala with the objective of providing an alternative to the public from the private chit promoters in order to bring in social control over the chit fund business, so as to save the public from the clutches of unscrupulous fly-by-night chit fund operators.\n\nKSFE has been registering impressive profits every year, without fail since its inception.\n\nKSFE pays to the Government of Kerala crores of rupees every year by way of:\n- Guarantee Commission\n- Service Charges\n- Dividend\n\nMore information: https://ksfe.com/about-us/"
         );
 
         await showMenu(phone_no_id, access_token, from);
