@@ -1,9 +1,7 @@
 import axios from "axios";
 
-export const basePrompt = `
-You're KSFE bot, a responsible WhatsApp bot AI to answer customer queries about "Kerala State Financial Enterprises Ltd (KSFE) and the products and services offerred by it."
-You should answer users' questions n a polite and effective way. If a user question is very irrelevant to KSFE or its products and services, reply that you can only answer queries about KSFE, in a polite way by saying sorry if necessary.
-`;
+export const basePrompt = `You're KSFE bot, a responsible WhatsApp bot AI to answer customer queries about "Kerala State Financial Enterprises Ltd (KSFE) and the products and services offerred by it."
+You should answer users' questions n a polite and effective way. If a user question is very irrelevant to KSFE or its products and services, reply that you can only answer queries about KSFE, in a polite way by saying sorry if necessary.`;
 
 // Previous conversation: {chat_history} New human question: {question} Response:
 
@@ -339,6 +337,84 @@ export const showFaqOptions = async (phone_no_id, access_token, from) => {
 };
 
 export const showMenu = async (phone_no_id, access_token, from) => {
+    await sendButton(
+        phone_no_id,
+        access_token,
+        from,
+        "How can I help you?\n\n\n_Important bot commands:_\n_*/menu* for main menu_\n_*/products* for products & services_\n_*/language* to change language_",
+        "faq",
+        "Questions",
+        "branch_locator",
+        "Branch Locator",
+        "contact",
+        "Contact us"
+    );
+
+    await sendButton(
+        phone_no_id,
+        access_token,
+        from,
+        "ㅤㅤㅤ",
+        "request_call",
+        "Request a call",
+        "products",
+        "Products & Services",
+        "pravasi_chitty",
+        "Pravasi Chitty"
+    );
+
+    await axios({
+        method: "POST",
+        url:
+            "https://graph.facebook.com/v13.0/" +
+            phone_no_id +
+            "/messages?access_token=" +
+            access_token,
+        data: {
+            messaging_product: "whatsapp",
+            to: from,
+            type: "interactive",
+            interactive: {
+                type: "button",
+                body: {
+                    text: "ㅤㅤㅤ",
+                },
+                action: {
+                    buttons: [
+                        {
+                            type: "reply",
+                            reply: {
+                                id: "about_ksfe",
+                                title: "About KSFE",
+                            },
+                        },
+                        {
+                            type: "reply",
+                            reply: {
+                                id: "change_language",
+                                title: "Change Language",
+                            },
+                        },
+                    ],
+                },
+            },
+        },
+
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${access_token}`,
+        },
+    });
+
+    await sendText(
+        phone_no_id,
+        access_token,
+        from,
+        "Choose an option from the above menu or ask me a question."
+    );
+};
+
+export const sendMenu = async (phone_no_id, access_token, from) => {
     await axios({
         method: "POST",
         url:

@@ -8,6 +8,7 @@ import {
     faqMalayalam,
     showProductList,
     showMenu,
+    sendMenu,
 } from "../constants/malayalam.js";
 
 import {
@@ -67,8 +68,13 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
         const completion = await openai.chat.completions.create({
             model: process.env.MODEL,
             messages: [
-                { role: "system", content: basePrompt },
-                { role: "user", content: conversation },
+                {
+                    role: "system",
+                    content:
+                        basePrompt +
+                        `Read the conversation history between "user" and "assitant":` +
+                        conversation,
+                },
                 { role: "user", content: lastUserMsg },
                 { role: "assistant", content: lastAIMsg },
                 { role: "user", content: promptInEn },
@@ -175,81 +181,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
     }
 
     if (msg?.interactive?.button_reply?.id === "malayalam") {
-        await sendButton(
-            phone_no_id,
-            access_token,
-            from,
-            "ഞാൻ നിങ്ങളെ എങ്ങനെയാണ് സഹായിക്കേണ്ടത്?\n\n\n_പ്രധാനപ്പെട്ട ബോട് കമാൻഡുകൾ:_\n_*/menu* മെനു ലഭിക്കുന്നതിന്_\n_*/products* സേവനങ്ങളുടെ വിവരങ്ങൾക്ക്_\n_*/language* ഭാഷ മാറ്റുന്നതിന്_",
-            "faq",
-            "ചോദ്യങ്ങൾ",
-            "branch_locator",
-            "ബ്രാഞ്ച് ലൊക്കേറ്റർ",
-            "contact",
-            "ഞങ്ങളെ ബന്ധപ്പെടുക"
-        );
-
-        await sendButton(
-            phone_no_id,
-            access_token,
-            from,
-            "ㅤㅤㅤ",
-            "request_call",
-            "കോൾ അഭ്യർഥിക്കുക",
-            "products",
-            "സേവനങ്ങൾ",
-            "pravasi_chitty",
-            "പ്രവാസി ചിട്ടി"
-        );
-
-        await axios({
-            method: "POST",
-            url:
-                "https://graph.facebook.com/v13.0/" +
-                phone_no_id +
-                "/messages?access_token=" +
-                access_token,
-            data: {
-                messaging_product: "whatsapp",
-                to: from,
-                type: "interactive",
-                interactive: {
-                    type: "button",
-                    body: {
-                        text: "ㅤㅤㅤ",
-                    },
-                    action: {
-                        buttons: [
-                            {
-                                type: "reply",
-                                reply: {
-                                    id: "about_ksfe",
-                                    title: "കെഎസ്എഫ്ഇയെ അറിയുക",
-                                },
-                            },
-                            {
-                                type: "reply",
-                                reply: {
-                                    id: "change_language",
-                                    title: "ഭാഷ മാറ്റുക",
-                                },
-                            },
-                        ],
-                    },
-                },
-            },
-
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${access_token}`,
-            },
-        });
-
-        await sendText(
-            phone_no_id,
-            access_token,
-            from,
-            "മെനുവിൽ നിന്ന് ഒരു ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ എന്നോട് ഒരു ചോദ്യം ചോദിക്കുക."
-        );
+        await showMenu(phone_no_id, access_token, from);
     }
 
     //------------------FAQ------------------
@@ -320,7 +252,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
     if (msg?.interactive?.button_reply?.id === "products") {
         await showProductList(phone_no_id, access_token, from);
 
-        await showMenu(phone_no_id, access_token, from);
+        await sendMenu(phone_no_id, access_token, from);
     }
 
     //---------------------- About KSFE ----------------------
@@ -332,7 +264,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
             "*KSFE* എന്നറിയപ്പെടുന്ന കേരള സ്റ്റേറ്റ് ഫിനാൻഷ്യൽ എൻ്റർപ്രൈസസ് ലിമിറ്റഡ്, 1969 നവംബർ 6-ന് തൃശ്ശൂർ ആസ്ഥാനമാക്കി, ₹2 ലക്ഷം, 45 ജോലിക്കാർ, 10 ശാഖകൾ എന്നിവയുമായി അതിൻ്റെ പ്രവർത്തനം ആരംഭിച്ചു.\n\n*₹100 കോടി രൂപ. *പണമടച്ച മൂലധനം\n*8300+* ജീവനക്കാർ\n*50 ലക്ഷത്തിലധികം* ഉപഭോക്താക്കൾ\n*670+* ശാഖകൾ\n*73000 കോടി+* മൂലധനം\n\n*KSFE ഒറ്റനോട്ടത്തിൽ*\nKSFE പൂർണമായും കേരള സർക്കാരിൻ്റെ ഉടമസ്ഥതയിലുള്ള ഒരു Miscellaneous Non-Banking Company ആണ്.\n\nസംസ്ഥാനത്തെ ഏറ്റവും ലാഭകരമായ പൊതുമേഖലാ സ്ഥാപനങ്ങളിലൊന്നാണ് KSFE.\n\nപൊതുജനങ്ങൾക്ക് ഒരു ബദൽ നൽകുകയെന്ന ലക്ഷ്യത്തോടെ കേരള സർക്കാർ രൂപീകരിച്ചതാണ്.\n\nKSFE എല്ലാ വർഷവും ശ്രദ്ധേയമായ ലാഭം രേഖപ്പെടുത്തുന്നു. \n\nKSFE ഓരോ വർഷവും കേരള സർക്കാരിന് കോടിക്കണക്കിന് രൂപ ഇപ്രകാരം നൽകുന്നു:\n- ഗ്യാരൻ്റി കമ്മീഷൻ\n- സർവീസ് ചാർജുകൾ\n- ലാഭവിഹിതം\n\nകൂടുതൽ വിവരങ്ങൾ: https://ksfe. com/about-us/"
         );
 
-        await showMenu(phone_no_id, access_token, from);
+        await sendMenu(phone_no_id, access_token, from);
     }
 
     // ---------------------- Pravasi Chitty ----------------------
@@ -344,7 +276,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
             "കേരളത്തിന് പുറത്ത് താമസിക്കുന്ന മലയാളികളുടെ ക്ഷേമത്തിനായി അവതരിപ്പിച്ച സവിശേഷമായ സാമ്പത്തിക സമ്പാദ്യ പദ്ധതിയാണ് കെഎസ്എഫ്ഇ പ്രവാസി ചിട്ടി. ഒരൊറ്റ സ്കീമിന് കീഴിലുള്ള നിരവധി കാര്യങ്ങളുണ്ട്. ഇൻഷുറൻസ് പരിരക്ഷയും പെൻഷൻ പദ്ധതിയുമുള്ള ചിട്ടി പദ്ധതിയാണിത്. ചിട്ടികളിൽ ചേരാനും തവണകളായി അടയ്‌ക്കാനും ചിട്ടി ലേലത്തിൽ എവിടെ നിന്നും എപ്പോൾ വേണമെങ്കിലും പങ്കെടുക്കാനും നിങ്ങളെ അനുവദിക്കുന്ന ഒരു ഓൺലൈൻ പോർട്ടലും മൊബൈൽ ആപ്ലിക്കേഷനുമുണ്ട്. സംസ്ഥാനത്തിൻ്റെ മൊത്തത്തിലുള്ള അടിസ്ഥാന സൗകര്യ വികസനത്തിൽ പങ്കാളികളാകാനുള്ള അവസരവും ഇത് എൻആർകെക്ക് നൽകുന്നു. കൂടാതെ, മറ്റ് സാമ്പത്തിക ഉപകരണങ്ങൾക്കിടയിൽ സവിശേഷമായ ഒരു സാമ്പത്തിക ലാഭിക്കൽ ഘടനയാക്കി മാറ്റുന്ന നിരവധി സവിശേഷതകളും പ്രവാസി ചിട്ടിക്കുണ്ട്.\nകൂടുതൽ വിവരങ്ങൾ: https://pravasi.ksfe.com/"
         );
 
-        await showMenu(phone_no_id, access_token, from);
+        await sendMenu(phone_no_id, access_token, from);
     }
 
     //---- Reply to Change language button-----------------
@@ -363,7 +295,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
             );
 
             await showProductList(phone_no_id, access_token, from);
-            await showMenu(phone_no_id, access_token, from);
+            await sendMenu(phone_no_id, access_token, from);
         } else if (msg?.interactive?.list_reply?.id === "loans_and_advances") {
             await sendText(
                 phone_no_id,
@@ -373,7 +305,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
             );
 
             await showProductList(phone_no_id, access_token, from);
-            await showMenu(phone_no_id, access_token, from);
+            await sendMenu(phone_no_id, access_token, from);
         } else if (msg?.interactive?.list_reply?.id === "deposit_schemes") {
             await sendText(
                 phone_no_id,
@@ -383,7 +315,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
             );
 
             await showProductList(phone_no_id, access_token, from);
-            await showMenu(phone_no_id, access_token, from);
+            await sendMenu(phone_no_id, access_token, from);
         } else if (
             msg?.interactive?.list_reply?.id === "securities_acceptable"
         ) {
@@ -395,7 +327,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
             );
 
             await showProductList(phone_no_id, access_token, from);
-            await showMenu(phone_no_id, access_token, from);
+            await sendMenu(phone_no_id, access_token, from);
         } else if (msg?.interactive?.list_reply?.id === "fee_based_services") {
             await sendText(
                 phone_no_id,
@@ -405,7 +337,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
             );
 
             await showProductList(phone_no_id, access_token, from);
-            await showMenu(phone_no_id, access_token, from);
+            await sendMenu(phone_no_id, access_token, from);
         }
 
         //---------------------- FAQ List Reply----------------------
@@ -424,7 +356,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
 
             await showFaqOptions(phone_no_id, access_token, from);
 
-            await showMenu(phone_no_id, access_token, from);
+            await sendMenu(phone_no_id, access_token, from);
         }
     }
 };

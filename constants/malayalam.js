@@ -1,4 +1,5 @@
 import axios from "axios";
+import { sendText, sendButton } from "./english.js";
 
 export const faqMalayalam =
     "*പതിവായി ചോദിക്കുന്ന ചോദ്യങ്ങൾ*\n\n1. മറ്റ് സംഭാവന രീതികളിൽ ചിട്ടികൾ നടത്തുന്നതിനുള്ള കെ.എസ്.എഫ്.ഇ. ചിട്ടികളിൽ ചേരാൻ പ്രധാനമായ ആകരണങ്ങൾ എന്താണ്?\n\n2. ഞാൻ കേട്ടിട്ടുള്ളത് കെ.എസ്.എഫ്.ഇ. യുടെ ജാമ്യ വ്യവസ്ഥകൾ വഴക്കമില്ലാത്തവയും ബുദ്ധിമുട്ടേറിയതും ആണെന്നാണ്. ശരിയല്ലേ?\n\n3. മറ്റ് സ്ഥാപനങ്ങളിലെ സമാന പദ്ധതികളെ അപേക്ഷിച്ച് കെ.എസ്.എഫ്.ഇ. യുടെ ഗൃഹോപകരണ - വാഹന വായ്പാ പദ്ധതി മെച്ചപ്പെട്ടതാണ് എന്ന് പറയാൻ കാരണമെന്ത്?\n\n4. കെ.എസ്.എഫ്.ഇ. ഭവന വായ്പയ്ക്ക് മറ്റ് സ്ഥാപനങ്ങൾ മുന്നോട്ടുവെയ്ക്കുന്ന ഭവന വായ്പാ പദ്ധതിയുമായി എന്ത് വ്യത്യാസമാണ് ഉള്ളത്?\n\n5. കെ.എസ്.എഫ്.ഇ. യുടെ സ്വർണ്ണപ്പണയ വായ്പയുടെ പ്രധാന സവിശേഷതകൾ എന്തൊക്കെയാണ്?\n\n6. കെ.എസ്.എഫ്.ഇ. വ്യക്തിഗത വായ്പയുടെ സവിശേഷതകൾ എന്തൊക്കെ?\n\n7. ചിട്ടിപ്പണവും വായ്പാത്തുകയും ലഭിയ്ക്കാൻ കെ.എസ്.എഫ്.ഇ. യിൽ കാലതാമസം ഏറെയുണ്ട് എന്ന് കേൾക്കുന്നത് ശരിയാണോ?\n\n8. പരാതികൾ പരിഹരിയ്ക്കുന്നതിന് എന്തെങ്കിലും സംവിധാനമുണ്ടോ?\n\n9. എങ്ങനെയാണ് ശാഖകൾക്ക് മേലുള്ള നിയന്ത്രണം സാധ്യമാക്കിയിട്ടുള്ളത്?\n\n10. ഈയിടെയായി പ്രവാസി മലയാളികൾക്കും ചിട്ടി തുടങ്ങിയതായി വാർത്തയുണ്ടല്ലോ?";
@@ -279,7 +280,7 @@ export const showFaqOptions = async (phone_no_id, access_token, from) => {
     });
 };
 
-export const showMenu = async (phone_no_id, access_token, from) => {
+export const sendMenu = async (phone_no_id, access_token, from) => {
     await axios({
         method: "POST",
         url:
@@ -315,4 +316,82 @@ export const showMenu = async (phone_no_id, access_token, from) => {
             Authorization: `Bearer ${access_token}`,
         },
     });
+};
+
+export const showMenu = async (phone_no_id, access_token, from) => {
+    await sendButton(
+        phone_no_id,
+        access_token,
+        from,
+        "ഞാൻ നിങ്ങളെ എങ്ങനെയാണ് സഹായിക്കേണ്ടത്?\n\n\n_പ്രധാനപ്പെട്ട ബോട് കമാൻഡുകൾ:_\n_*/menu* മെനു ലഭിക്കുന്നതിന്_\n_*/products* സേവനങ്ങളുടെ വിവരങ്ങൾക്ക്_\n_*/language* ഭാഷ മാറ്റുന്നതിന്_",
+        "faq",
+        "ചോദ്യങ്ങൾ",
+        "branch_locator",
+        "ബ്രാഞ്ച് ലൊക്കേറ്റർ",
+        "contact",
+        "ഞങ്ങളെ ബന്ധപ്പെടുക"
+    );
+
+    await sendButton(
+        phone_no_id,
+        access_token,
+        from,
+        "ㅤㅤㅤ",
+        "request_call",
+        "കോൾ അഭ്യർഥിക്കുക",
+        "products",
+        "സേവനങ്ങൾ",
+        "pravasi_chitty",
+        "പ്രവാസി ചിട്ടി"
+    );
+
+    await axios({
+        method: "POST",
+        url:
+            "https://graph.facebook.com/v13.0/" +
+            phone_no_id +
+            "/messages?access_token=" +
+            access_token,
+        data: {
+            messaging_product: "whatsapp",
+            to: from,
+            type: "interactive",
+            interactive: {
+                type: "button",
+                body: {
+                    text: "ㅤㅤㅤ",
+                },
+                action: {
+                    buttons: [
+                        {
+                            type: "reply",
+                            reply: {
+                                id: "about_ksfe",
+                                title: "കെഎസ്എഫ്ഇയെ അറിയുക",
+                            },
+                        },
+                        {
+                            type: "reply",
+                            reply: {
+                                id: "change_language",
+                                title: "ഭാഷ മാറ്റുക",
+                            },
+                        },
+                    ],
+                },
+            },
+        },
+
+        headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${access_token}`,
+        },
+    });
+
+    await sendText(
+        phone_no_id,
+        access_token,
+        from,
+        "മെനുവിൽ നിന്ന് ഒരു ഓപ്ഷൻ തിരഞ്ഞെടുക്കുക അല്ലെങ്കിൽ എന്നോട് ഒരു ചോദ്യം ചോദിക്കുക."
+    );
 };

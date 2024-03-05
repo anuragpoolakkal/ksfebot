@@ -21,9 +21,7 @@ mongoose
     .connect(process.env.MONGO_URI)
     .then(() => {
         router.listen(process.env.PORT || 9000, () =>
-            console.log(
-                `Webhook is listening\nComplete this project before March 1`
-            )
+            console.log(`ksfebot is live!`)
         );
     })
     .catch((error) => {
@@ -100,7 +98,7 @@ router.post("/endpoint", async (req, res) => {
                         phone_no_id,
                         access_token,
                         from,
-                        "Hey, I'm KSFE Customer Support bot."
+                        "Hey, I'm KSFE Customer-Support bot."
                     );
 
                     // Choose language

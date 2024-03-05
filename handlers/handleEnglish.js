@@ -12,7 +12,7 @@ import {
     showMenu,
     basePrompt,
     sendText,
-    sendButton,
+    sendMenu,
 } from "../constants/english.js";
 
 import { handleRequestCall } from "./handleRequestCall.js";
@@ -65,8 +65,13 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
         const completion = await openai.chat.completions.create({
             model: process.env.MODEL,
             messages: [
-                { role: "system", content: basePrompt },
-                { role: "user", content: conversation },
+                {
+                    role: "system",
+                    content:
+                        basePrompt +
+                        `Read the conversation history between "user" and "assitant":` +
+                        conversation,
+                },
                 { role: "user", content: lastUserMsg },
                 { role: "assistant", content: lastAIMsg },
                 { role: "user", content: promptInEn },
@@ -173,81 +178,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
     }
 
     if (msg?.interactive?.button_reply?.id === "english") {
-        await sendButton(
-            phone_no_id,
-            access_token,
-            from,
-            "How can I help you?\n\n\n_Important bot commands:_\n_*/menu* for main menu_\n_*/products* for products & services_\n_*/language* to change language_",
-            "faq",
-            "Questions",
-            "branch_locator",
-            "Branch Locator",
-            "contact",
-            "Contact us"
-        );
-
-        await sendButton(
-            phone_no_id,
-            access_token,
-            from,
-            "ㅤㅤㅤ",
-            "request_call",
-            "Request a call",
-            "products",
-            "Products & Services",
-            "pravasi_chitty",
-            "Pravasi Chitty"
-        );
-
-        await axios({
-            method: "POST",
-            url:
-                "https://graph.facebook.com/v13.0/" +
-                phone_no_id +
-                "/messages?access_token=" +
-                access_token,
-            data: {
-                messaging_product: "whatsapp",
-                to: from,
-                type: "interactive",
-                interactive: {
-                    type: "button",
-                    body: {
-                        text: "ㅤㅤㅤ",
-                    },
-                    action: {
-                        buttons: [
-                            {
-                                type: "reply",
-                                reply: {
-                                    id: "about_ksfe",
-                                    title: "About KSFE",
-                                },
-                            },
-                            {
-                                type: "reply",
-                                reply: {
-                                    id: "change_language",
-                                    title: "Change Language",
-                                },
-                            },
-                        ],
-                    },
-                },
-            },
-
-            headers: {
-                "Content-Type": "application/json",
-                Authorization: `Bearer ${access_token}`,
-            },
-        });
-
-        await sendText(
-            phone_no_id,
-            access_token,
-            from,
-            "Choose an option from the above menu or ask me a question."
-        );
+        await showMenu(phone_no_id, access_token, from);
     }
 
     // ----------------------FAQ----------------------
@@ -256,7 +187,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
 
         await showFaqOptions(phone_no_id, access_token, from);
 
-        await showMenu(phone_no_id, access_token, from);
+        await sendMenu(phone_no_id, access_token, from);
     }
 
     // ----------------------Contact----------------------
@@ -268,7 +199,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
             "*Registered Office*\nThe Kerala State Financial Enterprises Ltd.\n“bhadratha”, Museum Road,\nP.b. No.510,Thrissur – 680 020\nPhone No: 0487 2332255\nToll Free No: 1800 425 3455\nFax: 0487 – 2336232\nE-Mail : mail@ksfe.com\n\nTo ask your queries, visit https://ksfe.com/contact-us"
         );
 
-        await showMenu(phone_no_id, access_token, from);
+        await sendMenu(phone_no_id, access_token, from);
     }
 
     // ----------------------Branch Locator----------------------
@@ -280,13 +211,13 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
             "Find your nearest branch\n\nhttps://ksfe.com/branch-locator"
         );
 
-        await showMenu(phone_no_id, access_token, from);
+        await sendMenu(phone_no_id, access_token, from);
     }
     //---------------------- Products and Services catalogue ----------------------
     if (msg?.interactive?.button_reply?.id === "products") {
         await showProductList(phone_no_id, access_token, from);
 
-        await showMenu(phone_no_id, access_token, from);
+        await sendMenu(phone_no_id, access_token, from);
     }
 
     //---------------------- About KSFE ----------------------
@@ -298,7 +229,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
             "The Kerala State Financial Enterprises Limited, popularly known as *KSFE*.\nKSFE started its operations on 6th November 1969, headquartered at Thrissur, with a capital of ₹2 Lakhs, 45 employees and 10 branches.\n\n*₹100 Cr* paid up capital\n*8300+* employees\n*50 Lakhs+* customers\n*670+* branches\n*73000 Cr+* capital\n\n*KSFE at a Glance*\nKSFE is a Miscellaneous Non-Banking Company, fully owned by the Government of Kerala.\n\nKSFE is one of the most profit-making public sector undertakings of Kerala.\n\nFormed by the Government of Kerala with the objective of providing an alternative to the public from the private chit promoters in order to bring in social control over the chit fund business, so as to save the public from the clutches of unscrupulous fly-by-night chit fund operators.\n\nKSFE has been registering impressive profits every year, without fail since its inception.\n\nKSFE pays to the Government of Kerala crores of rupees every year by way of:\n- Guarantee Commission\n- Service Charges\n- Dividend\n\nMore information: https://ksfe.com/about-us/"
         );
 
-        await showMenu(phone_no_id, access_token, from);
+        await sendMenu(phone_no_id, access_token, from);
     }
 
     // ---------------------- Pravasi Chitty ----------------------
@@ -310,7 +241,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
             "KSFE Pravasi Chitty is a unique financial savings scheme introduced for the welfare of Malayalees living outside Kerala. It’s many things, under a single scheme. It is a chitty scheme with insurance coverage and a pension plan. It has an online portal and a mobile application that allows you to join chits, pay instalments, and take part in chit auction from anywhere, anytime. It also gives NRK’s, an opportunity to partake in the overall infrastructural development of the State. Moreover, the Pravasi Chits also has many features that make it a unique financial saving structure amidst other financial instruments.\nMore information: https://pravasi.ksfe.com/"
         );
 
-        await showMenu(phone_no_id, access_token, from);
+        await sendMenu(phone_no_id, access_token, from);
     }
 
     //---- Reply to Change language button-----------------
@@ -329,7 +260,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
             );
 
             await showProductList(phone_no_id, access_token, from);
-            await showMenu(phone_no_id, access_token, from);
+            await sendMenu(phone_no_id, access_token, from);
         } else if (msg?.interactive?.list_reply?.id === "loans_and_advances") {
             await sendText(
                 phone_no_id,
@@ -339,7 +270,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
             );
 
             await showProductList(phone_no_id, access_token, from);
-            await showMenu(phone_no_id, access_token, from);
+            await sendMenu(phone_no_id, access_token, from);
         } else if (msg?.interactive?.list_reply?.id === "deposit_schemes") {
             await sendText(
                 phone_no_id,
@@ -349,7 +280,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
             );
 
             await showProductList(phone_no_id, access_token, from);
-            await showMenu(phone_no_id, access_token, from);
+            await sendMenu(phone_no_id, access_token, from);
         } else if (
             msg?.interactive?.list_reply?.id === "securities_acceptable"
         ) {
@@ -361,7 +292,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
             );
 
             await showProductList(phone_no_id, access_token, from);
-            await showMenu(phone_no_id, access_token, from);
+            await sendMenu(phone_no_id, access_token, from);
         } else if (msg?.interactive?.list_reply?.id === "fee_based_services") {
             await sendText(
                 phone_no_id,
@@ -371,7 +302,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
             );
 
             await showProductList(phone_no_id, access_token, from);
-            await showMenu(phone_no_id, access_token, from);
+            await sendMenu(phone_no_id, access_token, from);
         }
 
         //---------------------- FAQ List Reply----------------------
@@ -391,7 +322,7 @@ export const handleEnglish = async (msg, access_token, phone_no_id, from) => {
 
             await showFaqOptions(phone_no_id, access_token, from);
 
-            await showMenu(phone_no_id, access_token, from);
+            await sendMenu(phone_no_id, access_token, from);
         }
     }
 };
