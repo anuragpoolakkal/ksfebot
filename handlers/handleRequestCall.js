@@ -16,13 +16,30 @@ export const handleRequestCall = async (
         const userData = userDetails.get(from);
         if (userData?.length > 0) {
             const userField = await CallbackRequest.findOne({ phone: from });
-            userField.date = new Date();
+            // userField.date = new Date();
+            const currentDate = new Date();
+            const options = {
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+                timeZone: "Asia/Kolkata", // Set the time zone to Indian Standard Time (IST)
+            };
+
+            const formattedDate = currentDate.toLocaleString("en-IN", options);
+
+            userField.date = formattedDate;
             try {
                 await userField.save();
                 return "SUCCESS";
             } catch (err) {
-                console.error(err);
+                // console.error(err);
+                console.log("Error occured!!");
                 console.log(err);
+                console.log("Error occured!!");
 
                 return "ERROR";
             }
@@ -54,17 +71,34 @@ export const handleRequestCall = async (
             console.log("Len3 ->", userData);
             userDetails.set(from, userData);
             console.log("Len3 -> ", userDetails.get(from));
+            const currentDate = new Date();
+            const options = {
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+                year: "numeric",
+                hour: "numeric",
+                minute: "2-digit",
+                hour12: true,
+                timeZone: "Asia/Kolkata", // Set the time zone to Indian Standard Time (IST)
+            };
+
+            const formattedDate = currentDate.toLocaleString("en-IN", options);
+            // console.log(formattedDate);
             const newData = new CallbackRequest({
                 name: userData[0],
                 email: userData[1],
                 phone: from,
                 district: userData[2],
-                date: new Date(),
+                date: formattedDate,
             });
             try {
                 await newData.save();
                 return "SUCCESS";
             } catch (error) {
+                console.log("Error occured!!");
+                console.log(error);
+                console.log("Error occured!!");
                 return "ERROR";
             }
         }
