@@ -4,4 +4,4 @@ The Kerala State Financial Enterprises Ltd (KSFE) is a leading public sector fin
 
 KSFE is one of the most profit-making public sector undertaking in Kerala with a revenue of more than ₹73,000 crore (US$8.8 billion) having more than 8300 employees and more than 670 branches.
 
-[REPORT](httpshttps://github.com/anuragpoolakkal/ksfebot/blob/main/documents/report.pdf)
+[REPORT](https://github.com/anuragpoolakkal/ksfebot/blob/main/documents/report.pdf)
