@@ -16,7 +16,7 @@ export const handleRequestCall = async (
         const userData = userDetails.get(from);
         if (userData?.length > 0) {
             const userField = await CallbackRequest.findOne({ phone: from });
-            // userField.date = new Date();
+            userField.date = new Date();
             const currentDate = new Date();
             const options = {
                 weekday: "long",
