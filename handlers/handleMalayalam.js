@@ -116,7 +116,7 @@ export const handleMalayalam = async (msg, access_token, phone_no_id, from) => {
             callbackReq.set(from, false);
             await showMenu(phone_no_id, access_token, from);
             return;
-        } else if (status === "FAIL") {
+        } else if (status === "ERROR") {
             await sendText(
                 phone_no_id,
                 access_token,
